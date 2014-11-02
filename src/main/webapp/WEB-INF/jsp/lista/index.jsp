@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +10,9 @@
 <title>Paulo e Layanne</title>
 
 <!-- Bootstrap -->
-<link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -19,7 +24,8 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 <style type="text/css">
 body {
 	min-height: 2000px;
@@ -31,37 +37,30 @@ body {
 	<jsp:include page="../header.jsp" />
 	<div class="container">
 
-		<h1>Lista de Presentes</h1>
-
+		<h1>Lista de Presentes (Ch√° de Panela)</h1>
+		
 		<div>
 			<table class="table table-condensed">
 				<thead>
 					<tr>
-						<th>#</th>
+						<th></th>
 						<th>Presente</th>
 						<th></th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>AÁucareiro</td>
-						<td></td>
-						<td align="right"><span class="glyphicon glyphicon-play"></span></td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Jogo de Panela</td>
-						<td></td>
-						<td align="right"><span class="glyphicon glyphicon-remove"></span></td>
-					</tr>
-					<tr class="success">
-						<td>3</td>
-						<td>Vasilhas</td>
-						<td align="center"><span class="glyphicon glyphicon-heart"></span> FamÌlia Freitas</td>
-						<td align="right"><span class="glyphicon glyphicon-ok"></span></td>
-					</tr>
+					<c:forEach items="${presenteList}" var="presente">
+						<tr ${presente.ok ? 'class="success"' : ''}>
+							<td>${presente.id}</td>
+							<td>${presente.nome}</td>
+							<td align="center"><c:if test="${presente.familia != null}">
+									<span class="glyphicon glyphicon-heart"></span> Fam√≠lia: ${presente.familia.nome}
+							</c:if></td>
+							<td align="right"><span
+								class="glyphicon glyphicon-${presente.ok ? 'ok' : 'play'}"></span></td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>
