@@ -4,6 +4,7 @@ public class Presente {
 
 	private int id;
 	private String nome;
+	private int quantidade;
 	private Familia familia;
 	private boolean ok;
 
@@ -21,6 +22,14 @@ public class Presente {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
 	}
 
 	public Familia getFamilia() {

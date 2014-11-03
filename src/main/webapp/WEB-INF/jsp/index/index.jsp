@@ -7,9 +7,10 @@
 <title>Paulo e Layanne</title>
 
 <!-- Bootstrap -->
-<link
-	href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/bootstrap/css/bootstrap-override.css">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -17,21 +18,24 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
 <script
 	src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
+
 <style type="text/css">
 body {
 	min-height: 2000px;
-	padding-top: 70px;
+	padding-top: 50px;
 }
 </style>
+
 </head>
 <body>
-	<jsp:include page="../header.jsp" />
+	<div id="header">
+		<jsp:include page="../header.jsp" />
+	</div>
 	<div class="container"></div>
 </body>
 </html>
