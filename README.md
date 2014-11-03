@@ -1,6 +1,11 @@
 Site de Casamento (Paulo e Layanne)
 =========
 
+The OpenShift `jbossas` cartridge documentation can be found at:
+
+https://github.com/openshift/origin-server/tree/master/cartridges/openshift-origin-cartridge-jbossas/README.md
+
+--
 
 Commands history:
 
@@ -12,19 +17,10 @@ mvn archetype:generate -DgroupId=br.com.paulovitor -DartifactId=casamento -Darch
 Add config for eclipse
 mvn eclipse:eclipse
 
-
-Copy war to openshift:
-scp sample.war 545291eb4382ec4ad10001f2@casamento-pauloelay.rhcloud.com:~/app-root/dependencies/jbossews/webapps
-
 --
 
-Access openshift tomcat 7 server:
-ssh 545291eb4382ec4ad10001f2@casamento-pauloelay.rhcloud.com
-
---
-
-Add remote in local repository
-git remote add openshift ssh://545291eb4382ec4ad10001f2@casamento-pauloelay.rhcloud.com/~/git/casamento.git/
+Access openshift wildfly 8 server:
+ssh://5456784f5973cad7e80008f4@casamento-pauloelay.rhcloud.com
 
 --
 
