@@ -9,12 +9,12 @@ https://github.com/openshift/origin-server/tree/master/cartridges/openshift-orig
 
 Commands history:
 
-Generate project maven
+Generate project maven:
 mvn archetype:generate -DgroupId=br.com.paulovitor -DartifactId=casamento -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
 
 --
 
-Add config for eclipse
+Add config for eclipse:
 mvn eclipse:eclipse
 
 --
@@ -24,10 +24,15 @@ ssh://5456784f5973cad7e80008f4@casamento-pauloelay.rhcloud.com
 
 --
 
-Show log
+Show log:
 rhc tail casamento
 
 --
 
-Show deployments
+Show deployments:
 rhc deployment list casamento
+
+--
+
+Execute profile openshift:
+mvn clean install -P openshift

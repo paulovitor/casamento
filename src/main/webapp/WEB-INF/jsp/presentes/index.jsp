@@ -46,6 +46,17 @@ body {
 			<h1>Lista de Presentes (Chá de Panela)</h1>
 		</div>
 
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">Como escolher um presente?</h3>
+			</div>
+			<div class="panel-body">
+				<span class="badge">1</span> Clique no icone <span
+					class="glyphicon glyphicon-play"></span><br/>
+				<span class="badge">2</span> Preencha o formulário que irá aparecer com nome da família e um endereço de email
+			</div>
+		</div>
+
 		<div>
 			<table class="table table-condensed">
 				<thead>
@@ -64,12 +75,11 @@ body {
 							<td>${presente.nome}</td>
 							<td>${presente.quantidade}</td>
 							<td align="center">
-<%-- 								<c:if test="${presente.familia != null}"> --%>
-<%-- 									<span class="glyphicon glyphicon-heart"></span> Família: ${presente.familia.nome} --%>
-<%-- 								</c:if> --%>
+								<%-- 								<c:if test="${presente.familia != null}"> --%> <%-- 									<span class="glyphicon glyphicon-heart"></span> Família: ${presente.familia.nome} --%>
+								<%-- 								</c:if> --%>
 							</td>
 							<td align="right"><span
-								class="glyphicon glyphicon-${presente.ok ? 'ok' : 'play'}"></span></td>
+								class="glyphicon glyphicon-${presente.ok ? 'ok text-success' : 'play'}"></span></td>
 						</tr>
 					</c:forEach>
 				</tbody>
