@@ -63,9 +63,11 @@ body {
 							<td>${presente.id}</td>
 							<td>${presente.nome}</td>
 							<td>${presente.quantidade}</td>
-							<td align="center"><c:if test="${presente.familia != null}">
-									<span class="glyphicon glyphicon-heart"></span> Família: ${presente.familia.nome}
-							</c:if></td>
+							<td align="center">
+<%-- 								<c:if test="${presente.familia != null}"> --%>
+<%-- 									<span class="glyphicon glyphicon-heart"></span> Família: ${presente.familia.nome} --%>
+<%-- 								</c:if> --%>
+							</td>
 							<td align="right"><span
 								class="glyphicon glyphicon-${presente.ok ? 'ok' : 'play'}"></span></td>
 						</tr>

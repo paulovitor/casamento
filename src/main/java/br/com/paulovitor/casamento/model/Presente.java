@@ -1,18 +1,31 @@
 package br.com.paulovitor.casamento.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Presente {
 
-	private int id;
+	@Id
+	@GeneratedValue
+	private Integer id;
+
+	@Column(unique = true)
 	private String nome;
 	private int quantidade;
-	private Familia familia;
+
+//	@OneToOne
+//	@PrimaryKeyJoinColumn
+//	private Familia familia;
 	private boolean ok;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -32,13 +45,13 @@ public class Presente {
 		this.quantidade = quantidade;
 	}
 
-	public Familia getFamilia() {
-		return familia;
-	}
-
-	public void setFamilia(Familia familia) {
-		this.familia = familia;
-	}
+//	public Familia getFamilia() {
+//		return familia;
+//	}
+//
+//	public void setFamilia(Familia familia) {
+//		this.familia = familia;
+//	}
 
 	public boolean isOk() {
 		return ok;
