@@ -8,7 +8,7 @@ import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Result;
 import br.com.paulovitor.casamento.model.Checklist;
 import br.com.paulovitor.casamento.model.Presente;
-import br.com.paulovitor.casamento.persistence.ListaDePresentes;
+import br.com.paulovitor.casamento.persistence.ListaDePresentesInicial;
 
 @Controller
 public class PresentesController {
@@ -32,11 +32,10 @@ public class PresentesController {
 	}
 
 	public void adicionaTodos(Result result) {
-		ListaDePresentes presentes = new ListaDePresentes();
+		ListaDePresentesInicial presentes = new ListaDePresentesInicial();
 		checklist.adicionaTodos(presentes.getPresentes());
 		
-		result.include("presenteList", checklist.lista());
-		result.of(this).index();
+		result.redirectTo(this).index();
 	}
 
 }

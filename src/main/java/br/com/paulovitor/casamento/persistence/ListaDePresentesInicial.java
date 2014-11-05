@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.paulovitor.casamento.model.Familia;
 import br.com.paulovitor.casamento.model.Presente;
 
-public class ListaDePresentes {
+public class ListaDePresentesInicial {
 
 	private List<Presente> presentes = null;
 
@@ -20,8 +20,12 @@ public class ListaDePresentes {
 
 	private void adicionaPresentes() {
 		String[] nomes = createArrayDeNomes();
+		int index = 1;
 		for (String nome : nomes) {
-			presentes.add(criaPresente(nome, 1, null, false));
+			presentes.add(criaPresente(nome, 1,
+					index == 1 ? criaFamilia("Oliveira", "oliveira@gmail.com")
+							: null, index == 1));
+			index++;
 		}
 	}
 
@@ -62,16 +66,16 @@ public class ListaDePresentes {
 		Presente presente = new Presente();
 		presente.setNome(nome);
 		presente.setQuantidade(quantidade);
-		// presente.setFamilia(familia);
+		presente.setFamilia(familia);
 		presente.setOk(ok);
 		return presente;
 	}
 
-	// private Familia createFamilia(String nome, String email) {
-	// Familia familia = new Familia();
-	// familia.setNome(nome);
-	// familia.setEmail(email);
-	// return familia;
-	// }
+	private Familia criaFamilia(String nome, String email) {
+		Familia familia = new Familia();
+		familia.setNome(nome);
+		familia.setEmail(email);
+		return familia;
+	}
 
 }

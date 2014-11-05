@@ -28,22 +28,25 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script
 	src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.min.js"></script>
-	
+
 <script type="text/javascript">
-$(document).ready(function() {
-	$("#action>span").click(function() {
-		$(this).popover('show');
+	$(document).ready(function() {
+		$("#action>span").popover();
+		$("#action>span").click(function() {
+			var id = '#' + $(this).attr('id');
+			if ($(id).attr('class').indexOf('glyphicon-plus') === -1)
+				$(id).popover('hide');
+		});
 	});
-});
 </script>
-	
+
 </head>
 <body>
 	<div id="header">
 		<jsp:include page="../header.jsp" />
 	</div>
 	<div class="container">
-	
+
 		<div class="page-header">
 			<h1>Lista de Presentes (Chá de Panela)</h1>
 		</div>
@@ -53,9 +56,14 @@ $(document).ready(function() {
 				<h3 class="panel-title">Como escolher um presente?</h3>
 			</div>
 			<div class="panel-body">
-				<span class="badge">1</span> Clique no icone <span class="glyphicon glyphicon-play"></span><br/>
-				<span class="badge">2</span> Preencha os campos <kbd>nome da família</kbd> e <kbd>endereço de email</kbd> no formulário<br/>
-				<span class="badge">3</span> Seu presente foi escolhido! Muito obrigado e que Deus abençoe!
+				<span class="badge">1</span> Clique no icone <span
+					class="glyphicon glyphicon-play"></span><br /> <span class="badge">2</span>
+				Preencha os campos
+				<kbd>nome da família</kbd>
+				e
+				<kbd>endereço de email</kbd>
+				no formulário<br /> <span class="badge">3</span> Seu presente foi
+				escolhido! Muito obrigado e que Deus abençoe!
 			</div>
 		</div>
 
@@ -76,17 +84,13 @@ $(document).ready(function() {
 							<td>${presente.id}</td>
 							<td>${presente.nome}</td>
 							<td>${presente.quantidade}</td>
-							<td align="center">
-								<%-- 								
-								<c:if test="${presente.familia != null}">								
+							<td align="center"><c:if test="${presente.familia != null}">
 									<span class="glyphicon glyphicon-heart"></span> Família: ${presente.familia.nome}
-								</c:if> 
-								--%>
-							</td>
-							<td id="action" align="right"><span
-								class="cursor glyphicon glyphicon-${presente.ok ? 'ok text-success' : 'plus'}" 
-								data-container="body" data-toggle="popover" data-placement="left" data-content="Preencha o formulário"></span>
-							</td>
+								</c:if></td>
+							<td id="action" align="right"><span id="span-${presente.id}"
+								class="cursor glyphicon glyphicon-${presente.ok ? 'ok text-success' : 'plus'}"
+								data-toggle="popover" title="Formulário" data-placement="left"
+								data-content="Preencha o formulário"></span></td>
 						</tr>
 					</c:forEach>
 				</tbody>

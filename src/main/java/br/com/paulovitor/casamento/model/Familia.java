@@ -1,9 +1,12 @@
 package br.com.paulovitor.casamento.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Familia {
@@ -11,15 +14,13 @@ public class Familia {
 	@Id
 	@GeneratedValue
 	private Integer id;
-//
-//	@MapsId
-//	@OneToOne
-//	@JoinColumn(name = "id")
-//	private Presente presente;
 	private String nome;
 
 	@Column(unique = true)
 	private String email;
+
+	@OneToMany(mappedBy = "familia")
+	private List<Presente> presentes;
 
 	public Integer getId() {
 		return id;
@@ -28,14 +29,6 @@ public class Familia {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-//	public Presente getPresente() {
-//		return presente;
-//	}
-//
-//	public void setPresente(Presente presente) {
-//		this.presente = presente;
-//	}
 
 	public String getNome() {
 		return nome;
@@ -51,6 +44,14 @@ public class Familia {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<Presente> getPresentes() {
+		return presentes;
+	}
+
+	public void setPresentes(List<Presente> presentes) {
+		this.presentes = presentes;
 	}
 
 }

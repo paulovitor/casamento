@@ -1,9 +1,12 @@
 package br.com.paulovitor.casamento.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Presente {
@@ -16,9 +19,9 @@ public class Presente {
 	private String nome;
 	private int quantidade;
 
-//	@OneToOne
-//	@PrimaryKeyJoinColumn
-//	private Familia familia;
+	@ManyToOne(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "familia_id", nullable = true)
+	private Familia familia;
 	private boolean ok;
 
 	public Integer getId() {
@@ -45,13 +48,13 @@ public class Presente {
 		this.quantidade = quantidade;
 	}
 
-//	public Familia getFamilia() {
-//		return familia;
-//	}
-//
-//	public void setFamilia(Familia familia) {
-//		this.familia = familia;
-//	}
+	public Familia getFamilia() {
+		return familia;
+	}
+
+	public void setFamilia(Familia familia) {
+		this.familia = familia;
+	}
 
 	public boolean isOk() {
 		return ok;
