@@ -8,9 +8,11 @@
 
 <!-- Bootstrap -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
+	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/bootstrap/css/bootstrap-override.css">
+	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap-override.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/main.css">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,20 +24,33 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script
-	src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
-
-<style type="text/css">
-body {
-	min-height: 2000px;
-	padding-top: 50px;
-}
-</style>
+	src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.min.js"></script>
 
 </head>
 <body>
-	<div id="header">
+	<div id="header" style="margin-bottom: 20px;">
 		<jsp:include page="../header.jsp" />
 	</div>
-	<div class="container"></div>
+	<div class="container">
+		<div class="jumbotron">
+			<h1>Sejam bem-vindos!</h1>
+			<p>Ave Maria, cheia de graça!
+O Senhor é convosco!
+
+Bendita sois vós entre as
+mulheres  E bendito é o
+fruto do vosso ventre:
+Jesus!
+
+Santa Maria, Mãe de Deus,
+Rogai por nós, pecadores,
+
+Agora e na hora da nossa morte.
+Amém</p>
+			<p>
+				<a class="btn btn-primary btn-lg" href="#" role="button">Paulo e Layanne</a>
+			</p>
+		</div>
+	</div>
 </body>
 </html>

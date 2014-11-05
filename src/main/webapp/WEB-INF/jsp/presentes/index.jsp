@@ -11,9 +11,11 @@
 
 <!-- Bootstrap -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
+	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/bootstrap/css/bootstrap-override.css">
+	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap-override.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/main.css">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,23 +27,23 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script
-	src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
-
-
-<style type="text/css">
-body {
-	min-height: 2000px;
-	padding-top: 50px;
-}
-</style>
-
+	src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.min.js"></script>
+	
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#action>span").click(function() {
+		$(this).popover('show');
+	});
+});
+</script>
+	
 </head>
 <body>
 	<div id="header">
 		<jsp:include page="../header.jsp" />
 	</div>
 	<div class="container">
-
+	
 		<div class="page-header">
 			<h1>Lista de Presentes (Chá de Panela)</h1>
 		</div>
@@ -51,9 +53,9 @@ body {
 				<h3 class="panel-title">Como escolher um presente?</h3>
 			</div>
 			<div class="panel-body">
-				<span class="badge">1</span> Clique no icone <span
-					class="glyphicon glyphicon-play"></span><br/>
-				<span class="badge">2</span> Preencha o formulário que irá aparecer com nome da família e um endereço de email
+				<span class="badge">1</span> Clique no icone <span class="glyphicon glyphicon-play"></span><br/>
+				<span class="badge">2</span> Preencha os campos <kbd>nome da família</kbd> e <kbd>endereço de email</kbd> no formulário<br/>
+				<span class="badge">3</span> Seu presente foi escolhido! Muito obrigado e que Deus abençoe!
 			</div>
 		</div>
 
@@ -75,11 +77,16 @@ body {
 							<td>${presente.nome}</td>
 							<td>${presente.quantidade}</td>
 							<td align="center">
-								<%-- 								<c:if test="${presente.familia != null}"> --%> <%-- 									<span class="glyphicon glyphicon-heart"></span> Família: ${presente.familia.nome} --%>
-								<%-- 								</c:if> --%>
+								<%-- 								
+								<c:if test="${presente.familia != null}">								
+									<span class="glyphicon glyphicon-heart"></span> Família: ${presente.familia.nome}
+								</c:if> 
+								--%>
 							</td>
-							<td align="right"><span
-								class="glyphicon glyphicon-${presente.ok ? 'ok text-success' : 'play'}"></span></td>
+							<td id="action" align="right"><span
+								class="cursor glyphicon glyphicon-${presente.ok ? 'ok text-success' : 'plus'}" 
+								data-container="body" data-toggle="popover" data-placement="left" data-content="Preencha o formulário"></span>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
