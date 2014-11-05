@@ -31,11 +31,22 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("#action>span").popover();
+		var popoverSettings = {
+			placement : 'left',
+			container : 'body',
+			html : true,
+			content : function(settings) {
+				return $('#popover-content').html();
+			}
+		}
+		$("#action>span").popover(popoverSettings);
 		$("#action>span").click(function() {
 			var id = '#' + $(this).attr('id');
 			if ($(id).attr('class').indexOf('glyphicon-plus') === -1)
 				$(id).popover('hide');
+		});
+		$('#btn-cancel').click(function() {
+			alert('Fecha popover!');
 		});
 	});
 </script>
@@ -88,13 +99,26 @@
 									<span class="glyphicon glyphicon-heart"></span> Família: ${presente.familia.nome}
 								</c:if></td>
 							<td id="action" align="right"><span id="span-${presente.id}"
-								class="cursor glyphicon glyphicon-${presente.ok ? 'ok text-success' : 'plus'}"
-								data-toggle="popover" title="Formulário" data-placement="left"
-								data-content="Preencha o formulário"></span></td>
+								class="cursor glyphicon glyphicon-${presente.ok ? 'ok text-success' : 'plus'}"></span>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
+			<div id="popover-content" class="hidden">
+				<form role="form">
+					<div class="form-group">
+						<label for="nome">Nome da família</label>
+						<input type="text" id="nome" name="familia.nome" class="form-control" placeholder="preencha com o nome">
+					</div>
+					<div class="form-group">
+						<label for="email">Endereço de email</label>
+						<input type="email" id="email" name="familia.email" class="form-control" placeholder="preencha com o email">
+					</div>
+					<button type="submit" class="btn btn-primary">Escolher</button>
+					<button type="button" id="btn-cancel" class="btn btn-default">Cancelar</button>
+				</form>
+			</div>
 		</div>
 
 	</div>
