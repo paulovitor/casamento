@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Controller;
+import br.com.caelum.vraptor.Result;
 import br.com.paulovitor.casamento.model.Checklist;
 import br.com.paulovitor.casamento.model.Presente;
 import br.com.paulovitor.casamento.persistence.ListaDePresentes;
@@ -30,9 +31,12 @@ public class PresentesController {
 		return checklist.lista();
 	}
 
-	public void adicionaTodos() {
+	public void adicionaTodos(Result result) {
 		ListaDePresentes presentes = new ListaDePresentes();
 		checklist.adicionaTodos(presentes.getPresentes());
+		
+		result.include("presenteList", checklist.lista());
+		result.of(this).index();
 	}
 
 }

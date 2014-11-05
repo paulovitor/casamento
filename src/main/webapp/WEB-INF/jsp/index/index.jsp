@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,25 +34,19 @@
 		<jsp:include page="../header.jsp" />
 	</div>
 	<div class="container">
+
 		<div class="jumbotron">
-			<h1>Sejam bem-vindos!</h1>
-			<p>Ave Maria, cheia de graça!
-O Senhor é convosco!
-
-Bendita sois vós entre as
-mulheres  E bendito é o
-fruto do vosso ventre:
-Jesus!
-
-Santa Maria, Mãe de Deus,
-Rogai por nós, pecadores,
-
-Agora e na hora da nossa morte.
-Amém</p>
+			<h1>Seja bem-vindo!</h1>
+			<p>Ave Maria cheia de graÃ§a, o Senhor Ã© convosco,
+			bendita Ã©s Tu entre as mulheres, 
+			e bendito Ã© o fruto do vosso ventre, Jesus.
+			Santa Maria, MÃ£e de Deus, rogai por nÃ³s pecadores,
+			agora e na hora de nossa morte. AmÃ©m</p>
 			<p>
 				<a class="btn btn-primary btn-lg" href="#" role="button">Paulo e Layanne</a>
 			</p>
 		</div>
+
 	</div>
 </body>
 </html>
