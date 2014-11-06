@@ -22,9 +22,8 @@ public class ListaDePresentesInicial {
 		String[] nomes = createArrayDeNomes();
 		int index = 1;
 		for (String nome : nomes) {
-			presentes.add(criaPresente(nome, 1,
-					index == 1 ? criaFamilia("Oliveira", "oliveira@gmail.com")
-							: null, index == 1));
+			presentes.add(criaPresente(nome, 1, index == 1 ? new Familia(
+					"Oliveira", "oliveira@gmail.com") : null, index == 1));
 			index++;
 		}
 	}
@@ -69,13 +68,6 @@ public class ListaDePresentesInicial {
 		presente.setFamilia(familia);
 		presente.setOk(ok);
 		return presente;
-	}
-
-	private Familia criaFamilia(String nome, String email) {
-		Familia familia = new Familia();
-		familia.setNome(nome);
-		familia.setEmail(email);
-		return familia;
 	}
 
 }

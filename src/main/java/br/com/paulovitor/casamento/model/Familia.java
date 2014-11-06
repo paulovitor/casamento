@@ -22,6 +22,14 @@ public class Familia {
 	@OneToMany(mappedBy = "familia")
 	private List<Presente> presentes;
 
+	public Familia(String nome, String email) {
+		this.nome = nome;
+		this.email = email;
+	}
+
+	public Familia() {
+	}
+
 	public Integer getId() {
 		return id;
 	}

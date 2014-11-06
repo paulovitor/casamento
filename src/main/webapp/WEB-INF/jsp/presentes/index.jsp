@@ -31,31 +31,40 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		window.setTimeout(function() { $(".alert").alert('close'); }, 5000);
+		
 		var popoverSettings = {
 			placement : 'left',
 			container : 'body',
 			html : true,
 			content : function(settings) {
-				return $('#popover-content').html();
+				var id = parseInt($(this).attr('id').replace("span-", ""));
+				return $.ajax({
+			        url: "popover",
+			        data: { id: id },
+			        dataType: "html",
+			        async: false
+			    }).responseText;
 			}
 		}
+		
 		$("#action>span").popover(popoverSettings);
-		$("#action>span").click(function() {
+		
+		$("#action>span").on('click', function() {
 			var id = '#' + $(this).attr('id');
 			if ($(id).attr('class').indexOf('glyphicon-plus') === -1)
 				$(id).popover('hide');
-		});
-		$('#btn-cancel').click(function() {
-			alert('Fecha popover!');
 		});
 	});
 </script>
 
 </head>
 <body>
+
 	<div id="header">
 		<jsp:include page="../header.jsp" />
 	</div>
+	
 	<div class="container">
 
 		<div class="page-header">
@@ -68,7 +77,7 @@
 			</div>
 			<div class="panel-body">
 				<span class="badge">1</span> Clique no icone <span
-					class="glyphicon glyphicon-play"></span><br /> <span class="badge">2</span>
+					class="glyphicon glyphicon-plus"></span><br /> <span class="badge">2</span>
 				Preencha os campos
 				<kbd>nome da família</kbd>
 				e
@@ -77,7 +86,11 @@
 				escolhido! Muito obrigado e que Deus abençoe!
 			</div>
 		</div>
-
+		
+		<c:if test="${mensagem != null}">
+			<div class="alert alert-${tipo}" role="alert">${mensagem}</div>
+		</c:if>
+		
 		<div>
 			<table class="table table-condensed">
 				<thead>
@@ -105,22 +118,9 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			<div id="popover-content" class="hidden">
-				<form role="form">
-					<div class="form-group">
-						<label for="nome">Nome da família</label>
-						<input type="text" id="nome" name="familia.nome" class="form-control" placeholder="preencha com o nome">
-					</div>
-					<div class="form-group">
-						<label for="email">Endereço de email</label>
-						<input type="email" id="email" name="familia.email" class="form-control" placeholder="preencha com o email">
-					</div>
-					<button type="submit" class="btn btn-primary">Escolher</button>
-					<button type="button" id="btn-cancel" class="btn btn-default">Cancelar</button>
-				</form>
-			</div>
 		</div>
-
+		
 	</div>
+	
 </body>
 </html>

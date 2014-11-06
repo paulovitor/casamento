@@ -6,8 +6,10 @@ import br.com.paulovitor.casamento.model.Presente;
 
 public interface PresenteDAO {
 
-	List<Presente> todos();
+	Presente get(Integer id);
 
-	void adiciona(Presente presente);
+	void salva(Presente presente);
+
+	List<Presente> todos();
 
 }

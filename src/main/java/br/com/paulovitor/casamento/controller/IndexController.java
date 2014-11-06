@@ -8,7 +8,7 @@ public class IndexController {
 
 	@Path("/")
 	public void index() {
-		System.out.println("Index!");
+
 	}
 
 }
