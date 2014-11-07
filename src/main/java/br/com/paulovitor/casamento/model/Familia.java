@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -17,13 +18,15 @@ public class Familia {
 	@Id
 	@GeneratedValue
 	private Integer id;
-	
-	@NotEmpty(message = "{familia.erro.nome.obrigatorio}")
+
+	@NotEmpty(message = "{erro.campo.obrigatorio}")
+	@Length(min = 3, max = 30, message = "{erro.campo.tamanho}")
 	private String nome;
 
-	@NotEmpty(message = "{familia.erro.email.obrigatorio}")
-	@Email(message = "{familia.erro.email.invalido}")
+	@NotEmpty(message = "{erro.campo.obrigatorio}")
+	@Email(message = "{erro.campo.invalido}")
 	@Column(unique = true)
+	@Length(min = 5, max = 30, message = "{erro.campo.tamanho}")
 	private String email;
 
 	@OneToMany(mappedBy = "familia")
