@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Paulo e Layanne</title>
+<title><fmt:message key="site.titulo" /></title>
 
 <!-- Bootstrap -->
 <link rel="stylesheet"
@@ -37,13 +38,13 @@
 
 		<div class="jumbotron">
 			<h1>Seja bem-vindo!</h1>
-			<p>Ave Maria cheia de graça, o Senhor é convosco,
-			bendita és Tu entre as mulheres, 
-			e bendito é o fruto do vosso ventre, Jesus.
-			Santa Maria, Mãe de Deus, rogai por nós pecadores,
-			agora e na hora de nossa morte. Amém</p>
+			<p>Ave Maria cheia de graça, o Senhor é convosco, bendita és Tu
+				entre as mulheres, e bendito é o fruto do vosso ventre, Jesus. Santa
+				Maria, Mãe de Deus, rogai por nós pecadores, agora e na hora de
+				nossa morte. Amém</p>
 			<p>
-				<a class="btn btn-primary btn-lg" href="#" role="button">Paulo e Layanne</a>
+				<a class="btn btn-primary btn-lg" href="#" role="button"><fmt:message
+						key="site.titulo" /></a>
 			</p>
 		</div>
 

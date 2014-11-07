@@ -8,14 +8,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 public class Familia {
 
 	@Id
 	@GeneratedValue
 	private Integer id;
+	
+	@NotEmpty(message = "{familia.erro.nome.obrigatorio}")
 	private String nome;
 
+	@NotEmpty(message = "{familia.erro.email.obrigatorio}")
+	@Email(message = "{familia.erro.email.invalido}")
 	@Column(unique = true)
 	private String email;
 

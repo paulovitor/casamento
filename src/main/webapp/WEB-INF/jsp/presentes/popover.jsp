@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#btn-cancel').on('click', function() {
@@ -8,19 +8,23 @@
 		});
 	});
 </script>
-
-<form action="${linkTo[PresentesController].adicionaFamilia}" method="get" id="form-popover" role="form">
+<form action="${linkTo[PresentesController].adicionaFamilia}"
+	method="post" id="form-popover" role="form">
+	<input type="hidden" id="id-presente" name="idPresente" value="${id}" />
 	<div class="form-group">
-		<label for="nome">Nome da família</label> <input type="text" id="nome"
-			name="nome" class="form-control"
-			placeholder="preencha com o nome">
+		<label for="nome"><fmt:message key="campo.nome" /></label> <input
+			type="text" id="nome" name="familia.nome" class="form-control"
+			placeholder="<fmt:message key="sugestao.nome" />">
 	</div>
 	<div class="form-group">
-		<label for="email">Endereço de email</label> <input type="email"
-			id="email" name="email" class="form-control"
-			placeholder="preencha com o email">
+		<label for="email"><fmt:message key="campo.email" /></label> <input
+			type="email" id="email" name="familia.email" class="form-control"
+			placeholder="<fmt:message key="sugestao.email" />">
 	</div>
-	<button type="submit" id="btn-submit" class="btn btn-primary">Escolher</button>
-	<button type="button" id="btn-cancel" class="btn btn-default">Cancelar</button>
-	<input type="hidden" id="id-presente" name="idPresente" value="${id}"/>
+	<button type="submit" id="btn-submit" class="btn btn-primary">
+		<fmt:message key="botao.confirmar" />
+	</button>
+	<button type="button" id="btn-cancel" class="btn btn-default">
+		<fmt:message key="botao.cancelar" />
+	</button>
 </form>

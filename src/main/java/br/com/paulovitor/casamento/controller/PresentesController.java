@@ -3,9 +3,11 @@ package br.com.paulovitor.casamento.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.validation.constraints.NotNull;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.validator.Validator;
 import br.com.paulovitor.casamento.model.Checklist;
 import br.com.paulovitor.casamento.model.Familia;
 import br.com.paulovitor.casamento.model.Parentesco;
@@ -16,17 +18,22 @@ import br.com.paulovitor.casamento.persistence.ListaDePresentesInicial;
 public class PresentesController {
 
 	private static String TIPO_MESSAGEM_SUCESSO = "success";
-	private static String TIPO_MESSAGEM_INFORMACAO = "info";
-	private static String TIPO_MESSAGEM_ATENCAO = "warning";
-	private static String TIPO_MESSAGEM_ERRO = "danger";
+//	private static String TIPO_MESSAGEM_INFORMACAO = "info";
+//	private static String TIPO_MESSAGEM_ATENCAO = "warning";
+//	private static String TIPO_MESSAGEM_ERRO = "danger";
 
 	private Checklist checklist;
 	private Parentesco parentesco;
+	private Result result;
+	private Validator validator;
 
 	@Inject
-	public PresentesController(Checklist checklist, Parentesco parentesco) {
+	public PresentesController(Checklist checklist, Parentesco parentesco,
+			Result result, Validator validator) {
 		this.checklist = checklist;
 		this.parentesco = parentesco;
+		this.result = result;
+		this.validator = validator;
 	}
 
 	/**
@@ -39,23 +46,25 @@ public class PresentesController {
 		return checklist.lista();
 	}
 
-	public void adicionaTodos(Result result) {
+	public void adicionaTodos() {
 		ListaDePresentesInicial presentes = new ListaDePresentesInicial();
 		checklist.adicionaTodos(presentes.getPresentes());
 
 		result.redirectTo(this).index();
 	}
 
-	public void popover(int id, Result result) {
+	public void popover(Integer id) {
 		result.include("id", id);
 	}
 
-	public void adicionaFamilia(String nome, String email, int idPresente,
-			Result result) {
+	public void adicionaFamilia(@NotNull Integer idPresente, Familia familia) {
+		validator.validate(familia);
+		validator.onErrorRedirectTo(this).index();
+		
 		Presente presente = checklist.get(idPresente);
-		Familia familia = parentesco.buscaFamilia(email);
-		presente.setFamilia(familia == null ? new Familia(nome, email)
-				: familia);
+		Familia familiaExistente = parentesco.buscaFamilia(familia.getEmail());
+		presente.setFamilia(familiaExistente == null ? familia
+				: familiaExistente);
 		presente.setOk(true);
 		checklist.salva(presente);
 

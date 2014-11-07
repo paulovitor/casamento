@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Paulo e Layanne</title>
+<title><fmt:message key="site.titulo" /></title>
 
 <!-- Bootstrap -->
 <link rel="stylesheet"
@@ -31,8 +32,10 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		window.setTimeout(function() { $(".alert").alert('close'); }, 5000);
-		
+		window.setTimeout(function() {
+			$(".alert").alert('close');
+		}, 5000);
+
 		var popoverSettings = {
 			placement : 'left',
 			container : 'body',
@@ -40,16 +43,18 @@
 			content : function(settings) {
 				var id = parseInt($(this).attr('id').replace("span-", ""));
 				return $.ajax({
-			        url: "popover",
-			        data: { id: id },
-			        dataType: "html",
-			        async: false
-			    }).responseText;
+					url : "popover",
+					data : {
+						id : id
+					},
+					dataType : "html",
+					async : false
+				}).responseText;
 			}
 		}
-		
+
 		$("#action>span").popover(popoverSettings);
-		
+
 		$("#action>span").on('click', function() {
 			var id = '#' + $(this).attr('id');
 			if ($(id).attr('class').indexOf('glyphicon-plus') === -1)
@@ -62,42 +67,46 @@
 <body>
 
 	<div id="header">
-		<jsp:include page="../header.jsp" />
+		<jsp:include page="../header.jsp"/>
 	</div>
-	
+
 	<div class="container">
 
 		<div class="page-header">
-			<h1>Lista de Presentes (Chá de Panela)</h1>
+			<h1><fmt:message key="presentes.titulo"/></h1>
 		</div>
 
 		<div class="panel panel-info">
 			<div class="panel-heading">
-				<h3 class="panel-title">Como escolher um presente?</h3>
+				<h3 class="panel-title"><fmt:message key="presentes.subtitulo"/></h3>
 			</div>
 			<div class="panel-body">
-				<span class="badge">1</span> Clique no icone <span
-					class="glyphicon glyphicon-plus"></span><br /> <span class="badge">2</span>
-				Preencha os campos
-				<kbd>nome da família</kbd>
-				e
-				<kbd>endereço de email</kbd>
-				no formulário<br /> <span class="badge">3</span> Seu presente foi
-				escolhido! Muito obrigado e que Deus abençoe!
+				<span class="badge">1</span> Clique no icone <span class="glyphicon glyphicon-plus"></span><br />
+				<span class="badge">2</span> Preencha os campos <kbd><fmt:message key="campo.nome"/></kbd> e <kbd><fmt:message key="campo.email"/></kbd> no formulário<br />
+				<span class="badge">3</span> Clique no botão <kbd><fmt:message key="botao.confirmar"/></kbd><br />
+				<span class="badge">4</span> Pronto, seu presente foi escolhido! Muito obrigado e que Deus abençoe!
 			</div>
 		</div>
-		
+
 		<c:if test="${mensagem != null}">
 			<div class="alert alert-${tipo}" role="alert">${mensagem}</div>
 		</c:if>
 		
+		<c:if test="${errors != null}">
+			<div class="alert alert-danger" role="alert">
+				<c:forEach items="${errors}" var="error">
+					<li>${error.category}: ${error.message}</li>
+				</c:forEach>
+			</div>
+		</c:if>
+
 		<div>
 			<table class="table table-condensed">
 				<thead>
 					<tr>
 						<th></th>
-						<th>Presente</th>
-						<th>Quantidade</th>
+						<th><fmt:message key="coluna.presente"/></th>
+						<th><fmt:message key="coluna.quantidade"/></th>
 						<th></th>
 						<th></th>
 					</tr>
@@ -109,7 +118,8 @@
 							<td>${presente.nome}</td>
 							<td>${presente.quantidade}</td>
 							<td align="center"><c:if test="${presente.familia != null}">
-									<span class="glyphicon glyphicon-heart"></span> Família: ${presente.familia.nome}
+									<span class="glyphicon glyphicon-heart"></span>
+									<fmt:message key="coluna.familia" />: ${presente.familia.nome}
 								</c:if></td>
 							<td id="action" align="right"><span id="span-${presente.id}"
 								class="cursor glyphicon glyphicon-${presente.ok ? 'ok text-success' : 'plus'}"></span>
@@ -119,8 +129,8 @@
 				</tbody>
 			</table>
 		</div>
-		
+
 	</div>
-	
+
 </body>
 </html>
