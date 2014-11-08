@@ -31,6 +31,7 @@
 	src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
+	var url = "${linkTo[FamiliasController].formulario}";
 	$(document).ready(function() {
 		window.setTimeout(function() {
 			$(".alert").alert('close');
@@ -43,7 +44,7 @@
 			content : function(settings) {
 				var id = parseInt($(this).attr('id').replace("span-", ""));
 				return $.ajax({
-					url : "popover",
+					url : url,
 					data : {
 						id : id
 					},
@@ -117,7 +118,7 @@
 							<td>${presente.id}</td>
 							<td>${presente.nome}</td>
 							<td>${presente.quantidade}</td>
-							<td align="center"><c:if test="${presente.familia != null}">
+							<td><c:if test="${presente.familia != null}">
 									<span class="glyphicon glyphicon-heart"></span>
 									<fmt:message key="coluna.familia" />: ${presente.familia.nome}
 								</c:if></td>

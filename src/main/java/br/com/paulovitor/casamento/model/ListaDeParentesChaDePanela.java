@@ -13,9 +13,7 @@ public class ListaDeParentesChaDePanela implements Parentesco {
 		this.dao = dao;
 	}
 
-	/**
-	 * @deprecated Usado no CDI
-	 */
+	@Deprecated
 	ListaDeParentesChaDePanela() {
 		this(null);
 	}

@@ -42,10 +42,6 @@
 				entre as mulheres, e bendito é o fruto do vosso ventre, Jesus. Santa
 				Maria, Mãe de Deus, rogai por nós pecadores, agora e na hora de
 				nossa morte. Amém</p>
-			<p>
-				<a class="btn btn-primary btn-lg" href="#" role="button"><fmt:message
-						key="site.titulo" /></a>
-			</p>
 		</div>
 
 	</div>

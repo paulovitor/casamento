@@ -17,9 +17,7 @@ public class FamiliaDAOImpl implements FamiliaDAO {
 		this.manager = manager;
 	}
 
-	/**
-	 * @deprecated Usado no CDI
-	 */
+	@Deprecated
 	FamiliaDAOImpl() {
 		this(null);
 	}

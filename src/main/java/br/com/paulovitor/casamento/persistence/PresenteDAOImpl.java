@@ -19,9 +19,7 @@ public class PresenteDAOImpl implements PresenteDAO {
 		this.manager = manager;
 	}
 
-	/**
-	 * @deprecated Usado no CDI
-	 */
+	@Deprecated
 	PresenteDAOImpl() {
 		this(null);
 	}

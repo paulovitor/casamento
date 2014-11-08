@@ -22,10 +22,18 @@ public class ListaDePresentesInicial {
 		String[] nomes = createArrayDeNomes();
 		int index = 1;
 		for (String nome : nomes) {
-			presentes.add(criaPresente(nome, 1, index == 1 ? new Familia(
+			presentes.add(criaPresente(nome, getQuantidade(nome), index == 1 ? new Familia(
 					"Oliveira", "oliveira@gmail.com") : null, index == 1));
 			index++;
 		}
+	}
+
+	private int getQuantidade(String nome) {
+		if (nome.equals("GARRAFA DE AGUA DE VIDRO") || nome.equals("MARINEX"))
+			return 2;
+		if (nome.equals("PRATOS DE VIDRO"))
+			return 6;
+		return 1;
 	}
 
 	private String[] createArrayDeNomes() {
@@ -41,7 +49,7 @@ public class ListaDePresentesInicial {
 				"FERRO DE PASSAR ROUPA A VAPOR", "FACA DE COZINHA",
 				"FARINHEIRO", "FRUTEIRA IN0X", "FORMA DE BOLO REDONDA",
 				"FORMA DE BOLO QUADRADA", "GARRAFA TERMICA",
-				"GARRAFA DE AGUA DE VIDRO ( QTDD 2)", "JOGO DE PANELA INOX",
+				"GARRAFA DE AGUA DE VIDRO", "JOGO DE PANELA INOX",
 				"JOGO DE COPOS", "JOGO DE TACAS",
 				"JARRA DE SUCO COM COPOS DE VIDRO", "JOGO DE XICARA",
 				"JOGO DE XICARA DE CHÁ", "JOGO DE XICARA DE CAFÉ",
@@ -51,9 +59,9 @@ public class ListaDePresentesInicial {
 				"JOGO DE BACIAS , BUCHA E BALDE", "JOGO DE PANELA DE ALUMINIO",
 				"LEITEIRA", "LIXEIRA DE COZINHEIRA", "LIXEIRA DE BANHEIRO",
 				"LIQUIDIFICADOR", "MARINEX PARA LASANHA COM SUPORTE",
-				"MARINEX (QTDD 2)", "MICROONDAS", "PANELA DE PRESSAO",
+				"MARINEX", "MICROONDAS", "PANELA DE PRESSAO",
 				"PORTA SABAO LIQUIDO,SABAO DE BARRA",
-				"PRATOS DE VIDRO (Qtdd 6)", "PORTA COADOR", "PIPOQUEIRA",
+				"PRATOS DE VIDRO", "PORTA COADOR", "PIPOQUEIRA",
 				"PORTA ROLO DE PAPEL TOALHA", "PANELA ELETRICA DE ARROZ",
 				"RALADOR", "SALEIRA", "SANDUICHEIRA", "TABUA DE PASSAR ROUPA",
 				"TALBA DE CARNE DE VIDRO", "VASILHA DE PLASTICO GRANDE",

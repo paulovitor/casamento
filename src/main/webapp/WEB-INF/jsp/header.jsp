@@ -31,7 +31,7 @@
 		<ul id="menu" class="nav navbar-nav">
 			<li id="index" class="active"><a href="${linkTo[IndexController].index}"><fmt:message
 						key="menu.inicial" /></a></li>
-			<li id="presentes"><a href="${linkTo[PresentesController].index}"><fmt:message
+			<li id="presentes"><a href="${linkTo[PresentesController].lista}"><fmt:message
 						key="menu.presentes" /></a></li>
 		</ul>
 	</div>

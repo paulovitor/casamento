@@ -15,9 +15,7 @@ public class ListaDePresentesChaDePanela implements Checklist {
 		this.dao = dao;
 	}
 
-	/**
-	 * @deprecated Usado no CDI
-	 */
+	@Deprecated
 	ListaDePresentesChaDePanela() {
 		this(null);
 	}

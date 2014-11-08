@@ -8,7 +8,7 @@
 		});
 	});
 </script>
-<form action="${linkTo[PresentesController].adicionaFamilia}"
+<form action="${linkTo[FamiliasController].adiciona}"
 	method="post" id="form-popover" role="form">
 	<input type="hidden" id="id-presente" name="idPresente" value="${id}" />
 	<div class="form-group">
