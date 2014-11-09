@@ -8,6 +8,7 @@ import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 
 import br.com.paulovitor.casamento.model.Presente;
+import br.com.paulovitor.casamento.model.TipoPresente;
 
 @Transactional
 public class PresenteDAOImpl implements PresenteDAO {
@@ -48,6 +49,14 @@ public class PresenteDAOImpl implements PresenteDAO {
 	public List<Presente> todos() {
 		return (List<Presente>) this.manager.createQuery(
 				"select p from Presente p", Presente.class).getResultList();
+	}
+
+	@Override
+	public List<Presente> todosPorTipo(TipoPresente tipoPresente) {
+		return (List<Presente>) this.manager
+				.createQuery("select p from Presente p where tipo = :tipo",
+						Presente.class).setParameter("tipo", tipoPresente)
+				.getResultList();
 	}
 
 }

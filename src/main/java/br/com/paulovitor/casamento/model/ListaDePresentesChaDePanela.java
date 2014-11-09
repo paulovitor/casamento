@@ -32,7 +32,7 @@ public class ListaDePresentesChaDePanela implements Checklist {
 
 	@Override
 	public List<Presente> lista() {
-		return this.dao.todos();
+		return this.dao.todosPorTipo(TipoPresente.CHA_DE_PANELA);
 	}
 
 	@Override

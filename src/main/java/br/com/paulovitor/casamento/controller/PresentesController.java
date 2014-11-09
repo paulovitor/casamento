@@ -54,7 +54,7 @@ public class PresentesController {
 		ListaDePresentesInicial presentes = new ListaDePresentesInicial();
 		checklist.adicionaTodos(presentes.getPresentes());
 
-		result.redirectTo(this).lista();
+		result.redirectTo(this).listaComMensagem();
 	}
 
 }
