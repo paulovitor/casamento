@@ -4,13 +4,14 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		var path = window.location.pathname;
-		path = path.replace('/casamento/', '');
 		path = decodeURIComponent(path);
 		if (path != "") {
+			if (path !== $('ul#menu>li:first>a').attr('href'))
+				$('audio').removeAttr('autoplay');
 			$('ul#menu>li').removeClass('active');
 			$('ul#menu>li').each(function() {
-				var id = $(this).attr('id');
-				if (path.substring(0, id.length) === id) {
+				var url = $(this).children('a').attr('href');
+				if (path === url) {
 					$(this).addClass("active");
 				}
 			});
@@ -29,11 +30,27 @@
 	</div>
 	<div id="navbar" class="collapse navbar-collapse">
 		<ul id="menu" class="nav navbar-nav">
-			<li id="index" class="active"><a href="${linkTo[IndexController].index}"><fmt:message
+			<li id="index" class="active"><a
+				href="${linkTo[IndexController].index}"><fmt:message
 						key="menu.inicial" /></a></li>
-			<li id="presentes"><a href="${linkTo[PresentesController].lista}"><fmt:message
+			<li id="presentes"><a
+				href="${linkTo[PresentesController].lista}"><fmt:message
 						key="menu.presentes" /></a></li>
 		</ul>
+		<div class="navbar-form navbar-right">
+			<audio controls autoplay="autoplay"
+				title="<fmt:message
+						key="musica.titulo" />">
+				<source
+					src="${pageContext.request.contextPath}/assets/music/<fmt:message
+						key="musica.nome" />"
+					type="audio/mpeg" />
+				<a
+					href="${pageContext.request.contextPath}/assets/music/<fmt:message
+						key="musica.nome" />"><fmt:message
+						key="musica.titulo" /></a>
+			</audio>
+		</div>
 	</div>
 	<!--/.nav-collapse -->
 </nav>

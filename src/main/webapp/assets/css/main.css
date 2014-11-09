@@ -7,3 +7,8 @@ body {
 #action > span {
 	cursor: pointer;
 }
+
+audio {
+	background-color: transparent;
+	color: #ffffff;
+}
