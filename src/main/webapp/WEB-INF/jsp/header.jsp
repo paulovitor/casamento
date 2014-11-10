@@ -42,11 +42,11 @@
 				title="<fmt:message
 						key="musica.titulo" />">
 				<source
-					src="${pageContext.request.contextPath}/assets/music/<fmt:message
+					src="${pageContext.request.contextPath}/assets/songs/<fmt:message
 						key="musica.nome" />"
 					type="audio/mpeg" />
 				<a
-					href="${pageContext.request.contextPath}/assets/music/<fmt:message
+					href="${pageContext.request.contextPath}/assets/songs/<fmt:message
 						key="musica.nome" />"><fmt:message
 						key="musica.titulo" /></a>
 			</audio>
