@@ -23,13 +23,13 @@ public class Familia {
 	private Integer id;
 
 	@NotEmpty(message = "{erro.campo.obrigatorio}")
-	@Length(min = 3, max = 30, message = "{erro.campo.tamanho}")
+	@Length(min = 3, max = 80, message = "{erro.campo.tamanho}")
 	private String nome;
 
 	@NotEmpty(message = "{erro.campo.obrigatorio}")
 	@Email(message = "{erro.campo.invalido}")
 	@Column(unique = true)
-	@Length(min = 5, max = 30, message = "{erro.campo.tamanho}")
+	@Length(min = 5, max = 80, message = "{erro.campo.tamanho}")
 	private String email;
 
 	@OneToMany(mappedBy = "familia")
