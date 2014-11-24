@@ -113,9 +113,9 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${presenteList}" var="presente">
+					<c:forEach items="${presenteList}" var="presente" varStatus="contador">
 						<tr ${presente.ok ? 'class="success"' : ''}>
-							<td>${presente.id}</td>
+							<td>${contador.count}</td>
 							<td>${presente.nome}</td>
 							<td>${presente.quantidade}</td>
 							<td><c:if test="${presente.familia != null}">
