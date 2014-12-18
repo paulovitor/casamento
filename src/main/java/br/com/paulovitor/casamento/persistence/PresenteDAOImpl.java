@@ -48,13 +48,15 @@ public class PresenteDAOImpl implements PresenteDAO {
 	@Override
 	public List<Presente> todos() {
 		return (List<Presente>) this.manager.createQuery(
-				"select p from Presente p", Presente.class).getResultList();
+				"select p from Presente p order by nome", Presente.class)
+				.getResultList();
 	}
 
 	@Override
 	public List<Presente> todosPorTipo(TipoPresente tipoPresente) {
 		return (List<Presente>) this.manager
-				.createQuery("select p from Presente p where tipo = :tipo",
+				.createQuery(
+						"select p from Presente p where tipo = :tipo order by nome",
 						Presente.class).setParameter("tipo", tipoPresente)
 				.getResultList();
 	}
