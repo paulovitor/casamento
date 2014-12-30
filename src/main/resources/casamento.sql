@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: 127.7.228.130:3306
--- Data de Criação: 17-Dez-2014 às 17:45
+-- Data de Criação: 30-Dez-2014 às 14:00
 -- Versão do servidor: 5.5.40
 -- versão do PHP: 5.3.3
 
@@ -79,7 +79,9 @@ INSERT INTO `familia` (`id`, `email`, `nome`) VALUES
 (103, 'glauciaalbanez@gmail.com', 'Gláucia'),
 (104, 'nubiafonoaudiologia@yahoo.com.br', 'Gulherme & Núbia'),
 (105, 'mucioalbanez@gmail.com', 'Mucio'),
-(106, 'fabioalbanez@gmail.com', 'Fábio & Maria Clara');
+(106, 'fabioalbanez@gmail.com', 'Fábio & Maria Clara'),
+(108, 'wbertis_sazon@hotmail.com', 'Wbertis e Carol'),
+(110, 'celio@snews.tv', 'Celio e Família');
 
 -- --------------------------------------------------------
 
@@ -96,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `hibernate_sequence` (
 --
 
 INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(107);
+(111);
 
 -- --------------------------------------------------------
 
@@ -183,7 +185,9 @@ INSERT INTO `presente` (`id`, `nome`, `ok`, `quantidade`, `tipo`, `familia_id`) 
 (62, 'TÁBUA DE CARNE', b'1', 1, 0, 97),
 (63, 'VASILHA DE PLÁSTICO GRANDE', b'0', 1, 0, NULL),
 (64, 'VENTILADOR', b'0', 1, 0, NULL),
-(65, 'QUEJEIRA', b'1', 1, 0, 95);
+(65, 'QUEJEIRA', b'1', 1, 0, 95),
+(107, 'FRIGIDEIRA ELÉTRICA', b'1', 1, 0, 108),
+(109, 'APARELHO DE JANTAR DE PORCELANA', b'1', 1, 0, 110);
 
 --
 -- Constraints for dumped tables
