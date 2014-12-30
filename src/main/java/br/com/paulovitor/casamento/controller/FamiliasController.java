@@ -12,6 +12,7 @@ import br.com.paulovitor.casamento.model.Checklist;
 import br.com.paulovitor.casamento.model.Familia;
 import br.com.paulovitor.casamento.model.Parentesco;
 import br.com.paulovitor.casamento.model.Presente;
+import br.com.paulovitor.casamento.model.TipoPresente;
 
 @Controller
 public class FamiliasController {
@@ -54,7 +55,8 @@ public class FamiliasController {
 
 	private void valida(Familia familia) {
 		validator.validate(familia);
-		result.include("presenteList", checklist.lista());
+		result.include("presenteList",
+				checklist.lista(TipoPresente.CHA_DE_PANELA));
 		validator.onErrorUsePageOf(PresentesController.class).lista();
 	}
 

@@ -4,17 +4,17 @@ import javax.inject.Inject;
 
 import br.com.paulovitor.casamento.persistence.FamiliaDAO;
 
-public class ListaDeParentesChaDePanela implements Parentesco {
+public class ListaDeParentes implements Parentesco {
 
 	private FamiliaDAO dao;
 
 	@Inject
-	public ListaDeParentesChaDePanela(FamiliaDAO dao) {
+	public ListaDeParentes(FamiliaDAO dao) {
 		this.dao = dao;
 	}
 
 	@Deprecated
-	ListaDeParentesChaDePanela() {
+	ListaDeParentes() {
 		this(null);
 	}
 

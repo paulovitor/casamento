@@ -74,7 +74,7 @@
 	<div class="container">
 
 		<div class="page-header">
-			<h1><fmt:message key="presentes.titulo"/></h1>
+			<h1><fmt:message key="presentes.titulo.cha"/></h1>
 		</div>
 
 		<div class="panel panel-info">
@@ -83,7 +83,7 @@
 			</div>
 			<div class="panel-body">
 				<span class="badge">1</span> Clique no icone <span class="glyphicon glyphicon-plus"></span><br />
-				<span class="badge">2</span> Preencha os campos <kbd><fmt:message key="campo.nome"/></kbd> e <kbd><fmt:message key="campo.email"/></kbd> no formulário<br />
+				<span class="badge">2</span> Preencha os campos <kbd><fmt:message key="familia.campo.nome"/></kbd> e <kbd><fmt:message key="familia.campo.email"/></kbd> no formulário<br />
 				<span class="badge">3</span> Clique no botão <kbd><fmt:message key="botao.confirmar"/></kbd><br />
 				<span class="badge">4</span> Pronto, seu presente foi escolhido! Muito obrigado e que Deus abençoe!
 			</div>

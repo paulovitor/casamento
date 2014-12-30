@@ -8,8 +8,8 @@ public interface Checklist {
 
 	public void salva(Presente presente);
 
-	public List<Presente> lista();
+	public List<Presente> lista(TipoPresente tipoPresente);
 
-	public void adicionaTodos(List<Presente> presentes);
+	public void adiciona(List<Presente> presentes);
 
 }

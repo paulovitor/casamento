@@ -11,6 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "presente")
@@ -20,8 +25,12 @@ public class Presente {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
+	@NotEmpty(message = "{erro.campo.obrigatorio}")
+	@Length(min = 3, max = 255, message = "{erro.campo.tamanho}")
 	@Column(unique = true)
 	private String nome;
+	
+	@Min(1)
 	private int quantidade;
 
 	@ManyToOne(cascade = { CascadeType.ALL })
@@ -29,6 +38,7 @@ public class Presente {
 	private Familia familia;
 	private boolean ok = false;
 
+	@NotNull(message = "{erro.campo.obrigatorio}")
 	@Enumerated(EnumType.ORDINAL)
 	private TipoPresente tipo;
 

@@ -6,17 +6,17 @@ import javax.inject.Inject;
 
 import br.com.paulovitor.casamento.persistence.PresenteDAO;
 
-public class ListaDePresentesChaDePanela implements Checklist {
+public class ListaDePresentes implements Checklist {
 
 	private PresenteDAO dao;
 
 	@Inject
-	public ListaDePresentesChaDePanela(PresenteDAO dao) {
+	public ListaDePresentes(PresenteDAO dao) {
 		this.dao = dao;
 	}
 
 	@Deprecated
-	ListaDePresentesChaDePanela() {
+	ListaDePresentes() {
 		this(null);
 	}
 
@@ -31,12 +31,12 @@ public class ListaDePresentesChaDePanela implements Checklist {
 	}
 
 	@Override
-	public List<Presente> lista() {
-		return this.dao.todosPorTipo(TipoPresente.CHA_DE_PANELA);
+	public List<Presente> lista(TipoPresente tipoPresente) {
+		return this.dao.todosPorTipo(tipoPresente);
 	}
 
 	@Override
-	public void adicionaTodos(List<Presente> presentes) {
+	public void adiciona(List<Presente> presentes) {
 		for (Presente presente : presentes) {
 			this.dao.salva(presente);
 		}

@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10.5
+-- version 4.0.10.7
 -- http://www.phpmyadmin.net
 --
 -- Máquina: 127.7.228.130:3306
--- Data de Criação: 24-Nov-2014 às 00:50
+-- Data de Criação: 17-Dez-2014 às 17:45
 -- Versão do servidor: 5.5.40
 -- versão do PHP: 5.3.3
 
@@ -56,8 +56,30 @@ INSERT INTO `familia` (`id`, `email`, `nome`) VALUES
 (80, 'loi_lorena@hotmail.com', 'Marcia e Família'),
 (81, 's.sandrafreitas@gmail.com', 'Sandra e Paulo'),
 (82, 'juelicesousa@gmail.com', 'Juelice e Otacilia'),
-(83, 'fatimagomes29@hotmail.com', 'Benjamin e Família'),
-(84, 'josinasv1990@hotmail.com', 'Josina');
+(83, 'fatimagomes29@hotmail.com;lucasofg@gmail.com', 'Benjamin e Família'),
+(84, 'josinasv1990@hotmail.com', 'Josina'),
+(85, 'greyci.l@hotmail.com', 'Pedro e Grayci'),
+(86, 'graziellemoriza.gm@gmail.com', 'Grazi e Luis'),
+(87, 'dinahelpsouza@hotmail.com', 'Wilha e Dina'),
+(88, 'masan_2006@hotmail.com', 'Edvaldo e Família'),
+(89, 'izabelivete9@gmail.com', 'Izabel e Família'),
+(90, 'ivone.gs08@hotmail.com', 'Eyler e Ivone'),
+(91, 'eylerlombre@gmail.com', 'Wlson e Catia'),
+(92, 'mmmartaos@gmail.com', 'Antonio Carlos e Família '),
+(93, 'lorenaosilva@gmail.com', 'Lorena e Família'),
+(94, 'milk.leo@gmail.com', 'Edil e Família'),
+(95, 'jocelmafsouza@hotmail.com', 'Tia Jocelma'),
+(96, 'marcosjoliv@hotmail.com', 'Marcos e Família'),
+(97, 'victorwilliam47@gmail.com', 'Victor'),
+(98, 'brunoo.silva@gmail.com', 'Flávia e Bruno'),
+(99, 'dalvaosilva@gmail.com', 'Maria Dalva'),
+(100, 'daltair.freitas@gmail.com', 'Daltair e Sheila'),
+(101, 'eljunior14@gmail.com', 'Ti Junin e Tia Selma'),
+(102, 'daltono@brturbo.com.br', 'Daltono & Rosângela'),
+(103, 'glauciaalbanez@gmail.com', 'Gláucia'),
+(104, 'nubiafonoaudiologia@yahoo.com.br', 'Gulherme & Núbia'),
+(105, 'mucioalbanez@gmail.com', 'Mucio'),
+(106, 'fabioalbanez@gmail.com', 'Fábio & Maria Clara');
 
 -- --------------------------------------------------------
 
@@ -74,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `hibernate_sequence` (
 --
 
 INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(85);
+(107);
 
 -- --------------------------------------------------------
 
@@ -99,69 +121,69 @@ CREATE TABLE IF NOT EXISTS `presente` (
 --
 
 INSERT INTO `presente` (`id`, `nome`, `ok`, `quantidade`, `tipo`, `familia_id`) VALUES
-(1, 'AÇUCAREIRO', b'0', 1, 0, NULL),
+(1, 'AÇUCAREIRO', b'1', 1, 0, 105),
 (2, 'APARELHO DE JANTAR', b'1', 1, 0, 79),
-(3, 'BANDEJA INOX', b'0', 1, 0, NULL),
-(5, 'BATEDEIRA DE BOLO', b'0', 1, 0, NULL),
+(3, 'BANDEJA INOX', b'1', 1, 0, 102),
+(5, 'BATEDEIRA DE BOLO', b'1', 1, 0, 96),
 (6, 'BATEDOR DE ALHO DE FERRO', b'0', 1, 0, NULL),
 (7, 'BOLEIRA', b'1', 1, 0, 70),
-(8, 'CONCHA INOX', b'0', 1, 0, NULL),
-(9, 'COLHER DE TIRAR ARROZ INOX', b'0', 1, 0, NULL),
-(10, 'CONJUNTO DE MANTIMENTOS', b'0', 1, 0, NULL),
+(8, 'CONCHA INOX', b'1', 1, 0, 83),
+(9, 'COLHER DE TIRAR ARROZ INOX', b'1', 1, 0, 83),
+(10, 'CONJUNTO DE MANTIMENTOS', b'1', 1, 0, 106),
 (11, 'CUSCUZEIRA', b'1', 1, 0, 72),
 (12, 'CENTRIFUGA', b'1', 1, 0, 77),
-(13, 'DESCANSO PARA PANELA INOX', b'0', 1, 0, NULL),
-(14, 'ESCOMADEIRA', b'0', 1, 0, NULL),
-(15, 'ESCORREDOR DE PRATOS INOX', b'0', 1, 0, NULL),
+(13, 'DESCANSO PARA PANELA INOX', b'1', 1, 0, 103),
+(14, 'ESCOMADEIRA', b'1', 1, 0, 86),
+(15, 'ESCORREDOR DE PRATOS INOX', b'1', 1, 0, 102),
 (16, 'ESCORREDOR DE MACARRÃO INOX', b'1', 1, 0, 74),
-(17, 'ESCORREDOR DE ARROZ INOX', b'0', 1, 0, NULL),
-(18, 'ESPREMEDOR DE BATATA', b'0', 1, 0, NULL),
-(19, 'ESPREMEDOR DE LARANJA ELÉTRICO', b'0', 1, 0, NULL),
-(20, 'FAQUEIRO VERDE', b'0', 1, 0, NULL),
-(21, 'FRIGIDEIRA', b'0', 1, 0, NULL),
-(22, 'FERRO DE PASSAR ROUPA A VAPOR', b'0', 1, 0, NULL),
-(23, 'FACA DE COZINHA', b'0', 1, 0, NULL),
-(24, 'FARINHEIRO', b'0', 1, 0, NULL),
-(25, 'FRUTEIRA IN0X', b'0', 1, 0, NULL),
+(17, 'ESCORREDOR DE ARROZ INOX', b'1', 1, 0, 102),
+(18, 'ESPREMEDOR DE BATATA', b'1', 1, 0, 103),
+(19, 'ESPREMEDOR DE LARANJA ELÉTRICO', b'1', 1, 0, 93),
+(20, 'FAQUEIRO VERDE', b'1', 1, 0, 101),
+(21, 'FRIGIDEIRA', b'1', 1, 0, 85),
+(22, 'FERRO DE PASSAR ROUPA A VAPOR', b'1', 1, 0, 99),
+(23, 'FACA DE COZINHA', b'1', 1, 0, 97),
+(24, 'FARINHEIRO', b'1', 1, 0, 105),
+(25, 'FRUTEIRA INOX', b'1', 1, 0, 89),
 (26, 'FORMA DE BOLO REDONDA', b'1', 1, 0, 75),
 (27, 'FORMA DE BOLO QUADRADA', b'1', 1, 0, 80),
 (28, 'GARRAFA TÉRMICA', b'1', 1, 0, 69),
 (29, 'GARRAFA DE ÁGUA DE VIDRO', b'1', 2, 0, 73),
-(30, 'JOGO DE PANELA INOX', b'0', 1, 0, NULL),
+(30, 'JOGO DE PANELA INOX', b'1', 1, 0, 92),
 (31, 'JOGO DE COPOS', b'1', 1, 0, 67),
 (32, 'JOGO DE TAÇAS', b'1', 1, 0, 68),
 (33, 'JARRA DE SUCO COM COPOS DE VIDRO', b'1', 1, 0, 84),
 (35, 'JOGO DE XÍCARA DE CHÁ', b'1', 1, 0, 81),
 (36, 'JOGO DE XÍCARA DE CAFÉ', b'1', 1, 0, 66),
-(37, 'JOGO DE SOBREMESA', b'0', 1, 0, NULL),
-(38, 'JOGO DE FACA PRA CHUARRASCO', b'0', 1, 0, NULL),
-(39, 'JOGO DE TEMPERO', b'0', 1, 0, NULL),
-(40, 'JOGO DE COLHER DE PAU', b'0', 1, 0, NULL),
+(37, 'JOGO DE SOBREMESA', b'1', 1, 0, 87),
+(38, 'JOGO DE FACA PRA CHUARRASCO', b'1', 1, 0, 94),
+(39, 'JOGO DE TEMPERO', b'1', 1, 0, 98),
+(40, 'JOGO DE COLHER DE PAU', b'1', 1, 0, 91),
 (41, 'JOGO DE VIDRO (saleiro, paliteiro, vinagre e azeite)', b'0', 1, 0, NULL),
 (42, 'JOGO DE BACIAS, BUCHA E BALDE', b'1', 1, 0, 71),
 (43, 'JOGO DE PANELA DE ALUMÍNIO', b'0', 1, 0, NULL),
-(44, 'LEITEIRA', b'0', 1, 0, NULL),
-(45, 'LIXEIRA DE COZINHEIRA', b'0', 1, 0, NULL),
+(44, 'LEITEIRA', b'1', 1, 0, 105),
+(45, 'LIXEIRA DE COZINHA', b'1', 1, 0, 91),
 (46, 'LIXEIRA DE BANHEIRO', b'0', 1, 0, NULL),
-(47, 'LIQUIDIFICADOR', b'0', 1, 0, NULL),
+(47, 'LIQUIDIFICADOR', b'1', 1, 0, 88),
 (48, 'MARINEX PARA LASANHA COM SUPORTE', b'1', 1, 0, 82),
-(49, 'MARINEX', b'0', 2, 0, NULL),
+(49, 'MARINEX', b'1', 2, 0, 90),
 (50, 'MICROONDAS', b'1', 1, 0, 83),
-(51, 'PANELA DE PRESSÃO', b'0', 1, 0, NULL),
-(52, 'PORTA SABÃO LÍQUIDO E SABÃO DE BARRA', b'0', 1, 0, NULL),
+(51, 'PANELA DE PRESSÃO', b'1', 1, 0, 104),
+(52, 'PORTA SABÃO LÍQUIDO E SABÃO DE BARRA', b'1', 1, 0, 71),
 (53, 'PRATOS DE VIDRO', b'1', 6, 0, 82),
-(54, 'PORTA COADOR', b'0', 1, 0, NULL),
+(54, 'PORTA COADOR', b'1', 1, 0, 70),
 (55, 'PIPOQUEIRA', b'0', 1, 0, NULL),
 (56, 'PORTA ROLO DE PAPEL TOALHA', b'0', 1, 0, NULL),
-(57, 'PANELA ELÉTRICA DE ARROZ', b'0', 1, 0, NULL),
+(57, 'PANELA ELÉTRICA DE ARROZ', b'1', 1, 0, 100),
 (58, 'RALADOR INOX', b'1', 1, 0, 76),
 (59, 'SALEIRA', b'0', 1, 0, NULL),
 (60, 'SANDUICHEIRA', b'1', 1, 0, 78),
 (61, 'TÁBUA DE PASSAR ROUPA', b'0', 1, 0, NULL),
-(62, 'TÁBUA DE CARNE', b'0', 1, 0, NULL),
+(62, 'TÁBUA DE CARNE', b'1', 1, 0, 97),
 (63, 'VASILHA DE PLÁSTICO GRANDE', b'0', 1, 0, NULL),
 (64, 'VENTILADOR', b'0', 1, 0, NULL),
-(65, 'QUEJEIRA', b'0', 1, 0, NULL);
+(65, 'QUEJEIRA', b'1', 1, 0, 95);
 
 --
 -- Constraints for dumped tables
