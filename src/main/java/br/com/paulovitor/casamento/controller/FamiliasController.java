@@ -57,7 +57,7 @@ public class FamiliasController {
 		validator.validate(familia);
 		result.include("presenteList",
 				checklist.lista(TipoPresente.CHA_DE_PANELA));
-		validator.onErrorUsePageOf(PresentesController.class).lista();
+		validator.onErrorUsePageOf(PresentesController.class).cha();
 	}
 
 	private void adicionaFamilia(Familia familia, Presente presente) {

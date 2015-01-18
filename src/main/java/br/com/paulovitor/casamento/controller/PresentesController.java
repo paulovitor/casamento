@@ -41,7 +41,12 @@ public class PresentesController {
 	}
 
 	@Get("/presentes")
-	public List<Presente> lista() {
+	public List<Presente> casamento() {
+		return checklist.lista(TipoPresente.CASAMENTO);
+	}
+	
+	@Get("/presentes/cha")
+	public List<Presente> cha() {
 		return checklist.lista(TipoPresente.CHA_DE_PANELA);
 	}
 
@@ -51,8 +56,8 @@ public class PresentesController {
 				bundle.getString("presentes.mensagem.escolhido.sucesso"));
 		result.include("tipo", TIPO_MESSAGEM_SUCESSO);
 		result.include("presenteList",
-				checklist.lista(TipoPresente.CHA_DE_PANELA));
-		result.of(this).lista();
+				checklist.lista(TipoPresente.CASAMENTO));
+		result.of(this).casamento();
 	}
 
 	@Restrito

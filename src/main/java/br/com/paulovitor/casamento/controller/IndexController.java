@@ -12,8 +12,8 @@ public class IndexController {
 
 	}
 
-	@Get("/informacoes")
-	public void informacoes() {
+	@Get("/localizacao/cha")
+	public void localizacao() {
 
 	}
 
