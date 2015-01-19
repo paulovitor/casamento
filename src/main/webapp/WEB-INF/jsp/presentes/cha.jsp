@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 
-<div class="modal-content">
+<div class="modal-content text-left">
 	<div class="close-modal" data-dismiss="modal">
 		<div class="lr">
 			<div class="rl"></div>
@@ -47,8 +47,8 @@
 							</c:forEach>
 						</tbody>
 					</table>
-					
-					<br/>
+
+					<br />
 
 					<button type="button" class="btn btn-primary" data-dismiss="modal">
 						<i class="fa fa-times"></i>Voltar
