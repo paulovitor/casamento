@@ -12,14 +12,14 @@
 	method="post" id="form-popover" role="form">
 	<input type="hidden" id="id-presente" name="idPresente" value="${id}" />
 	<div class="form-group">
-		<label for="nome"><fmt:message key="familia.campo.nome" /></label> <input
-			type="text" id="nome" name="familia.nome" class="form-control"
-			placeholder="<fmt:message key="familia.sugestao.nome" />">
+		<label for="nome"><fmt:message key="familias.campo.nome" /></label> <input
+			type="text" id="nome" name="familias.nome" class="form-control"
+			placeholder="<fmt:message key="familias.sugestao.nome" />">
 	</div>
 	<div class="form-group">
-		<label for="email"><fmt:message key="familia.campo.email" /></label> <input
-			type="email" id="email" name="familia.email" class="form-control"
-			placeholder="<fmt:message key="familia.sugestao.email" />">
+		<label for="email"><fmt:message key="familias.campo.email" /></label> <input
+			type="email" id="email" name="familias.email" class="form-control"
+			placeholder="<fmt:message key="familias.sugestao.email" />">
 	</div>
 	<button type="submit" id="btn-submit" class="btn btn-primary">
 		<fmt:message key="botao.confirmar" />

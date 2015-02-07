@@ -21,13 +21,15 @@ public class ListaDePresentes implements Checklist {
 	}
 
 	@Override
-	public Presente get(Integer id) {
-		return dao.get(id);
+	public void adiciona(List<Presente> presentes) {
+		for (Presente presente : presentes) {
+			this.dao.salva(presente);
+		}
 	}
 
 	@Override
-	public void salva(Presente presente) {
-		dao.salva(presente);
+	public Presente get(Integer id) {
+		return dao.get(id);
 	}
 
 	@Override
@@ -36,10 +38,13 @@ public class ListaDePresentes implements Checklist {
 	}
 
 	@Override
-	public void adiciona(List<Presente> presentes) {
-		for (Presente presente : presentes) {
-			this.dao.salva(presente);
-		}
+	public List<Presente> listaTodos() {
+		return this.dao.todos();
+	}
+
+	@Override
+	public void salva(Presente presente) {
+		dao.salva(presente);
 	}
 
 }

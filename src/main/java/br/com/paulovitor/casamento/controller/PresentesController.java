@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
+import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
@@ -40,28 +41,9 @@ public class PresentesController {
 		this(null, null, null, null);
 	}
 
-	@Get("/presentes")
-	public List<Presente> casamento() {
-		return checklist.lista(TipoPresente.CASAMENTO);
-	}
-	
-	@Get("/presentes/cha")
-	public List<Presente> cha() {
-		return checklist.lista(TipoPresente.CHA_DE_PANELA);
-	}
-
-	@Get("/presentes/listaComMensagem")
-	public void listaComMensagem() {
-		result.include("mensagem",
-				bundle.getString("presentes.mensagem.escolhido.sucesso"));
-		result.include("tipo", TIPO_MESSAGEM_SUCESSO);
-		result.include("presenteList",
-				checklist.lista(TipoPresente.CASAMENTO));
-		result.of(this).casamento();
-	}
-
 	@Restrito
-	@Get("/presentes/adicionaTodos")
+	@Get
+	@Path(value = "/presentes/adicionaTodos", priority = Path.HIGH)
 	public void adicionaTodos() {
 		ListaDePresentesInicial presentes = new ListaDePresentesInicial();
 		checklist.adiciona(presentes.getPresentes());
@@ -69,26 +51,72 @@ public class PresentesController {
 		result.redirectTo(this).listaComMensagem();
 	}
 
-	@Restrito
-	@Get("/presentes/formulario")
-	public void formulario() {
+	@Get("/presentes")
+	public List<Presente> casamento() {
+		return checklist.lista(TipoPresente.CASAMENTO);
+	}
 
+	@Get
+	@Path(value = "/presentes/cha", priority = Path.HIGH)
+	public List<Presente> cha() {
+		return checklist.lista(TipoPresente.CHA_DE_PANELA);
+	}
+
+	@Restrito
+	@Get
+	@Path(value = "/presentes/formulario", priority = Path.HIGH)
+	public void formulario() {
+		result.include("presenteList", checklist.listaTodos());
+	}
+
+	@Restrito
+	@Get
+	@Path(value = "/presentes/{id}", priority = Path.LOW)
+	public void edita(Integer id) {
+		Presente presente = checklist.get(id);
+		if (presente == null) {
+			result.notFound();
+		} else {
+			result.include(presente);
+			result.include("presenteList", checklist.listaTodos());
+
+			result.of(this).formulario();
+		}
+	}
+
+	@Get("/presentes/listaComMensagem")
+	public void listaComMensagem() {
+		includeParametrosDeSucesso(
+				bundle.getString("presentes.mensagem.escolhido.sucesso"),
+				checklist.lista(TipoPresente.CASAMENTO));
+
+		result.of(this).casamento();
 	}
 
 	@Restrito
 	@Post("/presentes")
-	public void adiciona(Presente presente) {
+	public void salva(Presente presente) {
+		String mensagem = bundle
+				.getString(presente.getId() == null ? "presentes.mensagem.adicionado.sucesso"
+						: "presentes.mensagem.editado.sucesso");
 		validator.validate(presente);
 		result.include("presente", presente);
+		result.include("presenteList", checklist.listaTodos());
 		validator.onErrorUsePageOf(this).formulario();
 
 		checklist.salva(presente);
 
-		result.include("mensagem",
-				bundle.getString("presentes.mensagem.adicionado.sucesso"));
-		result.include("tipo", TIPO_MESSAGEM_SUCESSO);
+		result.include("presente", null);
+		includeParametrosDeSucesso(mensagem, checklist.listaTodos());
 
 		result.of(this).formulario();
+	}
+
+	private void includeParametrosDeSucesso(String mensagem,
+			List<Presente> presentes) {
+		result.include("mensagem", mensagem);
+		result.include("tipo", TIPO_MESSAGEM_SUCESSO);
+		result.include("presenteList", presentes);
 	}
 
 }

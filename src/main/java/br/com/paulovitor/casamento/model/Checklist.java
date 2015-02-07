@@ -4,12 +4,14 @@ import java.util.List;
 
 public interface Checklist {
 
-	public Presente get(Integer id);
+	public void adiciona(List<Presente> presentes);
 
-	public void salva(Presente presente);
+	public Presente get(Integer id);
 
 	public List<Presente> lista(TipoPresente tipoPresente);
 
-	public void adiciona(List<Presente> presentes);
+	public List<Presente> listaTodos();
+
+	public void salva(Presente presente);
 
 }

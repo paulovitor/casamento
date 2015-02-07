@@ -26,7 +26,7 @@
                     <a href="${linkTo[PresentesController].casamento}"><fmt:message key="menu.presentes" /></a>
                 </li>
                 <li>
-                    <a href="#"><fmt:message key="menu.fotos" /></a>
+                    <a href="${linkTo[FamiliasController].presenca}"><fmt:message key="menu.presenca" /></a>
                 </li>
                 <li>
                     <a href="#"><fmt:message key="menu.contato" /></a>

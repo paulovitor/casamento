@@ -52,6 +52,11 @@ public class FamiliasController {
 
 		result.redirectTo(PresentesController.class).listaComMensagem();
 	}
+	
+	@Get("/familias/presenca")
+	public void presenca() {
+		
+	}
 
 	private void valida(Familia familia) {
 		validator.validate(familia);
