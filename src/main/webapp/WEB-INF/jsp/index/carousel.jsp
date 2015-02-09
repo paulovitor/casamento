@@ -54,6 +54,45 @@
 							src="${pageContext.request.contextPath}/assets/images/<fmt:message key="pauloelay.imagem3" />">
 						<div class="container">
 							<div class="carousel-caption">
+								<h1>Confirmar Presença</h1>
+								<p>
+									Não deixe de <a href="${linkTo[FamiliasController].presenca}">confirmar
+										sua presença.</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<img alt="<fmt:message key="site.titulo" />"
+							src="${pageContext.request.contextPath}/assets/images/<fmt:message key="pauloelay.imagem4" />">
+						<div class="container">
+							<div class="carousel-caption">
+								<h1>Cerimônia de casamento</h1>
+								<p>
+									A missa será na <a href="#cerimonia">Paróquia São Judas
+										Tadeu, Taguatinga Norte.</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<img alt="<fmt:message key="site.titulo" />"
+							src="${pageContext.request.contextPath}/assets/images/<fmt:message key="pauloelay.imagem5" />">
+						<div class="container">
+							<div class="carousel-caption">
+								<h1>Recepção dos convidados</h1>
+								<p>
+									A festa de casamento será no <a href="#recepcao">Salão
+										Nobre (Lar dos Velhinhos), Taguatinga Sul.</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<img alt="<fmt:message key="site.titulo" />"
+							src="${pageContext.request.contextPath}/assets/images/<fmt:message key="pauloelay.imagem6" />">
+						<div class="container">
+							<div class="carousel-caption">
 								<h1>Obrigado, Deus abençoe</h1>
 								<p>Esperamos por você, sua presença é muito especial para
 									nós.</p>

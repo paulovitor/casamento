@@ -40,8 +40,18 @@
 	<script	src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.min.js"></script>
 	
     <script type="text/javascript">
-		$(document).ready(function() {
-			
+	    $(document).ready(function() {
+			var path = window.location.pathname;
+			path = decodeURIComponent(path);
+			if (path != "") {
+				$('ul#menu>li').removeClass('active');
+				$('ul#menu>li').each(function() {
+					var url = $(this).children('a').attr('href');
+					if (path === url) {
+						$(this).addClass("active");
+					}
+				});
+			}
 		});
 	</script>
     
@@ -62,7 +72,7 @@
 						<h1><fmt:message key="familias.presenca.titulo"/></h1>
 					</div>
 					
-					<form action="${linkTo[FamiliasController].confirma}"
+					<%-- <form action="${linkTo[FamiliasController].confirma}"
 						method="post" id="form-popover" role="form">
 						<div class="form-group">
 							<label for="nome"><fmt:message key="familias.campo.nome" /></label> <input
@@ -75,7 +85,7 @@
 						<a class="btn btn-default"
 							href="${linkTo[FamiliasController].presenca}" role="button"><fmt:message
 								key="botao.cancelar" /></a>
-					</form>
+					</form> --%>
 					
 				</div>
 			</div>
