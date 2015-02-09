@@ -62,7 +62,20 @@
 						<h1><fmt:message key="familias.presenca.titulo"/></h1>
 					</div>
 					
-					
+					<form action="${linkTo[FamiliasController].confirma}"
+						method="post" id="form-popover" role="form">
+						<div class="form-group">
+							<label for="nome"><fmt:message key="familias.campo.nome" /></label> <input
+								type="text" id="nome" name="familias.nome" class="form-control"
+								placeholder="<fmt:message key="familias.sugestao.nome" />">
+						</div>
+						<button type="submit" id="btn-submit" class="btn btn-primary">
+							<fmt:message key="botao.confirmar" />
+						</button>
+						<a class="btn btn-default"
+							href="${linkTo[FamiliasController].presenca}" role="button"><fmt:message
+								key="botao.cancelar" /></a>
+					</form>
 					
 				</div>
 			</div>

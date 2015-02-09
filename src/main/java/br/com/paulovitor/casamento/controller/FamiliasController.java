@@ -36,11 +36,6 @@ public class FamiliasController {
 		this(null, null, null, null);
 	}
 
-	@Get("/familias/formulario")
-	public void formulario(Integer id) {
-		result.include("id", id);
-	}
-
 	@Post("/familias")
 	public void adiciona(@NotNull Integer idPresente, Familia familia) {
 		valida(familia);
@@ -51,6 +46,16 @@ public class FamiliasController {
 		checklist.salva(presente);
 
 		result.redirectTo(PresentesController.class).listaComMensagem();
+	}
+	
+	@Post("/familias/confirma")
+	public void confirma() {
+		
+	}
+	
+	@Get("/familias/formulario")
+	public void formulario(Integer id) {
+		result.include("id", id);
 	}
 	
 	@Get("/familias/presenca")
