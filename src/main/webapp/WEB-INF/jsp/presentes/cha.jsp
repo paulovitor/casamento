@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<!DOCTYPE html>
 
 <div class="modal-content text-left">
 	<div class="close-modal" data-dismiss="modal">
@@ -17,7 +16,6 @@
 					<h2>
 						<fmt:message key="presentes.titulo.cha" />
 					</h2>
-
 					<table class="table table-condensed">
 						<thead>
 							<tr>
@@ -47,13 +45,10 @@
 							</c:forEach>
 						</tbody>
 					</table>
-
 					<br />
-
 					<button type="button" class="btn btn-primary" data-dismiss="modal">
 						<i class="fa fa-times"></i>Voltar
 					</button>
-
 				</div>
 			</div>
 		</div>

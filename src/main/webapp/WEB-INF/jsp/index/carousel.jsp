@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<!DOCTYPE html>
 
 <script type="text/javascript">
 	$('.carousel').carousel({
@@ -18,6 +17,9 @@
 					<li data-target="#carousel" data-slide-to="0" class="active"></li>
 					<li data-target="#carousel" data-slide-to="1" class=""></li>
 					<li data-target="#carousel" data-slide-to="2" class=""></li>
+					<li data-target="#carousel" data-slide-to="3" class=""></li>
+					<li data-target="#carousel" data-slide-to="4" class=""></li>
+					<li data-target="#carousel" data-slide-to="5" class=""></li>
 				</ol>
 				<div class="carousel-inner" role="listbox">
 					<div class="item active">

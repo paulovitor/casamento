@@ -1,19 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<!DOCTYPE html>
 
 <div id="cerimonia" class="row">
 	<div class="box">
 		<div class="col-lg-12">
-
 			<hr>
 			<h2 class="intro-text text-center">
 				25 de abril de 2015 | 20:00 horas <strong>Cerimônia de
 					casamento</strong>
 			</h2>
 			<hr>
-
 		</div>
 		<div class="col-md-8 text-center">
 			<iframe

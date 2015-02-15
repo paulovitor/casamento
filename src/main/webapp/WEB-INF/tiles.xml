@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="base" template="/WEB-INF/jsp/template.jsp">
+		<put-attribute name="title" value="Casamento" />
+		<put-attribute name="menu" value="/WEB-INF/jsp/navigation.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/footer.jsp" />
+	</definition>
+	<definition name="familias/formulario" template="/WEB-INF/jsp/familias/formulario.jsp" />
+	<definition name="familias/presenca" extends="base">
+		<put-attribute name="body" value="/WEB-INF/jsp/familias/presenca.jsp" />
+	</definition>
+	<definition name="index/index" extends="base">
+		<put-attribute name="body" value="/WEB-INF/jsp/index/index.jsp" />
+	</definition>
+	<definition name="index/localizacao" template="/WEB-INF/jsp/index/localizacao.jsp" />
+	<definition name="login/formulario" extends="base">
+		<put-attribute name="body" value="/WEB-INF/jsp/login/formulario.jsp" />
+	</definition>
+	<definition name="pessoas/lista" template="/WEB-INF/jsp/pessoas/lista.jsp" />
+	<definition name="presentes/casamento" extends="base">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/presentes/casamento.jsp" />
+	</definition>
+	<definition name="presentes/cha" template="/WEB-INF/jsp/presentes/cha.jsp" />
+	<definition name="presentes/formulario" extends="base">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/presentes/formulario.jsp" />
+	</definition>
+</tiles-definitions>

@@ -1,5 +1,7 @@
 package br.com.paulovitor.casamento.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 
@@ -8,6 +10,7 @@ import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
+import br.com.caelum.vraptor.view.Results;
 import br.com.paulovitor.casamento.model.Checklist;
 import br.com.paulovitor.casamento.model.Familia;
 import br.com.paulovitor.casamento.model.Parentesco;
@@ -47,27 +50,32 @@ public class FamiliasController {
 
 		result.redirectTo(PresentesController.class).listaComMensagem();
 	}
-	
+
+	@Get("/familias/buscaPorNome/{nome}")
+	public void buscaPorNome(String nome) {
+		List<Familia> familias = parentesco.buscaFamilias(nome);
+		result.use(Results.json()).from(familias).serialize();
+	}
+
 	@Post("/familias/confirma")
 	public void confirma() {
-		
+
 	}
-	
+
 	@Get("/familias/formulario")
 	public void formulario(Integer id) {
 		result.include("id", id);
 	}
-	
+
 	@Get("/familias/presenca")
 	public void presenca() {
-		
+
 	}
 
 	private void valida(Familia familia) {
 		validator.validate(familia);
-		result.include("presenteList",
-				checklist.lista(TipoPresente.CHA_DE_PANELA));
-		validator.onErrorUsePageOf(PresentesController.class).cha();
+		result.include("presenteList", checklist.lista(TipoPresente.CASAMENTO));
+		validator.onErrorUsePageOf(PresentesController.class).casamento();
 	}
 
 	private void adicionaFamilia(Familia familia, Presente presente) {
