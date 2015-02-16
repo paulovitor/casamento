@@ -35,6 +35,9 @@ public class Familia {
 	@OneToMany(mappedBy = "familia")
 	private List<Presente> presentes;
 
+	@OneToMany(mappedBy = "familia")
+	private List<Pessoa> pessoas;
+
 	public Familia(String nome, String email) {
 		this.nome = nome;
 		this.email = email;
@@ -73,6 +76,14 @@ public class Familia {
 
 	public void setPresentes(List<Presente> presentes) {
 		this.presentes = presentes;
+	}
+
+	public List<Pessoa> getPessoas() {
+		return pessoas;
+	}
+
+	public void setPessoas(List<Pessoa> pessoas) {
+		this.pessoas = pessoas;
 	}
 
 }

@@ -7,12 +7,12 @@ import br.com.paulovitor.casamento.model.TipoPresente;
 
 public interface PresenteDAO {
 
-	Presente get(Integer id);
+	public Presente get(Integer id);
 
-	void salva(Presente presente);
+	public void salva(Presente presente);
 
-	List<Presente> todos();
+	public List<Presente> todos();
 
-	List<Presente> todosPorTipo(TipoPresente chaDePanela);
+	public List<Presente> todosPorTipo(TipoPresente chaDePanela);
 
 }

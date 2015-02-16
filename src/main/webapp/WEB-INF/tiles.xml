@@ -20,6 +20,10 @@
 	<definition name="login/formulario" extends="base">
 		<put-attribute name="body" value="/WEB-INF/jsp/login/formulario.jsp" />
 	</definition>
+	<definition name="pessoas/formulario" extends="base">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/pessoas/formulario.jsp" />
+	</definition>
 	<definition name="pessoas/lista" template="/WEB-INF/jsp/pessoas/lista.jsp" />
 	<definition name="presentes/casamento" extends="base">
 		<put-attribute name="body"

@@ -6,8 +6,12 @@ import br.com.paulovitor.casamento.model.Familia;
 
 public interface FamiliaDAO {
 
-	Familia buscaPorEmail(String email);
+	public Familia buscaPorEmail(String email);
 
-	List<Familia> buscaPorNome(String nome);
+	public List<Familia> buscaPorNome(String nome);
+
+	public Familia get(Integer id);
+
+	public List<Familia> todas();
 
 }

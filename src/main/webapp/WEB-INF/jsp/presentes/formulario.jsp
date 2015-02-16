@@ -25,8 +25,8 @@
 				</div>
 			</c:if>
 
-			<form action="${linkTo[PresentesController].salva}" method="post"
-				id="form-presente" role="form">
+			<form action="${linkTo[PresentesController].salva}#main"
+				method="post" id="form-presente" role="form">
 				<input type="hidden" name="presente.id" value="${presente.id}" />
 				<div class="form-group">
 					<label for="nome"><fmt:message key="presentes.campo.nome" /></label>

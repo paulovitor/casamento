@@ -43,11 +43,30 @@ public class FamiliaDAOImpl implements FamiliaDAO {
 			return this.manager
 					.createQuery(
 							"select f from Familia f where f.nome like :nome",
-							Familia.class).setParameter("nome", "%" + nome + "%")
-					.getResultList();
+							Familia.class)
+					.setParameter("nome", "%" + nome + "%").getResultList();
 		} catch (NoResultException e) {
 			return null;
 		}
+	}
+
+	@Override
+	public Familia get(Integer id) {
+		try {
+			return this.manager
+					.createQuery("select f from Familia f where f.id = :id",
+							Familia.class).setParameter("id", id)
+					.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+
+	@Override
+	public List<Familia> todas() {
+		return (List<Familia>) this.manager.createQuery(
+				"select f from Familia f order by nome", Familia.class)
+				.getResultList();
 	}
 
 }

@@ -21,7 +21,6 @@
 		});
 
 		$('#nome').on('typeahead:selected', function(e, selected) {
-			console.log(selected);
 			if (selected != null && selected != 'undefined') {
 				var url = "${linkTo[PessoasController].lista}" + selected.id;
 				$.get(url, function(data) {
@@ -44,8 +43,7 @@
 
 			<div id="familia" class="col-lg-6">
 
-				<form action="${linkTo[FamiliasController].confirma}" method="post"
-					id="form-popover" role="form">
+				<form id="form-presenca" role="form">
 					<div class="form-group input-group">
 						<input type="text" id="nome" name="familias.nome"
 							class="form-control"
@@ -56,12 +54,6 @@
 							</button>
 						</span>
 					</div>
-					<button type="submit" id="btn-submit" class="btn btn-primary">
-						<fmt:message key="botao.confirmar" />
-					</button>
-					<a class="btn btn-default"
-						href="${linkTo[FamiliasController].presenca}" role="button"><fmt:message
-							key="botao.cancelar" /></a>
 				</form>
 
 			</div>

@@ -57,11 +57,6 @@ public class FamiliasController {
 		result.use(Results.json()).from(familias).serialize();
 	}
 
-	@Post("/familias/confirma")
-	public void confirma() {
-
-	}
-
 	@Get("/familias/formulario")
 	public void formulario(Integer id) {
 		result.include("id", id);
