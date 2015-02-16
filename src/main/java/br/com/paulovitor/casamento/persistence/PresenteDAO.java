@@ -5,13 +5,7 @@ import java.util.List;
 import br.com.paulovitor.casamento.model.Presente;
 import br.com.paulovitor.casamento.model.TipoPresente;
 
-public interface PresenteDAO {
-
-	public Presente get(Integer id);
-
-	public void salva(Presente presente);
-
-	public List<Presente> todos();
+public interface PresenteDAO extends BaseDAO<Presente> {
 
 	public List<Presente> todosPorTipo(TipoPresente chaDePanela);
 

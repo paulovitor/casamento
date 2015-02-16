@@ -10,13 +10,11 @@ import javax.transaction.Transactional;
 import br.com.paulovitor.casamento.model.Familia;
 
 @Transactional
-public class FamiliaDAOImpl implements FamiliaDAO {
-
-	private final EntityManager manager;
+public class FamiliaDAOImpl extends BaseDAOImpl<Familia> implements FamiliaDAO {
 
 	@Inject
 	public FamiliaDAOImpl(EntityManager manager) {
-		this.manager = manager;
+		super(manager, Familia.class);
 	}
 
 	@Deprecated
@@ -51,22 +49,8 @@ public class FamiliaDAOImpl implements FamiliaDAO {
 	}
 
 	@Override
-	public Familia get(Integer id) {
-		try {
-			return this.manager
-					.createQuery("select f from Familia f where f.id = :id",
-							Familia.class).setParameter("id", id)
-					.getSingleResult();
-		} catch (NoResultException e) {
-			return null;
-		}
-	}
+	public void salva(Familia entity) {
 
-	@Override
-	public List<Familia> todas() {
-		return (List<Familia>) this.manager.createQuery(
-				"select f from Familia f order by nome", Familia.class)
-				.getResultList();
 	}
 
 }

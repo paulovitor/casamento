@@ -51,12 +51,12 @@ public class ListaDeParentes implements Parentesco {
 
 	@Override
 	public List<Familia> listaTodasFamilias() {
-		return this.familiaDAO.todas();
+		return this.familiaDAO.todos();
 	}
 
 	@Override
 	public List<Pessoa> listaTodasPessoas() {
-		return this.pessoaDAO.todas();
+		return this.pessoaDAO.todos();
 	}
 
 	@Override

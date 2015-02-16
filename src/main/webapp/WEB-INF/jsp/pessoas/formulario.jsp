@@ -64,7 +64,7 @@
 					<thead>
 						<tr>
 							<th></th>
-							<th>Nome</th>
+							<th><fmt:message key="coluna.nome" /></th>
 							<th></th>
 					</thead>
 					<tbody>

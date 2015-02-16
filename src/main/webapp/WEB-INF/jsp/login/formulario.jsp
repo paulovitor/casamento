@@ -22,7 +22,7 @@
 			</c:if>
 
 			<form action="${linkTo[LoginController].login}" method="post"
-				id="form-popover" role="form">
+				id="form-login" role="form">
 				<div class="form-group">
 					<label for="login"><fmt:message key="usuario.campo.login" /></label>
 					<input type="text" id="login" name="usuario.login"

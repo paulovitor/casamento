@@ -11,13 +11,16 @@ import br.com.paulovitor.casamento.model.Familia;
 import br.com.paulovitor.casamento.model.Pessoa;
 
 @Transactional
-public class PessoaDAOImpl implements PessoaDAO {
-
-	private final EntityManager manager;
+public class PessoaDAOImpl extends BaseDAOImpl<Pessoa> implements PessoaDAO {
 
 	@Inject
 	public PessoaDAOImpl(EntityManager manager) {
-		this.manager = manager;
+		super(manager, Pessoa.class);
+	}
+
+	@Deprecated
+	public PessoaDAOImpl() {
+		this(null);
 	}
 
 	@Override
@@ -34,30 +37,11 @@ public class PessoaDAOImpl implements PessoaDAO {
 	}
 
 	@Override
-	public Pessoa get(Integer id) {
-		try {
-			return this.manager
-					.createQuery("select p from Pessoa p where p.id = :id",
-							Pessoa.class).setParameter("id", id)
-					.getSingleResult();
-		} catch (NoResultException e) {
-			return null;
-		}
-	}
-
-	@Override
 	public void salva(Pessoa pessoa) {
 		if (pessoa.getId() == null)
 			this.manager.persist(pessoa);
 		else
 			this.manager.merge(pessoa);
-	}
-
-	@Override
-	public List<Pessoa> todas() {
-		return (List<Pessoa>) this.manager.createQuery(
-				"select p from Pessoa p order by nome", Pessoa.class)
-				.getResultList();
 	}
 
 }
