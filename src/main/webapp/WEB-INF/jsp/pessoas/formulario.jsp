@@ -47,7 +47,7 @@
 					<fmt:message key="botao.confirmar" />
 				</button>
 				<a class="btn btn-default"
-					href="${linkTo[FamiliasController].presenca}" role="button"><fmt:message
+					href="${linkTo[PessoasController].formulario}" role="button"><fmt:message
 						key="botao.cancelar" /></a>
 			</form>
 
@@ -65,6 +65,7 @@
 						<tr>
 							<th></th>
 							<th><fmt:message key="coluna.nome" /></th>
+							<th><fmt:message key="coluna.familia" /></th>
 							<th></th>
 					</thead>
 					<tbody>
@@ -73,6 +74,7 @@
 							<tr ${pessoa.confirmado ? 'class="success"' : ''}>
 								<td>${contador.count}</td>
 								<td>${pessoa.nome}</td>
+								<td>${pessoa.familia.nome}</td>
 								<td id="action" align="right"><a
 									href="${linkTo[PessoasController].edita}${pessoa.id}#main">
 										<span id="span-${pessoa.id}"
