@@ -39,17 +39,38 @@ public class PessoasController {
 		this(null, null, null, null);
 	}
 
-	@Get("/pessoas/lista/{idFamilia}")
-	public void lista(Integer idFamilia) {
-		result.include("pessoasList", parentesco.buscaPessoas(idFamilia));
-	}
-
 	@Get("/pessoas/confirma/{id}")
 	public void confirma(Integer id) {
 		Pessoa pessoa = parentesco.getPessoa(id);
 		pessoa.setConfirmado(true);
 		parentesco.salva(pessoa);
 		result.use(Results.json()).from(pessoa).serialize();
+	}
+
+	@Restrito
+	@Get
+	@Path(value = "/pessoas/{id}", priority = Path.LOW)
+	public void edita(Integer id) {
+		Pessoa pessoa = parentesco.getPessoa(id);
+		if (pessoa == null) {
+			result.notFound();
+		} else {
+			includeParametros(pessoa);
+
+			result.of(this).formulario();
+		}
+	}
+
+	@Restrito
+	@Get
+	@Path(value = "/pessoas/formulario", priority = Path.HIGH)
+	public void formulario() {
+		includeParametros(null);
+	}
+
+	@Get("/pessoas/lista/{idFamilia}")
+	public void lista(Integer idFamilia) {
+		result.include("pessoasList", parentesco.buscaPessoas(idFamilia));
 	}
 
 	@Restrito
@@ -68,27 +89,6 @@ public class PessoasController {
 		includeParametrosDeSucesso(mensagem);
 
 		result.of(this).formulario();
-	}
-
-	@Restrito
-	@Get
-	@Path(value = "/pessoas/formulario", priority = Path.HIGH)
-	public void formulario() {
-		includeParametros(null);
-	}
-
-	@Restrito
-	@Get
-	@Path(value = "/pessoas/{id}", priority = Path.LOW)
-	public void edita(Integer id) {
-		Pessoa pessoa = parentesco.getPessoa(id);
-		if (pessoa == null) {
-			result.notFound();
-		} else {
-			includeParametros(pessoa);
-
-			result.of(this).formulario();
-		}
 	}
 
 	private void includeParametrosDeSucesso(String mensagem) {

@@ -18,6 +18,8 @@ public interface Parentesco {
 
 	public List<Pessoa> listaTodasPessoas();
 
+	public void salva(Familia familia);
+
 	public void salva(Pessoa pessoa);
 
 }

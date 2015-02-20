@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <script type="text/javascript">
-	var url = "${linkTo[FamiliasController].formulario}";
+	var url = "${linkTo[FamiliasController].popUp}";
 	$(document).ready(function() {
 		window.setTimeout(function() {
 			$(".alert").alert('close');
