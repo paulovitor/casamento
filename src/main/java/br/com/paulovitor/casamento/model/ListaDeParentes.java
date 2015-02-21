@@ -60,6 +60,11 @@ public class ListaDeParentes implements Parentesco {
 	}
 
 	@Override
+	public void salva(Familia familia) {
+		familiaDAO.salva(familia);
+	}
+
+	@Override
 	public void salva(Pessoa pessoa) {
 		pessoaDAO.salva(pessoa);
 	}

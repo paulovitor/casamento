@@ -9,7 +9,11 @@
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/jsp/footer.jsp" />
 	</definition>
-	<definition name="familias/formulario" template="/WEB-INF/jsp/familias/formulario.jsp" />
+	<definition name="familias/formulario" extends="base">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/familias/formulario.jsp" />
+	</definition>
+	<definition name="familias/popUp" template="/WEB-INF/jsp/familias/popUp.jsp" />
 	<definition name="familias/presenca" extends="base">
 		<put-attribute name="body" value="/WEB-INF/jsp/familias/presenca.jsp" />
 	</definition>

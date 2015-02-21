@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: 127.7.228.130:3306
--- Data de Criação: 30-Dez-2014 às 14:00
--- Versão do servidor: 5.5.40
+-- Data de Criação: 20-Fev-2015 às 10:36
+-- Versão do servidor: 5.5.41
 -- versão do PHP: 5.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -98,7 +98,45 @@ CREATE TABLE IF NOT EXISTS `hibernate_sequence` (
 --
 
 INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(111);
+(128);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `pessoa`
+--
+
+CREATE TABLE IF NOT EXISTS `pessoa` (
+  `id` int(11) NOT NULL,
+  `confirmado` bit(1) NOT NULL,
+  `nome` varchar(80) NOT NULL,
+  `familia_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_t4fs81y7kli721xai9cx4ro6i` (`familia_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `pessoa`
+--
+
+INSERT INTO `pessoa` (`id`, `confirmado`, `nome`, `familia_id`) VALUES
+(111, b'0', 'Ademilton', 77),
+(112, b'0', 'Jocema', 77),
+(113, b'0', 'Maurício', 77),
+(114, b'0', 'Daniel', 77),
+(115, b'0', 'Ludmila', 77),
+(116, b'0', 'Antônio Carlos', 92),
+(117, b'0', 'Marta', 92),
+(118, b'0', 'Marina', 92),
+(119, b'0', 'Mateus', 92),
+(120, b'0', 'Benjamin', 83),
+(121, b'0', 'Fatima', 83),
+(122, b'0', 'Paula', 83),
+(123, b'0', 'Lucas', 83),
+(124, b'0', 'Raquel', 83),
+(125, b'0', 'Caio', 66),
+(126, b'0', 'Renata', 66),
+(127, b'0', 'Celio', 110);
 
 -- --------------------------------------------------------
 
@@ -127,7 +165,7 @@ INSERT INTO `presente` (`id`, `nome`, `ok`, `quantidade`, `tipo`, `familia_id`) 
 (2, 'APARELHO DE JANTAR', b'1', 1, 0, 79),
 (3, 'BANDEJA INOX', b'1', 1, 0, 102),
 (5, 'BATEDEIRA DE BOLO', b'1', 1, 0, 96),
-(6, 'BATEDOR DE ALHO DE FERRO', b'0', 1, 0, NULL),
+(6, 'BATEDOR DE ALHO DE FERRO', b'0', 1, 1, NULL),
 (7, 'BOLEIRA', b'1', 1, 0, 70),
 (8, 'CONCHA INOX', b'1', 1, 0, 83),
 (9, 'COLHER DE TIRAR ARROZ INOX', b'1', 1, 0, 83),
@@ -161,12 +199,12 @@ INSERT INTO `presente` (`id`, `nome`, `ok`, `quantidade`, `tipo`, `familia_id`) 
 (38, 'JOGO DE FACA PRA CHUARRASCO', b'1', 1, 0, 94),
 (39, 'JOGO DE TEMPERO', b'1', 1, 0, 98),
 (40, 'JOGO DE COLHER DE PAU', b'1', 1, 0, 91),
-(41, 'JOGO DE VIDRO (saleiro, paliteiro, vinagre e azeite)', b'0', 1, 0, NULL),
+(41, 'JOGO DE VIDRO (saleiro, paliteiro, vinagre e azeite)', b'0', 1, 1, NULL),
 (42, 'JOGO DE BACIAS, BUCHA E BALDE', b'1', 1, 0, 71),
-(43, 'JOGO DE PANELA DE ALUMÍNIO', b'0', 1, 0, NULL),
+(43, 'JOGO DE PANELA DE ALUMÍNIO', b'0', 1, 1, NULL),
 (44, 'LEITEIRA', b'1', 1, 0, 105),
 (45, 'LIXEIRA DE COZINHA', b'1', 1, 0, 91),
-(46, 'LIXEIRA DE BANHEIRO', b'0', 1, 0, NULL),
+(46, 'LIXEIRA DE BANHEIRO', b'0', 1, 1, NULL),
 (47, 'LIQUIDIFICADOR', b'1', 1, 0, 88),
 (48, 'MARINEX PARA LASANHA COM SUPORTE', b'1', 1, 0, 82),
 (49, 'MARINEX', b'1', 2, 0, 90),
@@ -175,16 +213,16 @@ INSERT INTO `presente` (`id`, `nome`, `ok`, `quantidade`, `tipo`, `familia_id`) 
 (52, 'PORTA SABÃO LÍQUIDO E SABÃO DE BARRA', b'1', 1, 0, 71),
 (53, 'PRATOS DE VIDRO', b'1', 6, 0, 82),
 (54, 'PORTA COADOR', b'1', 1, 0, 70),
-(55, 'PIPOQUEIRA', b'0', 1, 0, NULL),
-(56, 'PORTA ROLO DE PAPEL TOALHA', b'0', 1, 0, NULL),
+(55, 'PIPOQUEIRA', b'0', 1, 1, NULL),
+(56, 'PORTA ROLO DE PAPEL TOALHA', b'0', 1, 1, NULL),
 (57, 'PANELA ELÉTRICA DE ARROZ', b'1', 1, 0, 100),
 (58, 'RALADOR INOX', b'1', 1, 0, 76),
-(59, 'SALEIRA', b'0', 1, 0, NULL),
+(59, 'SALEIRA', b'0', 1, 1, NULL),
 (60, 'SANDUICHEIRA', b'1', 1, 0, 78),
-(61, 'TÁBUA DE PASSAR ROUPA', b'0', 1, 0, NULL),
+(61, 'TÁBUA DE PASSAR ROUPA', b'0', 1, 1, NULL),
 (62, 'TÁBUA DE CARNE', b'1', 1, 0, 97),
-(63, 'VASILHA DE PLÁSTICO GRANDE', b'0', 1, 0, NULL),
-(64, 'VENTILADOR', b'0', 1, 0, NULL),
+(63, 'VASILHA DE PLÁSTICO GRANDE', b'0', 1, 1, NULL),
+(64, 'VENTILADOR', b'0', 1, 1, NULL),
 (65, 'QUEJEIRA', b'1', 1, 0, 95),
 (107, 'FRIGIDEIRA ELÉTRICA', b'1', 1, 0, 108),
 (109, 'APARELHO DE JANTAR DE PORCELANA', b'1', 1, 0, 110);
@@ -192,6 +230,12 @@ INSERT INTO `presente` (`id`, `nome`, `ok`, `quantidade`, `tipo`, `familia_id`) 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Limitadores para a tabela `pessoa`
+--
+ALTER TABLE `pessoa`
+  ADD CONSTRAINT `FK_t4fs81y7kli721xai9cx4ro6i` FOREIGN KEY (`familia_id`) REFERENCES `familia` (`id`);
 
 --
 -- Limitadores para a tabela `presente`
