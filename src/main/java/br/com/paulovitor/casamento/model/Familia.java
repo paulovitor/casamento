@@ -2,7 +2,6 @@ package br.com.paulovitor.casamento.model;
 
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,7 +27,6 @@ public class Familia {
 
 	@NotEmpty(message = "{erro.campo.obrigatorio}")
 	@Email(message = "{erro.campo.invalido}")
-	@Column(unique = true)
 	@Length(min = 5, max = 80, message = "{erro.campo.tamanho}")
 	private String email;
 
