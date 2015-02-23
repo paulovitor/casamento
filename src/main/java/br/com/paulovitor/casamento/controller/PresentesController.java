@@ -12,6 +12,7 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
 import br.com.paulovitor.casamento.model.Checklist;
+import br.com.paulovitor.casamento.model.Parentesco;
 import br.com.paulovitor.casamento.model.Presente;
 import br.com.paulovitor.casamento.model.Restrito;
 import br.com.paulovitor.casamento.model.TipoPresente;
@@ -23,14 +24,16 @@ public class PresentesController {
 	private static String TIPO_MESSAGEM_SUCESSO = "success";
 
 	private Checklist checklist;
+	private Parentesco parentesco;
 	private Result result;
 	private ResourceBundle bundle;
 	private Validator validator;
 
 	@Inject
-	public PresentesController(Checklist checklist, Result result,
-			ResourceBundle bundle, Validator validator) {
+	public PresentesController(Checklist checklist, Parentesco parentesco,
+			Result result, ResourceBundle bundle, Validator validator) {
 		this.checklist = checklist;
+		this.parentesco = parentesco;
 		this.result = result;
 		this.bundle = bundle;
 		this.validator = validator;
@@ -38,7 +41,7 @@ public class PresentesController {
 
 	@Deprecated
 	PresentesController() {
-		this(null, null, null, null);
+		this(null, null, null, null, null);
 	}
 
 	@Restrito
@@ -66,7 +69,7 @@ public class PresentesController {
 	@Get
 	@Path(value = "/presentes/formulario", priority = Path.HIGH)
 	public void formulario() {
-		result.include("presenteList", checklist.listaTodos());
+		includeParametros(null);
 	}
 
 	@Restrito
@@ -77,8 +80,7 @@ public class PresentesController {
 		if (presente == null) {
 			result.notFound();
 		} else {
-			result.include(presente);
-			result.include("presenteList", checklist.listaTodos());
+			includeParametros(presente);
 
 			result.of(this).formulario();
 		}
@@ -99,17 +101,25 @@ public class PresentesController {
 		String mensagem = bundle
 				.getString(presente.getId() == null ? "presentes.mensagem.adicionado.sucesso"
 						: "presentes.mensagem.editado.sucesso");
+		if (presente.getFamilia().getId() == null)
+			presente.setFamilia(null);
+		if (presente.getPessoa().getId() == null)
+			presente.setPessoa(null);
 		validator.validate(presente);
-		result.include("presente", presente);
-		result.include("presenteList", checklist.listaTodos());
+		includeParametros(presente);
 		validator.onErrorUsePageOf(this).formulario();
 
 		checklist.salva(presente);
 
-		result.include("presente", null);
-		includeParametrosDeSucesso(mensagem, checklist.listaTodos());
+		includeParametros(null);
+		includeParametrosDeSucesso(mensagem);
 
 		result.of(this).formulario();
+	}
+
+	private void includeParametrosDeSucesso(String mensagem) {
+		result.include("mensagem", mensagem);
+		result.include("tipo", TIPO_MESSAGEM_SUCESSO);
 	}
 
 	private void includeParametrosDeSucesso(String mensagem,
@@ -117,6 +127,13 @@ public class PresentesController {
 		result.include("mensagem", mensagem);
 		result.include("tipo", TIPO_MESSAGEM_SUCESSO);
 		result.include("presenteList", presentes);
+	}
+
+	private void includeParametros(Presente presente) {
+		result.include("familiasList", parentesco.listaTodasFamilias());
+		result.include("pessoasList", parentesco.listaTodasPessoas());
+		result.include("presenteList", checklist.listaTodos());
+		result.include("presente", presente);
 	}
 
 }

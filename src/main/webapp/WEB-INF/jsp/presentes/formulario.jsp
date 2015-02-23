@@ -42,12 +42,41 @@
 				<div class="form-group">
 					<label for="tipo"><fmt:message key="presentes.campo.tipo" /></label>
 					<select id="tipo" name="presente.tipo" class="form-control">
+						<option value><fmt:message key="presentes.sugestao.tipo" /></option>
 						<option value="0"
 							${presente.tipo == 'CHA_DE_PANELA' ? 'selected' : ''}><fmt:message
 								key="tipo.presente.cha" /></option>
 						<option value="1"
 							${presente.tipo == 'CASAMENTO' ? 'selected' : ''}><fmt:message
 								key="tipo.presente.casamento" /></option>
+					</select>
+				</div>
+				<div class="checkbox">
+					<label for="ok">
+						<input type="checkbox" id="ok" name="presente.ok" ${presente.ok ? 'checked' : ''}>
+						<fmt:message key="presentes.campo.ok" />
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="familia"><fmt:message key="presentes.campo.familia" /></label>
+					<select id="familia"
+						name="presente.familia.id" class="form-control">
+						<option value><fmt:message key="presentes.sugestao.familia" /></option>
+						<c:forEach items="${familiasList}" var="familia">
+							<option value="${familia.id}"
+								${presente.familia != null && familia.id == presente.familia.id  ? 'selected' : ''}>${familia.nome}</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="pessoa"><fmt:message key="presentes.campo.pessoa" /></label>
+					<select id="pessoa"
+						name="presente.pessoa.id" class="form-control">
+						<option value><fmt:message key="presentes.sugestao.pessoa" /></option>
+						<c:forEach items="${pessoasList}" var="pessoa">
+							<option value="${pessoa.id}"
+								${presente.pessoa != null && pessoa.id == presente.pessoa.id  ? 'selected' : ''}>${pessoa.nome}</option>
+						</c:forEach>
 					</select>
 				</div>
 				<button type="submit" id="btn-submit" class="btn btn-primary">
@@ -66,41 +95,7 @@
 	<div class="box">
 		<div class="col-lg-12 text-left">
 
-			<div>
-				<table class="table table-condensed">
-					<thead>
-						<tr>
-							<th></th>
-							<th><fmt:message key="coluna.presente" /></th>
-							<th><fmt:message key="coluna.quantidade" /></th>
-							<th></th>
-							<th><fmt:message key="coluna.tipo" /></th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${presenteList}" var="presente"
-							varStatus="contador">
-							<tr ${presente.ok ? 'class="success"' : ''}>
-								<td>${contador.count}</td>
-								<td>${presente.nome}</td>
-								<td>${presente.quantidade}</td>
-								<td><c:if test="${presente.familia != null}">
-										<span class="glyphicon glyphicon-heart"></span>
-										<fmt:message key="coluna.familia" />: ${presente.familia.nome}
-											</c:if></td>
-								<td>${presente.tipo}</td>
-								<td id="action" align="right"><a
-									href="${linkTo[PresentesController].edita}${presente.id}#main">
-										<span id="span-${presente.id}"
-										class="cursor glyphicon glyphicon-pencil"></span>
-								</a> <span id="span-${presente.id}"
-									class="cursor glyphicon glyphicon-trash"></span></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
+			<jsp:include page="lista.jsp" />
 
 		</div>
 	</div>

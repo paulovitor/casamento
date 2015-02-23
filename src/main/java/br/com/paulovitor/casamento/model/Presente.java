@@ -29,13 +29,18 @@ public class Presente {
 	@Length(min = 3, max = 255, message = "{erro.campo.tamanho}")
 	@Column(unique = true)
 	private String nome;
-	
+
 	@Min(1)
 	private int quantidade;
 
-	@ManyToOne(cascade = { CascadeType.ALL })
+	@ManyToOne(cascade = { CascadeType.DETACH })
 	@JoinColumn(name = "familia_id", nullable = true)
 	private Familia familia;
+
+	@ManyToOne(cascade = { CascadeType.DETACH })
+	@JoinColumn(name = "pessoa_id", nullable = true)
+	private Pessoa pessoa;
+
 	private boolean ok = false;
 
 	@NotNull(message = "{erro.campo.obrigatorio}")
@@ -72,6 +77,14 @@ public class Presente {
 
 	public void setFamilia(Familia familia) {
 		this.familia = familia;
+	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 
 	public boolean isOk() {

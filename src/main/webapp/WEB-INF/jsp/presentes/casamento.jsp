@@ -85,37 +85,7 @@
 				</div>
 			</c:if>
 
-			<div>
-				<table class="table table-condensed">
-					<thead>
-						<tr>
-							<th></th>
-							<th><fmt:message key="coluna.presente" /></th>
-							<th><fmt:message key="coluna.quantidade" /></th>
-							<th></th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${presenteList}" var="presente"
-							varStatus="contador">
-							<tr ${presente.ok ? 'class="success"' : ''}>
-								<td>${contador.count}</td>
-								<td>${presente.nome}</td>
-								<td>${presente.quantidade}</td>
-								<td><c:if test="${presente.familia != null}">
-										<span class="glyphicon glyphicon-heart"></span>
-										<fmt:message key="coluna.familia" />: ${presente.familia.nome}
-											</c:if></td>
-								<td id="action" align="right"><span
-									id="span-${presente.id}"
-									class="cursor glyphicon glyphicon-${presente.ok ? 'ok text-success' : 'plus'}"></span>
-								</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
+			<jsp:include page="lista.jsp" />
 
 		</div>
 	</div>
