@@ -85,7 +85,9 @@
 				</div>
 			</c:if>
 
-			<jsp:include page="lista.jsp" />
+			<jsp:include page="lista.jsp">
+				<jsp:param name="action" value="casamento" />
+			</jsp:include>
 
 		</div>
 	</div>

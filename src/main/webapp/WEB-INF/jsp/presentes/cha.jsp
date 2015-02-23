@@ -16,7 +16,9 @@
 						<fmt:message key="presentes.titulo.cha" />
 					</h2>
 					
-					<jsp:include page="lista.jsp" />
+					<jsp:include page="lista.jsp">
+						<jsp:param name="action" value="cha" />
+					</jsp:include>
 					
 					<br />
 					<button type="button" class="btn btn-primary" data-dismiss="modal">

@@ -21,15 +21,32 @@
 					<td>${contador.count}</td>
 					<td>${presente.nome}</td>
 					<td>${presente.quantidade}</td>
-					<td><c:if test="${presente.familia != null}">
+					<td>
+						<c:if test="${presente.familia != null}">
 							<span class="glyphicon glyphicon-heart"></span>
 							<fmt:message key="coluna.familia" />: ${presente.familia.nome}
 											</c:if> <c:if test="${presente.pessoa != null}">
 							<span class="glyphicon glyphicon-heart"></span>
 												${presente.pessoa.nome}
-											</c:if></td>
-					<td id="action" align="right"><span id="span-${presente.id}"
-						class="cursor glyphicon ${presente.ok ? 'glyphicon-ok text-success' : ''}"></span>
+						</c:if>
+					</td>
+					<td id="action" align="right">
+						<c:if test="${param.action == 'cha'}">
+							<span id="span-${presente.id}"
+								class="cursor glyphicon ${presente.ok ? 'glyphicon-ok text-success' : ''}"></span>
+						</c:if>
+						<c:if test="${param.action == 'casamento'}">
+							<span id="span-${presente.id}"
+								class="cursor glyphicon glyphicon-${presente.ok ? 'ok text-success' : 'plus'}"></span>
+						</c:if>
+						<c:if test="${param.action == 'formulario'}">
+							<a href="${linkTo[PresentesController].edita}${presente.id}#main">
+								<span id="span-${presente.id}"
+									class="cursor glyphicon glyphicon-pencil"></span>
+							</a>
+							<span id="span-${presente.id}"
+								class="cursor glyphicon glyphicon-trash"></span>
+						</c:if>
 					</td>
 				</tr>
 			</c:forEach>

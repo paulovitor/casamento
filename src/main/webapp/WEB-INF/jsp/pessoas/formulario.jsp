@@ -34,6 +34,11 @@
 						class="form-control" value="${pessoa.nome}">
 				</div>
 				<div class="form-group">
+					<label for="email"><fmt:message key="pessoas.campo.email" /></label>
+					<input type="text" id="email" name="pessoa.email"
+						class="form-control" value="${pessoa.email}">
+				</div>
+				<div class="form-group">
 					<label for="familia"><fmt:message
 							key="pessoas.campo.familia" /></label> <select id="familia"
 						name="pessoa.familia.id" class="form-control">
@@ -42,6 +47,13 @@
 								${pessoa.familia != null && familia.id == pessoa.familia.id  ? 'selected' : ''}>${familia.nome}</option>
 						</c:forEach>
 					</select>
+				</div>
+				<div class="checkbox">
+					<label for="confirmado"> <input type="checkbox"
+						id="confirmado" name="pessoa.confirmado"
+						${pessoa.confirmado ? 'checked' : ''}> <fmt:message
+							key="pessoas.campo.confirmado" />
+					</label>
 				</div>
 				<button type="submit" id="btn-submit" class="btn btn-primary">
 					<fmt:message key="botao.confirmar" />

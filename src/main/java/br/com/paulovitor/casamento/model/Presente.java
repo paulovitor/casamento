@@ -33,11 +33,11 @@ public class Presente {
 	@Min(1)
 	private int quantidade;
 
-	@ManyToOne(cascade = { CascadeType.DETACH })
+	@ManyToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "familia_id", nullable = true)
 	private Familia familia;
 
-	@ManyToOne(cascade = { CascadeType.DETACH })
+	@ManyToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "pessoa_id", nullable = true)
 	private Pessoa pessoa;
 

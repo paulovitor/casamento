@@ -52,16 +52,17 @@
 					</select>
 				</div>
 				<div class="checkbox">
-					<label for="ok">
-						<input type="checkbox" id="ok" name="presente.ok" ${presente.ok ? 'checked' : ''}>
-						<fmt:message key="presentes.campo.ok" />
+					<label for="ok"> <input type="checkbox" id="ok"
+						name="presente.ok" ${presente.ok ? 'checked' : ''}> <fmt:message
+							key="presentes.campo.ok" />
 					</label>
 				</div>
 				<div class="form-group">
-					<label for="familia"><fmt:message key="presentes.campo.familia" /></label>
-					<select id="familia"
+					<label for="familia"><fmt:message
+							key="presentes.campo.familia" /></label> <select id="familia"
 						name="presente.familia.id" class="form-control">
-						<option value><fmt:message key="presentes.sugestao.familia" /></option>
+						<option value><fmt:message
+								key="presentes.sugestao.familia" /></option>
 						<c:forEach items="${familiasList}" var="familia">
 							<option value="${familia.id}"
 								${presente.familia != null && familia.id == presente.familia.id  ? 'selected' : ''}>${familia.nome}</option>
@@ -69,10 +70,11 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="pessoa"><fmt:message key="presentes.campo.pessoa" /></label>
-					<select id="pessoa"
+					<label for="pessoa"><fmt:message
+							key="presentes.campo.pessoa" /></label> <select id="pessoa"
 						name="presente.pessoa.id" class="form-control">
-						<option value><fmt:message key="presentes.sugestao.pessoa" /></option>
+						<option value><fmt:message
+								key="presentes.sugestao.pessoa" /></option>
 						<c:forEach items="${pessoasList}" var="pessoa">
 							<option value="${pessoa.id}"
 								${presente.pessoa != null && pessoa.id == presente.pessoa.id  ? 'selected' : ''}>${pessoa.nome}</option>
@@ -83,7 +85,7 @@
 					<fmt:message key="botao.confirmar" />
 				</button>
 				<a class="btn btn-default"
-					href="${linkTo[PresentesController].casamento}" role="button"><fmt:message
+					href="${linkTo[PresentesController].formulario}" role="button"><fmt:message
 						key="botao.cancelar" /></a>
 			</form>
 
@@ -95,7 +97,9 @@
 	<div class="box">
 		<div class="col-lg-12 text-left">
 
-			<jsp:include page="lista.jsp" />
+			<jsp:include page="lista.jsp">
+				<jsp:param name="action" value="formulario" />
+			</jsp:include>
 
 		</div>
 	</div>
