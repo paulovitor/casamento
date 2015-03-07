@@ -9,7 +9,10 @@
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/jsp/footer.jsp" />
 	</definition>
-	<definition name="familias/formulario" extends="base">
+	<definition name="admin" extends="base">
+		<put-attribute name="menu" value="/WEB-INF/jsp/navigation_admin.jsp" />
+	</definition>
+	<definition name="familias/formulario" extends="admin">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/familias/formulario.jsp" />
 	</definition>
@@ -24,7 +27,7 @@
 	<definition name="login/formulario" extends="base">
 		<put-attribute name="body" value="/WEB-INF/jsp/login/formulario.jsp" />
 	</definition>
-	<definition name="pessoas/formulario" extends="base">
+	<definition name="pessoas/formulario" extends="admin">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/pessoas/formulario.jsp" />
 	</definition>
@@ -34,7 +37,7 @@
 			value="/WEB-INF/jsp/presentes/casamento.jsp" />
 	</definition>
 	<definition name="presentes/cha" template="/WEB-INF/jsp/presentes/cha.jsp" />
-	<definition name="presentes/formulario" extends="base">
+	<definition name="presentes/formulario" extends="admin">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/presentes/formulario.jsp" />
 	</definition>

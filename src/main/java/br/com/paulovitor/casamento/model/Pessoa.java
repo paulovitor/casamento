@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Null;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
@@ -33,7 +32,6 @@ public class Pessoa {
 	@Length(min = 3, max = 80, message = "{erro.campo.tamanho}")
 	private String nome;
 
-	@Null
 	@Email(message = "{erro.campo.invalido}")
 	private String email;
 

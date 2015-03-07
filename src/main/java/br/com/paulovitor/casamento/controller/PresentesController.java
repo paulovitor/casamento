@@ -101,10 +101,16 @@ public class PresentesController {
 		String mensagem = bundle
 				.getString(presente.getId() == null ? "presentes.mensagem.adicionado.sucesso"
 						: "presentes.mensagem.editado.sucesso");
-		if (presente.getFamilia().getId() == null)
+		if (presente.getFamilia().getId() == null) {
 			presente.setFamilia(null);
-		if (presente.getPessoa().getId() == null)
+			presente.setPessoa(parentesco.getPessoa(presente.getPessoa()
+					.getId()));
+		}
+		if (presente.getPessoa().getId() == null) {
 			presente.setPessoa(null);
+			presente.setFamilia(parentesco.getFamilia(presente.getFamilia()
+					.getId()));
+		}
 		validator.validate(presente);
 		includeParametros(presente);
 		validator.onErrorUsePageOf(this).formulario();

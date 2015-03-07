@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10.7
+-- version 4.0.10.8
 -- http://www.phpmyadmin.net
 --
 -- Máquina: 127.7.228.130:3306
--- Data de Criação: 23-Fev-2015 às 01:44
+-- Data de Criação: 07-Mar-2015 às 19:43
 -- Versão do servidor: 5.5.41
 -- versão do PHP: 5.3.3
 
@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `hibernate_sequence` (
 --
 
 INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(346);
+(348);
 
 -- --------------------------------------------------------
 
@@ -154,13 +154,13 @@ INSERT INTO `pessoa` (`id`, `confirmado`, `nome`, `familia_id`) VALUES
 (117, b'1', 'Marta', 92),
 (118, b'1', 'Marina', 92),
 (119, b'1', 'Mateus', 92),
-(120, b'0', 'Benjamin', 83),
-(121, b'0', 'Fatima', 83),
-(122, b'0', 'Paula', 83),
-(123, b'0', 'Lucas', 83),
-(124, b'0', 'Raquel', 83),
-(125, b'0', 'Caio', 66),
-(126, b'0', 'Renata', 66),
+(120, b'1', 'Benjamin', 83),
+(121, b'1', 'Fatima', 83),
+(122, b'1', 'Paula', 83),
+(123, b'1', 'Lucas', 83),
+(124, b'1', 'Raquel', 83),
+(125, b'1', 'Caio', 66),
+(126, b'1', 'Renata', 66),
 (127, b'0', 'Celio', 110),
 (128, b'0', 'Simone', 110),
 (129, b'0', 'Victor', 110),
@@ -211,11 +211,11 @@ INSERT INTO `pessoa` (`id`, `confirmado`, `nome`, `familia_id`) VALUES
 (174, b'0', 'Hendril', 89),
 (175, b'0', 'Namorada Hendril', 89),
 (176, b'0', 'Isabeli', 89),
-(177, b'0', 'Joelino', 70),
-(178, b'0', 'Jocelia', 70),
-(179, b'0', 'Daniele', 70),
-(180, b'0', 'Marina', 70),
-(181, b'0', 'Gabriel', 70),
+(177, b'1', 'Joelino', 70),
+(178, b'1', 'Jocelia', 70),
+(179, b'1', 'Daniele', 70),
+(180, b'1', 'Marina', 70),
+(181, b'1', 'Gabriel', 70),
 (182, b'0', 'Josina', 84),
 (183, b'0', 'Juelice', 82),
 (184, b'0', 'Otacilia', 82),
@@ -225,24 +225,24 @@ INSERT INTO `pessoa` (`id`, `confirmado`, `nome`, `familia_id`) VALUES
 (188, b'0', 'Namorada do Luis Henrique', 72),
 (189, b'0', 'Wemerson', 93),
 (190, b'0', 'Lorena', 93),
-(191, b'0', 'Gentil', 80),
-(192, b'0', 'Marcia', 80),
-(193, b'0', 'Lorena', 80),
-(194, b'0', 'Eduardo', 80),
+(191, b'1', 'Gentil', 80),
+(192, b'1', 'Marcia', 80),
+(193, b'1', 'Lorena', 80),
+(194, b'1', 'Eduardo', 80),
 (195, b'0', 'Marcos', 96),
 (196, b'0', 'Regina', 96),
 (197, b'0', 'Vinicius', 96),
 (198, b'0', 'Gustavo', 96),
 (199, b'0', 'Namorada do Gustavo', 96),
-(200, b'0', 'Rodrigo', 74),
-(201, b'0', 'Nayara', 74),
+(200, b'1', 'Rodrigo', 74),
+(201, b'1', 'Nayara', 74),
 (202, b'0', 'Salvaerte', 73),
-(203, b'0', 'Nilcéia', 73),
-(204, b'0', 'Anderson', 73),
-(205, b'0', 'Mariana', 73),
-(206, b'0', 'Mayara', 73),
-(207, b'0', 'Namorado da Mayara', 73),
-(208, b'0', 'Marilda', 73),
+(203, b'1', 'Nilcéia', 73),
+(204, b'1', 'Anderson', 73),
+(205, b'1', 'Mariana', 73),
+(206, b'1', 'Mayara', 73),
+(207, b'1', 'Namorado da Mayara', 73),
+(208, b'1', 'Marilda', 73),
 (209, b'0', 'Paulo Roberto', 79),
 (210, b'0', 'Viviane', 79),
 (211, b'0', 'Tayna', 79),
@@ -250,11 +250,11 @@ INSERT INTO `pessoa` (`id`, `confirmado`, `nome`, `familia_id`) VALUES
 (213, b'0', 'Junior', 79),
 (214, b'0', 'Pedro', 85),
 (215, b'0', 'Grayci', 85),
-(216, b'0', 'Paulo Bartos', 81),
-(217, b'0', 'Sandra', 81),
-(218, b'0', 'Vô Edson', 101),
-(219, b'0', 'Junior', 101),
-(220, b'0', 'Selma', 101),
+(216, b'1', 'Paulo Bartos', 81),
+(217, b'1', 'Sandra', 81),
+(218, b'1', 'Vô Edson', 101),
+(219, b'1', 'Junior', 101),
+(220, b'1', 'Selma', 101),
 (221, b'0', 'Vó Rosa', 68),
 (222, b'0', 'Wbertis', 108),
 (223, b'0', 'Carol', 108),
@@ -295,9 +295,9 @@ INSERT INTO `pessoa` (`id`, `confirmado`, `nome`, `familia_id`) VALUES
 (288, b'0', 'Julia', 252),
 (289, b'0', 'Daylor', 253),
 (290, b'0', 'Tereza', 253),
-(291, b'0', 'Gilberto', 239),
-(292, b'0', 'Flávia', 239),
-(293, b'0', 'Catarina', 239),
+(291, b'1', 'Gilberto', 239),
+(292, b'1', 'Flávia', 239),
+(293, b'1', 'Catarina', 239),
 (294, b'0', 'Marcelo', 254),
 (295, b'0', 'Janaina', 254),
 (296, b'0', 'Milca', 254),
@@ -401,7 +401,7 @@ INSERT INTO `presente` (`id`, `nome`, `ok`, `quantidade`, `tipo`, `familia_id`) 
 (61, 'TÁBUA DE PASSAR ROUPA', b'0', 1, 1, NULL),
 (62, 'TÁBUA DE CARNE', b'1', 1, 0, 97),
 (63, 'VASILHA DE PLÁSTICO GRANDE', b'0', 1, 1, NULL),
-(64, 'VENTILADOR', b'0', 1, 1, NULL),
+(64, 'VENTILADOR', b'1', 1, 1, 79),
 (65, 'QUEJEIRA', b'1', 1, 0, 95),
 (107, 'FRIGIDEIRA ELÉTRICA', b'1', 1, 0, 108),
 (109, 'APARELHO DE JANTAR DE PORCELANA', b'1', 1, 0, 110),
@@ -427,18 +427,20 @@ INSERT INTO `presente` (`id`, `nome`, `ok`, `quantidade`, `tipo`, `familia_id`) 
 (331, 'TOALHA PARA BANDEIJA', b'0', 3, 1, NULL),
 (332, 'PEGADOR DE FORNO', b'0', 2, 1, NULL),
 (333, 'JOGO DE TOALHAS', b'0', 5, 1, NULL),
-(334, 'TOALHA DE BANHO AVULSA', b'0', 4, 1, NULL),
+(334, 'TOALHA DE BANHO AVULSA', b'1', 4, 1, 73),
 (335, 'TOALHA DE ROSTO AVULSA', b'0', 4, 1, NULL),
 (336, 'TAPETE PARA BANHEIRO', b'0', 3, 1, NULL),
 (337, 'JOGO PARA BANHEIRO', b'0', 3, 1, NULL),
 (338, 'CESTO DE ROUPA', b'0', 1, 1, NULL),
 (339, 'GELADEIRA', b'0', 1, 1, NULL),
 (340, 'MÁQUINA DE LAVAR', b'0', 1, 1, NULL),
-(341, 'FOGÃO DESKTOP', b'0', 1, 1, NULL),
-(342, 'PANELA DE ARROZ ELÉTRICA', b'0', 1, 1, NULL),
+(341, 'FOGÃO', b'1', 1, 1, 70),
+(342, 'JOGO DE BAIXELA', b'0', 1, 1, NULL),
 (343, 'RELÓGIO DE PAREDE', b'0', 1, 1, NULL),
 (344, 'PRATOS FUNDOS', b'0', 12, 1, NULL),
-(345, 'FILTRO', b'0', 1, 1, NULL);
+(345, 'FILTRO', b'0', 1, 1, NULL),
+(346, 'CAMA', b'0', 1, 1, NULL),
+(347, 'TELEVISÃO', b'0', 1, 1, NULL);
 
 --
 -- Constraints for dumped tables
