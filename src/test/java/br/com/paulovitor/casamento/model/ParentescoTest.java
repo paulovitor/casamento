@@ -19,6 +19,8 @@ public class ParentescoTest {
 
 	@Before
 	public void setUp() throws Exception {
+		// give
+		parentesco.salva(criaPessoa("nome", "nome@email.com", true));
 	}
 
 	@After
@@ -27,19 +29,30 @@ public class ParentescoTest {
 
 	@Test
 	public void deveRecuperarQuantidadeDePessoasConfirmadas() {
-		// give
-		Pessoa pessoa = new Pessoa();
-		pessoa.setNome("nome");
-		pessoa.setEmail("nome@email.com");
-		pessoa.setConfirmado(true);
-		parentesco.salva(pessoa);
-
 		// when
 		Long quantidadeDePessoasConfirmadas = parentesco
 				.getQuantidadeDePessoasConfirmadas();
 
 		// then
 		assertEquals(new Long(1), quantidadeDePessoasConfirmadas);
+	}
+
+	@Test
+	public void deveAtualizarPessoaComEmailNull() {
+		// give
+		Pessoa pessoa = parentesco.getPessoa(1);
+		pessoa.setEmail(null);
+		
+		// when
+		parentesco.salva(pessoa);
+	}
+
+	private Pessoa criaPessoa(String nome, String email, boolean confirmado) {
+		Pessoa pessoa = new Pessoa();
+		pessoa.setNome(nome);
+		pessoa.setEmail(email);
+		pessoa.setConfirmado(confirmado);
+		return pessoa;
 	}
 
 }
