@@ -9,4 +9,6 @@ public interface PessoaDAO extends BaseDAO<Pessoa> {
 
 	public List<Pessoa> buscaPorFamilia(Familia familia);
 
+	public Long getQuantidadeDePessoasConfirmadas();
+
 }

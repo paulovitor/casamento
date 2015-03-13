@@ -1,14 +1,6 @@
 Site de Casamento (Paulo e Layanne)
 =========
 
-The OpenShift `jbossas` cartridge documentation can be found at:
-
-https://github.com/openshift/origin-server/tree/master/cartridges/openshift-origin-cartridge-jbossas/README.md
-
---
-
-Commands history:
-
 Generate project maven:
 mvn archetype:generate -DgroupId=br.com.paulovitor -DartifactId=casamento -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
 

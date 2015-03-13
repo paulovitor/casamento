@@ -3,15 +3,16 @@ package br.com.paulovitor.casamento.persistence;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 @SuppressWarnings("unchecked")
 public abstract class BaseDAOImpl<T> implements BaseDAO<T> {
 
-	protected final EntityManager manager;
+	@PersistenceContext
+	public EntityManager manager;
 	private Class<T> persistentClass;
 
-	public BaseDAOImpl(EntityManager manager, Class<T> persistentClass) {
-		this.manager = manager;
+	public BaseDAOImpl(Class<T> persistentClass) {
 		this.persistentClass = persistentClass;
 	}
 

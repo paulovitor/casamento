@@ -100,6 +100,8 @@ public class PessoasController {
 		result.include("familiasList", parentesco.listaTodasFamilias());
 		result.include("pessoasList", parentesco.listaTodasPessoas());
 		result.include("pessoa", pessoa);
+		result.include("quantidadeDePessoasConfirmadas",
+				parentesco.getQuantidadeDePessoasConfirmadas());
 	}
 
 }

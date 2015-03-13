@@ -71,34 +71,36 @@
 	<div class="box">
 		<div class="col-lg-12 text-left">
 
-			<div>
-				<table class="table table-condensed">
-					<thead>
-						<tr>
-							<th></th>
-							<th><fmt:message key="coluna.nome" /></th>
-							<th><fmt:message key="coluna.familia" /></th>
-							<th></th>
-					</thead>
-					<tbody>
-						<c:forEach items="${pessoasList}" var="pessoa"
-							varStatus="contador">
-							<tr ${pessoa.confirmado ? 'class="success"' : ''}>
-								<td>${contador.count}</td>
-								<td>${pessoa.nome}</td>
-								<td>${pessoa.familia.nome}</td>
-								<td id="action" align="right"><a
-									href="${linkTo[PessoasController].edita}${pessoa.id}#main">
-										<span id="span-${pessoa.id}"
-										class="cursor glyphicon glyphicon-pencil"></span>
-								</a> <span id="span-${pessoa.id}"
-									class="cursor glyphicon glyphicon-trash"></span></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
+			<table class="table table-condensed">
+				<thead>
+					<tr>
+						<th></th>
+						<th><fmt:message key="coluna.nome" /></th>
+						<th><fmt:message key="coluna.familia" /></th>
+						<th></th>
+				</thead>
+				<tbody>
+					<c:forEach items="${pessoasList}" var="pessoa" varStatus="contador">
+						<tr ${pessoa.confirmado ? 'class="success"' : ''}>
+							<td>${contador.count}</td>
+							<td>${pessoa.nome}</td>
+							<td>${pessoa.familia.nome}</td>
+							<td id="action" align="right"><a
+								href="${linkTo[PessoasController].edita}${pessoa.id}#main">
+									<span id="span-${pessoa.id}"
+									class="cursor glyphicon glyphicon-pencil"></span>
+							</a> <span id="span-${pessoa.id}"
+								class="cursor glyphicon glyphicon-trash"></span></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 
+		</div>
+		<div class="col-lg-12">
+			<div class="col-md-8"></div>
+			<div class="col-md-4 text-right"><fmt:message
+						key="pessoas.confirmadas" />: ${quantidadeDePessoasConfirmadas}</div>
 		</div>
 	</div>
 </div>

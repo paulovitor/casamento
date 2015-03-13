@@ -2,8 +2,6 @@ package br.com.paulovitor.casamento.persistence;
 
 import java.util.List;
 
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import br.com.paulovitor.casamento.model.Presente;
@@ -13,14 +11,8 @@ import br.com.paulovitor.casamento.model.TipoPresente;
 public class PresenteDAOImpl extends BaseDAOImpl<Presente> implements
 		PresenteDAO {
 
-	@Inject
-	public PresenteDAOImpl(EntityManager manager) {
-		super(manager, Presente.class);
-	}
-
-	@Deprecated
-	PresenteDAOImpl() {
-		this(null);
+	public PresenteDAOImpl() {
+		super(Presente.class);
 	}
 
 	@Override

@@ -14,6 +14,8 @@ public interface Parentesco {
 
 	public Pessoa getPessoa(Integer id);
 
+	public Long getQuantidadeDePessoasConfirmadas();
+
 	public List<Familia> listaTodasFamilias();
 
 	public List<Pessoa> listaTodasPessoas();

@@ -2,8 +2,6 @@ package br.com.paulovitor.casamento.persistence;
 
 import java.util.List;
 
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 
@@ -13,14 +11,8 @@ import br.com.paulovitor.casamento.model.Pessoa;
 @Transactional
 public class PessoaDAOImpl extends BaseDAOImpl<Pessoa> implements PessoaDAO {
 
-	@Inject
-	public PessoaDAOImpl(EntityManager manager) {
-		super(manager, Pessoa.class);
-	}
-
-	@Deprecated
 	public PessoaDAOImpl() {
-		this(null);
+		super(Pessoa.class);
 	}
 
 	@Override
@@ -33,6 +25,17 @@ public class PessoaDAOImpl extends BaseDAOImpl<Pessoa> implements PessoaDAO {
 					.getResultList();
 		} catch (NoResultException e) {
 			return null;
+		}
+	}
+
+	@Override
+	public Long getQuantidadeDePessoasConfirmadas() {
+		try {
+			return (Long) this.manager.createQuery(
+					"select count(*) from Pessoa p where p.confirmado = true",
+					Long.class).getSingleResult();
+		} catch (NoResultException e) {
+			return 0L;
 		}
 	}
 

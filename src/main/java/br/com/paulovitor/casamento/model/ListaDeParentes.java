@@ -50,6 +50,11 @@ public class ListaDeParentes implements Parentesco {
 	}
 
 	@Override
+	public Long getQuantidadeDePessoasConfirmadas() {
+		return this.pessoaDAO.getQuantidadeDePessoasConfirmadas();
+	}
+
+	@Override
 	public List<Familia> listaTodasFamilias() {
 		return this.familiaDAO.todos();
 	}

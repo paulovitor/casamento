@@ -2,8 +2,6 @@ package br.com.paulovitor.casamento.persistence;
 
 import java.util.List;
 
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 
@@ -12,14 +10,8 @@ import br.com.paulovitor.casamento.model.Familia;
 @Transactional
 public class FamiliaDAOImpl extends BaseDAOImpl<Familia> implements FamiliaDAO {
 
-	@Inject
-	public FamiliaDAOImpl(EntityManager manager) {
-		super(manager, Familia.class);
-	}
-
-	@Deprecated
-	FamiliaDAOImpl() {
-		this(null);
+	public FamiliaDAOImpl() {
+		super(Familia.class);
 	}
 
 	@Override

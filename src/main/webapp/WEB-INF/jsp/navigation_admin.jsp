@@ -25,7 +25,10 @@
 							key="menu.presentes" /></a></li>
 				<li><a href="${linkTo[FamiliasController].formulario}"><fmt:message
 							key="menu.familias" /></a></li>
-				<li><a href="${linkTo[PessoasController].formulario}"><fmt:message key="menu.pessoas" /></a></li>
+				<li><a href="${linkTo[PessoasController].formulario}"><fmt:message
+							key="menu.pessoas" /></a></li>
+				<li><a href="${linkTo[LoginController].logout}"><fmt:message
+							key="menu.sair" /></a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
