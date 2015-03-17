@@ -40,6 +40,11 @@ public class ListaDeParentes implements Parentesco {
 	}
 
 	@Override
+	public List<Pessoa> buscaPessoas(String nome) {
+		return this.pessoaDAO.buscarPorNome(nome);
+	}
+
+	@Override
 	public Familia getFamilia(Integer id) {
 		return this.familiaDAO.get(id);
 	}

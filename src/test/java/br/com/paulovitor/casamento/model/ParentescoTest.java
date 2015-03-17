@@ -2,16 +2,25 @@ package br.com.paulovitor.casamento.model;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
+
+import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath:/application-test-context.xml" })
+@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
+		DbUnitTestExecutionListener.class })
 public class ParentescoTest {
 
 	@Autowired
@@ -19,8 +28,6 @@ public class ParentescoTest {
 
 	@Before
 	public void setUp() throws Exception {
-		// give
-		parentesco.salva(criaPessoa("nome", "nome@email.com", true));
 	}
 
 	@After
@@ -28,6 +35,28 @@ public class ParentescoTest {
 	}
 
 	@Test
+	@DatabaseSetup("/META-INF/dbtest/pessoas.xml")
+	public void deveAtualizarPessoaComEmailNull() {
+		// give
+		Pessoa pessoa = parentesco.getPessoa(1);
+		pessoa.setEmail(null);
+
+		// when
+		parentesco.salva(pessoa);
+	}
+
+	@Test
+	@DatabaseSetup("/META-INF/dbtest/pessoas.xml")
+	public void deveBuscarPessoasPorNome() {
+		// when
+		List<Pessoa> pessoas = parentesco.buscaPessoas("Fred");
+
+		// then
+		assertEquals(1, pessoas.size());
+	}
+
+	@Test
+	@DatabaseSetup("/META-INF/dbtest/pessoas.xml")
 	public void deveRecuperarQuantidadeDePessoasConfirmadas() {
 		// when
 		Long quantidadeDePessoasConfirmadas = parentesco
@@ -35,24 +64,6 @@ public class ParentescoTest {
 
 		// then
 		assertEquals(new Long(1), quantidadeDePessoasConfirmadas);
-	}
-
-	@Test
-	public void deveAtualizarPessoaComEmailNull() {
-		// give
-		Pessoa pessoa = parentesco.getPessoa(1);
-		pessoa.setEmail(null);
-		
-		// when
-		parentesco.salva(pessoa);
-	}
-
-	private Pessoa criaPessoa(String nome, String email, boolean confirmado) {
-		Pessoa pessoa = new Pessoa();
-		pessoa.setNome(nome);
-		pessoa.setEmail(email);
-		pessoa.setConfirmado(confirmado);
-		return pessoa;
 	}
 
 }

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<Pessoa id="1" nome="Phillip" email="phillip@gmail.com"
+		confirmado="true" />
+	<Pessoa id="2" nome="Fred" email="fred@gmail.com" confirmado="false" />
+</dataset>

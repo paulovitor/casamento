@@ -21,24 +21,17 @@ import br.com.paulovitor.casamento.model.Restrito;
 import br.com.paulovitor.casamento.model.TipoPresente;
 
 @Controller
-public class FamiliasController {
-
-	private static String TIPO_MESSAGEM_SUCESSO = "success";
+public class FamiliasController extends BaseController<Familia> {
 
 	private Checklist checklist;
 	private Parentesco parentesco;
-	private Result result;
-	private ResourceBundle bundle;
-	private Validator validator;
 
 	@Inject
 	public FamiliasController(Checklist checklist, Parentesco parentesco,
 			Result result, ResourceBundle bundle, Validator validator) {
+		super(result, bundle, validator);
 		this.checklist = checklist;
 		this.parentesco = parentesco;
-		this.result = result;
-		this.bundle = bundle;
-		this.validator = validator;
 	}
 
 	@Deprecated
@@ -48,7 +41,9 @@ public class FamiliasController {
 
 	@Post("/familias/adiciona")
 	public void adiciona(@NotNull Integer idPresente, Familia familia) {
-		valida(familia);
+		validator.validate(familia);
+		result.include("presenteList", checklist.lista(TipoPresente.CASAMENTO));
+		validator.onErrorUsePageOf(PresentesController.class).casamento();
 
 		Presente presente = checklist.get(idPresente);
 		adicionaFamilia(familia, presente);
@@ -68,19 +63,13 @@ public class FamiliasController {
 	@Get
 	@Path(value = "/familias/{id}", priority = Path.LOW)
 	public void edita(Integer id) {
-		Familia familia = parentesco.getFamilia(id);
-		if (familia == null) {
-			result.notFound();
-		} else {
-			includeParametros(familia);
-
-			result.of(this).formulario();
-		}
+		edita(id);
 	}
 
 	@Restrito
 	@Get
 	@Path(value = "/familias/formulario", priority = Path.HIGH)
+	@Override
 	public void formulario() {
 		includeParametros(null);
 	}
@@ -100,25 +89,7 @@ public class FamiliasController {
 	@Restrito
 	@Post("/familias")
 	public void salva(Familia familia) {
-		String mensagem = bundle
-				.getString(familia.getId() == null ? "familias.mensagem.adicionado.sucesso"
-						: "familias.mensagem.editado.sucesso");
-		validator.validate(familia);
-		includeParametros(familia);
-		validator.onErrorUsePageOf(this).formulario();
-
-		parentesco.salva(familia);
-
-		includeParametros(null);
-		includeParametrosDeSucesso(mensagem);
-
-		result.of(this).formulario();
-	}
-
-	private void valida(Familia familia) {
-		validator.validate(familia);
-		result.include("presenteList", checklist.lista(TipoPresente.CASAMENTO));
-		validator.onErrorUsePageOf(PresentesController.class).casamento();
+		salva(familia);
 	}
 
 	private void adicionaFamilia(Familia familia, Presente presente) {
@@ -127,12 +98,30 @@ public class FamiliasController {
 				: familiaExistente);
 	}
 
-	private void includeParametrosDeSucesso(String mensagem) {
-		result.include("mensagem", mensagem);
-		result.include("tipo", TIPO_MESSAGEM_SUCESSO);
+	@Override
+	protected Familia recuperaEntity(Integer id) {
+		return parentesco.getFamilia(id);
 	}
 
-	private void includeParametros(Familia familia) {
+	@Override
+	protected String getMensagem(Familia familia) {
+		return bundle
+				.getString(familia.getId() == null ? "familias.mensagem.adicionado.sucesso"
+						: "familias.mensagem.editado.sucesso");
+	}
+
+	@Override
+	protected void grava(Familia familia, String mensagem) {
+		parentesco.salva(familia);
+
+		includeParametros(null);
+		includeParametrosDeSucesso(mensagem);
+
+		result.of(this).formulario();
+	}
+
+	@Override
+	protected void includeParametros(Familia familia) {
 		result.include("familiasList", parentesco.listaTodasFamilias());
 		result.include("familia", familia);
 	}

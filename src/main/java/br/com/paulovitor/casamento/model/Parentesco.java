@@ -9,6 +9,8 @@ public interface Parentesco {
 	public List<Familia> buscaFamilias(String nome);
 
 	public List<Pessoa> buscaPessoas(Integer idFamilia);
+	
+	public List<Pessoa> buscaPessoas(String nome);
 
 	public Familia getFamilia(Integer id);
 

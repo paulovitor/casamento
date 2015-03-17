@@ -19,24 +19,17 @@ import br.com.paulovitor.casamento.model.TipoPresente;
 import br.com.paulovitor.casamento.persistence.ListaDePresentesInicial;
 
 @Controller
-public class PresentesController {
-
-	private static String TIPO_MESSAGEM_SUCESSO = "success";
+public class PresentesController extends BaseController<Presente> {
 
 	private Checklist checklist;
 	private Parentesco parentesco;
-	private Result result;
-	private ResourceBundle bundle;
-	private Validator validator;
 
 	@Inject
 	public PresentesController(Checklist checklist, Parentesco parentesco,
 			Result result, ResourceBundle bundle, Validator validator) {
+		super(result, bundle, validator);
 		this.checklist = checklist;
 		this.parentesco = parentesco;
-		this.result = result;
-		this.bundle = bundle;
-		this.validator = validator;
 	}
 
 	@Deprecated
@@ -68,6 +61,7 @@ public class PresentesController {
 	@Restrito
 	@Get
 	@Path(value = "/presentes/formulario", priority = Path.HIGH)
+	@Override
 	public void formulario() {
 		includeParametros(null);
 	}
@@ -76,14 +70,7 @@ public class PresentesController {
 	@Get
 	@Path(value = "/presentes/{id}", priority = Path.LOW)
 	public void edita(Integer id) {
-		Presente presente = checklist.get(id);
-		if (presente == null) {
-			result.notFound();
-		} else {
-			includeParametros(presente);
-
-			result.of(this).formulario();
-		}
+		edita(id);
 	}
 
 	@Get("/presentes/listaComMensagem")
@@ -98,9 +85,23 @@ public class PresentesController {
 	@Restrito
 	@Post("/presentes")
 	public void salva(Presente presente) {
-		String mensagem = bundle
+		salva(presente);
+	}
+
+	@Override
+	protected Presente recuperaEntity(Integer id) {
+		return checklist.get(id);
+	}
+
+	@Override
+	protected String getMensagem(Presente presente) {
+		return bundle
 				.getString(presente.getId() == null ? "presentes.mensagem.adicionado.sucesso"
 						: "presentes.mensagem.editado.sucesso");
+	}
+
+	@Override
+	protected void valida(Presente presente) {
 		if (presente.getFamilia().getId() == null) {
 			presente.setFamilia(null);
 			presente.setPessoa(parentesco.getPessoa(presente.getPessoa()
@@ -111,10 +112,12 @@ public class PresentesController {
 			presente.setFamilia(parentesco.getFamilia(presente.getFamilia()
 					.getId()));
 		}
-		validator.validate(presente);
-		includeParametros(presente);
-		validator.onErrorUsePageOf(this).formulario();
 
+		valida(presente);
+	}
+
+	@Override
+	protected void grava(Presente presente, String mensagem) {
 		checklist.salva(presente);
 
 		includeParametros(null);
@@ -123,23 +126,18 @@ public class PresentesController {
 		result.of(this).formulario();
 	}
 
-	private void includeParametrosDeSucesso(String mensagem) {
-		result.include("mensagem", mensagem);
-		result.include("tipo", TIPO_MESSAGEM_SUCESSO);
-	}
-
-	private void includeParametrosDeSucesso(String mensagem,
-			List<Presente> presentes) {
-		result.include("mensagem", mensagem);
-		result.include("tipo", TIPO_MESSAGEM_SUCESSO);
-		result.include("presenteList", presentes);
-	}
-
-	private void includeParametros(Presente presente) {
+	@Override
+	protected void includeParametros(Presente presente) {
 		result.include("familiasList", parentesco.listaTodasFamilias());
 		result.include("pessoasList", parentesco.listaTodasPessoas());
 		result.include("presenteList", checklist.listaTodos());
 		result.include("presente", presente);
+	}
+
+	private void includeParametrosDeSucesso(String mensagem,
+			List<Presente> presentes) {
+		includeParametrosDeSucesso(mensagem);
+		result.include("presenteList", presentes);
 	}
 
 }
