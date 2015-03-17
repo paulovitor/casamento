@@ -4,24 +4,16 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import javax.validation.ConstraintViolationException;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
-import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({ "classpath:/application-test-context.xml" })
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
-		DbUnitTestExecutionListener.class })
-public class ParentescoTest {
+public class ParentescoTest extends BaseModelTest {
 
 	@Autowired
 	private Parentesco parentesco;
@@ -33,6 +25,8 @@ public class ParentescoTest {
 	@After
 	public void tearDown() throws Exception {
 	}
+
+	// Pessoas
 
 	@Test
 	@DatabaseSetup("/META-INF/dbtest/pessoas.xml")
@@ -64,6 +58,58 @@ public class ParentescoTest {
 
 		// then
 		assertEquals(new Long(1), quantidadeDePessoasConfirmadas);
+	}
+
+	// Famílias
+
+	@Test(expected = ConstraintViolationException.class)
+	public void naoDeveSalvarFamiliaSemPreencherCamposObrigatorios() {
+		// give
+		Familia familia = new Familia();
+
+		// when
+		parentesco.salva(familia);
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void naoDeveSalvarFamiliaComEmailInvalido() {
+		// give
+		Familia familia = new Familia();
+		familia.setNome("nome");
+		familia.setEmail("email");
+
+		// when
+		parentesco.salva(familia);
+	}
+
+	@Test
+	public void deveSalvarFamiliaSemDependencias() {
+		// give
+		Familia familia = new Familia();
+		familia.setNome("nome");
+		familia.setEmail("email@dominio.com.br");
+
+		// when
+		parentesco.salva(familia);
+
+		// then
+		assertEquals(3, parentesco.listaTodasFamilias().size());
+	}
+
+	@Test
+	@DatabaseSetup("/META-INF/dbtest/familias.xml")
+	public void deveEditarFamilia() {
+		// give
+		int id = 1;
+		Familia familia = parentesco.getFamilia(id);
+
+		// when
+		String novoNome = "novo nome";
+		familia.setNome(novoNome);
+		parentesco.salva(familia);
+
+		// then
+		assertEquals(novoNome, parentesco.getFamilia(id).getNome());
 	}
 
 }
