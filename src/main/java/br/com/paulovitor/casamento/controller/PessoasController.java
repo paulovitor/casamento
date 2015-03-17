@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.inject.Inject;
-import javax.validation.constraints.NotNull;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
@@ -13,44 +12,25 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
 import br.com.caelum.vraptor.view.Results;
-import br.com.paulovitor.casamento.model.Checklist;
 import br.com.paulovitor.casamento.model.Parentesco;
 import br.com.paulovitor.casamento.model.Pessoa;
-import br.com.paulovitor.casamento.model.Presente;
 import br.com.paulovitor.casamento.model.Restrito;
-import br.com.paulovitor.casamento.model.TipoPresente;
 
 @Controller
 public class PessoasController extends BaseController<Pessoa> {
 
-	private Checklist checklist;
 	private Parentesco parentesco;
 
 	@Inject
-	public PessoasController(Checklist checklist, Parentesco parentesco,
-			Result result, ResourceBundle bundle, Validator validator) {
+	public PessoasController(Parentesco parentesco, Result result,
+			ResourceBundle bundle, Validator validator) {
 		super(result, bundle, validator);
-		this.checklist = checklist;
 		this.parentesco = parentesco;
 	}
 
 	@Deprecated
 	public PessoasController() {
-		this(null, null, null, null, null);
-	}
-
-	@Post("/pessoas/adiciona")
-	public void adiciona(@NotNull Integer idPresente, Pessoa pessoa) {
-		validator.validate(pessoa);
-		result.include("presenteList", checklist.lista(TipoPresente.CASAMENTO));
-		validator.onErrorUsePageOf(PresentesController.class).casamento();
-
-		Presente presente = checklist.get(idPresente);
-		adicionaPessoa(pessoa, presente);
-		presente.setOk(true);
-		checklist.salva(presente);
-
-		result.redirectTo(PresentesController.class).listaComMensagem();
+		this(null, null, null, null);
 	}
 
 	@Get("/pessoas/buscaPorNome/{nome}")
@@ -71,7 +51,7 @@ public class PessoasController extends BaseController<Pessoa> {
 	@Get
 	@Path(value = "/pessoas/{id}", priority = Path.LOW)
 	public void edita(Integer id) {
-		edita(id);
+		editaEntity(id);
 	}
 
 	@Restrito
@@ -90,12 +70,7 @@ public class PessoasController extends BaseController<Pessoa> {
 	@Restrito
 	@Post("/pessoas")
 	public void salva(Pessoa pessoa) {
-		salva(pessoa);
-	}
-
-	private void adicionaPessoa(Pessoa pessoa, Presente presente) {
-		Pessoa pessoaExistente = parentesco.getPessoa(pessoa.getId());
-		presente.setPessoa(pessoaExistente == null ? pessoa : pessoaExistente);
+		salvaEntity(pessoa);
 	}
 
 	@Override

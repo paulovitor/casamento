@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.inject.Inject;
-import javax.validation.constraints.NotNull;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
@@ -13,44 +12,25 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
 import br.com.caelum.vraptor.view.Results;
-import br.com.paulovitor.casamento.model.Checklist;
 import br.com.paulovitor.casamento.model.Familia;
 import br.com.paulovitor.casamento.model.Parentesco;
-import br.com.paulovitor.casamento.model.Presente;
 import br.com.paulovitor.casamento.model.Restrito;
-import br.com.paulovitor.casamento.model.TipoPresente;
 
 @Controller
 public class FamiliasController extends BaseController<Familia> {
 
-	private Checklist checklist;
 	private Parentesco parentesco;
 
 	@Inject
-	public FamiliasController(Checklist checklist, Parentesco parentesco,
-			Result result, ResourceBundle bundle, Validator validator) {
+	public FamiliasController(Parentesco parentesco, Result result,
+			ResourceBundle bundle, Validator validator) {
 		super(result, bundle, validator);
-		this.checklist = checklist;
 		this.parentesco = parentesco;
 	}
 
 	@Deprecated
 	FamiliasController() {
-		this(null, null, null, null, null);
-	}
-
-	@Post("/familias/adiciona")
-	public void adiciona(@NotNull Integer idPresente, Familia familia) {
-		validator.validate(familia);
-		result.include("presenteList", checklist.lista(TipoPresente.CASAMENTO));
-		validator.onErrorUsePageOf(PresentesController.class).casamento();
-
-		Presente presente = checklist.get(idPresente);
-		adicionaFamilia(familia, presente);
-		presente.setOk(true);
-		checklist.salva(presente);
-
-		result.redirectTo(PresentesController.class).listaComMensagem();
+		this(null, null, null, null);
 	}
 
 	@Get("/familias/buscaPorNome/{nome}")
@@ -63,7 +43,7 @@ public class FamiliasController extends BaseController<Familia> {
 	@Get
 	@Path(value = "/familias/{id}", priority = Path.LOW)
 	public void edita(Integer id) {
-		edita(id);
+		editaEntity(id);
 	}
 
 	@Restrito
@@ -89,13 +69,7 @@ public class FamiliasController extends BaseController<Familia> {
 	@Restrito
 	@Post("/familias")
 	public void salva(Familia familia) {
-		salva(familia);
-	}
-
-	private void adicionaFamilia(Familia familia, Presente presente) {
-		Familia familiaExistente = parentesco.buscaFamilia(familia.getEmail());
-		presente.setFamilia(familiaExistente == null ? familia
-				: familiaExistente);
+		salvaEntity(familia);
 	}
 
 	@Override

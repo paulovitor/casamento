@@ -4,57 +4,93 @@ import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
-import java.util.ResourceBundle;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.Mockito;
 
-import br.com.caelum.vraptor.util.test.MockResult;
-import br.com.caelum.vraptor.util.test.MockValidator;
 import br.com.paulovitor.casamento.model.Checklist;
+import br.com.paulovitor.casamento.model.Familia;
 import br.com.paulovitor.casamento.model.Parentesco;
+import br.com.paulovitor.casamento.model.Pessoa;
 import br.com.paulovitor.casamento.model.Presente;
 import br.com.paulovitor.casamento.model.TipoPresente;
 
-public class PresentesControllerTest {
+public class PresentesControllerTest extends BaseControllerTest {
 
 	@Mock
-	private Checklist checklist;
+	protected Checklist checklist;
 	@Mock
-	private Parentesco parentesco;
-	private MockResult result;
-	@Mock
-	private ResourceBundle bundle;
-	private MockValidator validator;
+	protected Parentesco parentesco;
 	private PresentesController controller;
 	private Presente presente;
 
 	@Before
-	public void setUp() {
-		MockitoAnnotations.initMocks(this);
+	public void setUp() throws Exception {
+		super.setUp();
 
-		result = new MockResult();
-		validator = new MockValidator();
 		controller = new PresentesController(checklist, parentesco, result,
 				bundle, validator);
 
 		presente = new Presente();
+		presente.setId(1);
 	}
 
 	@After
 	public void tearDown() {
 		controller = null;
+		presente = null;
 	}
 
 	@Test
-	public void testCasamento() {
+	public void deveCarregarListaDePresentesParaTelaDeCasamento() {
 		when(checklist.lista(TipoPresente.CASAMENTO)).thenReturn(
 				Arrays.asList(presente));
 
 		assertNotNull(controller.casamento());
+	}
+
+	@Test
+	public void deveSalvarPresenteEscolhidoPorUmaPessoa() {
+		Pessoa pessoa = new Pessoa();
+		pessoa.setId(1);
+		presente.setPessoa(pessoa);
+		Familia familia = new Familia();
+		presente.setFamilia(familia);
+		presente.setId(1);
+
+		when(parentesco.getPessoa(pessoa.getId())).thenReturn(pessoa);
+		Mockito.doNothing().when(checklist).salva(presente);
+
+		controller.salva(presente);
+	}
+
+	@Test
+	public void deveAdicionarPresenteAUmaPessoa() throws Exception {
+		Pessoa pessoa = new Pessoa();
+		pessoa.setId(1);
+		pessoa.setNome("Paulo");
+
+		when(checklist.get(presente.getId())).thenReturn(presente);
+		when(parentesco.getPessoa(pessoa.getId())).thenReturn(pessoa);
+		Mockito.doNothing().when(checklist).salva(presente);
+
+		controller.adicionaPessoa(presente.getId(), pessoa);
+	}
+
+	@Test
+	public void deveAdicionarPresenteAUmaFamilia() {
+		Familia familia = new Familia();
+		familia.setId(1);
+		familia.setNome("Oliveira");
+
+		when(checklist.get(presente.getId())).thenReturn(presente);
+		when(parentesco.getFamilia(familia.getId())).thenReturn(familia);
+		Mockito.doNothing().when(checklist).salva(presente);
+
+		controller.adicionaFamilia(presente.getId(), familia);
 	}
 
 }

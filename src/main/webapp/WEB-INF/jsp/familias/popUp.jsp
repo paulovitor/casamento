@@ -68,7 +68,7 @@
 			setValues('familia', selected);
 		});
 
-		var urls = { 'pessoa': '${linkTo[PessoasController].adiciona}', 'familia': '${linkTo[FamiliasController].adiciona}' };
+		var urls = { 'pessoa': '${linkTo[PresentesController].adicionaPessoa}', 'familia': '${linkTo[PresentesController].adicionaFamilia}' };
 		$('#btn-submit').on('click', function() {
 			var id = getId($('input[name=tipo]:radio:checked'));
 

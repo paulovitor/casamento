@@ -10,39 +10,39 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import br.com.paulovitor.casamento.model.Familia;
 import br.com.paulovitor.casamento.model.Parentesco;
-import br.com.paulovitor.casamento.model.Pessoa;
 
-public class PessoasControllerTest extends BaseControllerTest {
+public class FamiliasControllerTest extends BaseControllerTest {
 
 	@Mock
 	protected Parentesco parentesco;
-	private PessoasController controller;
-	private Pessoa pessoa;
+	private FamiliasController controller;
+	private Familia familia;
 
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();
 
-		controller = new PessoasController(parentesco, result, bundle,
+		controller = new FamiliasController(parentesco, result, bundle,
 				validator);
 
-		pessoa = new Pessoa();
-		pessoa.setNome("Paulo");
+		familia = new Familia();
+		familia.setNome("Paulo");
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		controller = null;
-		pessoa = null;
+		familia = null;
 	}
 
 	@Test
-	public void deveBuscarPessoasPorNome() throws Exception {
-		when(parentesco.buscaPessoas(pessoa.getNome())).thenReturn(
-				Arrays.asList(pessoa));
+	public void deveBuscarFamiliasPorNome() throws Exception {
+		when(parentesco.buscaFamilias(familia.getNome())).thenReturn(
+				Arrays.asList(familia));
 
-		controller.buscaPorNome(pessoa.getNome());
+		controller.buscaPorNome(familia.getNome());
 
 		assertNotNull(result.serializedResult());
 	}

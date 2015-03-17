@@ -23,7 +23,7 @@ public abstract class BaseController<T> {
 	public BaseController() {
 	}
 
-	protected void edita(Integer id) {
+	protected void editaEntity(Integer id) {
 		T entity = recuperaEntity(id);
 		if (entity == null) {
 			result.notFound();
@@ -36,17 +36,17 @@ public abstract class BaseController<T> {
 
 	protected abstract T recuperaEntity(Integer id);
 
-	protected void salva(T entity) {
+	protected void salvaEntity(T entity) {
 		String mensagem = getMensagem(entity);
 
-		valida(entity);
+		validaAntesDeGravar(entity);
 
 		grava(entity, mensagem);
 	}
 
 	protected abstract String getMensagem(T entity);
 
-	protected void valida(T entity) {
+	protected void validaAntesDeGravar(T entity) {
 		validator.validate(entity);
 		includeParametros(entity);
 		validator.onErrorUsePageOf(this).formulario();
