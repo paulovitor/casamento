@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-	<Pessoa id="1" nome="Phillip" email="phillip@gmail.com"
+	<pessoa id="10" familia_id="10" nome="Phillip" email="phillip@gmail.com"
 		confirmado="true" />
-	<Pessoa id="2" nome="Fred" email="fred@gmail.com" confirmado="false" />
+	<pessoa id="20" familia_id="10" nome="Fred" email="fred@gmail.com"
+		confirmado="false" />
 </dataset>

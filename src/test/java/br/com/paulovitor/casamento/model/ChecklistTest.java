@@ -7,23 +7,13 @@ import java.util.List;
 
 import javax.validation.ConstraintViolationException;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class ChecklistTest extends BaseModelTest {
+public class ChecklistTest extends SpringIntegrationTestCase {
 
 	@Autowired
 	private Checklist checklist;
-
-	@Before
-	public void setUp() {
-	}
-
-	@After
-	public void tearDown() {
-	}
 
 	@Test(expected = ConstraintViolationException.class)
 	public void naoDeveSalvarUmPresenteSemTipo() {

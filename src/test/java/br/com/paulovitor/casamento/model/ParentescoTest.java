@@ -1,46 +1,46 @@
 package br.com.paulovitor.casamento.model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.validation.ConstraintViolationException;
 
-import org.junit.After;
+import org.dbunit.DatabaseUnitException;
+import org.dbunit.dataset.DataSetException;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.github.springtestdbunit.annotation.DatabaseSetup;
+public class ParentescoTest extends SpringIntegrationTestCase {
 
-public class ParentescoTest extends BaseModelTest {
+	private static final Integer PESSOA_ID = 10;
+	private static final Integer FAMILIA_ID = 10;
 
 	@Autowired
 	private Parentesco parentesco;
 
 	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
+	public void setUp() throws DataSetException, DatabaseUnitException,
+			SQLException {
+		clean("/META-INF/dbtest/familias.xml", "/META-INF/dbtest/pessoas.xml");
+		insert("/META-INF/dbtest/familias.xml", "/META-INF/dbtest/pessoas.xml");
 	}
 
 	// Pessoas
 
 	@Test
-	@DatabaseSetup("/META-INF/dbtest/pessoas.xml")
-	public void deveAtualizarPessoaComEmailNull() {
-		// give
-		Pessoa pessoa = parentesco.getPessoa(1);
-		pessoa.setEmail(null);
-
+	public void deveBuscarPessoasPorFamilia() {
 		// when
-		parentesco.salva(pessoa);
+		List<Pessoa> pessoas = parentesco.buscaPessoas(PESSOA_ID);
+
+		// then
+		assertEquals(2, pessoas.size());
 	}
 
 	@Test
-	@DatabaseSetup("/META-INF/dbtest/pessoas.xml")
 	public void deveBuscarPessoasPorNome() {
 		// when
 		List<Pessoa> pessoas = parentesco.buscaPessoas("Fred");
@@ -50,7 +50,6 @@ public class ParentescoTest extends BaseModelTest {
 	}
 
 	@Test
-	@DatabaseSetup("/META-INF/dbtest/pessoas.xml")
 	public void deveRecuperarQuantidadeDePessoasConfirmadas() {
 		// when
 		Long quantidadeDePessoasConfirmadas = parentesco
@@ -60,7 +59,53 @@ public class ParentescoTest extends BaseModelTest {
 		assertEquals(new Long(1), quantidadeDePessoasConfirmadas);
 	}
 
+	@Test
+	public void deveEditarPessoaComEmailNull() {
+		// give
+		Pessoa pessoa = parentesco.getPessoa(PESSOA_ID);
+		pessoa.setEmail(null);
+
+		// when
+		parentesco.salva(pessoa);
+	}
+
 	// Famílias
+
+	@Test
+	public void deveBuscarFamiliasPorNome() {
+		// when
+		List<Familia> familias = parentesco.buscaFamilias("Rodrigues");
+
+		// then
+		assertEquals(1, familias.size());
+	}
+
+	@Test
+	public void deveBuscarFamiliaPorEmail() {
+		// when
+		Familia familia = parentesco.buscaFamilia("oliveira@gmail.com");
+
+		// then
+		assertNotNull(familia);
+	}
+
+	@Test
+	public void deveBuscarFamiliaPorId() {
+		// when
+		Familia familia = parentesco.getFamilia(FAMILIA_ID);
+
+		// then
+		assertNotNull(familia);
+	}
+
+	@Test
+	public void deveBuscarTodasAsFamilias() {
+		// when
+		List<Familia> familias = parentesco.listaTodasFamilias();
+
+		// then
+		assertEquals(2, familias.size());
+	}
 
 	@Test(expected = ConstraintViolationException.class)
 	public void naoDeveSalvarFamiliaSemPreencherCamposObrigatorios() {
@@ -97,11 +142,9 @@ public class ParentescoTest extends BaseModelTest {
 	}
 
 	@Test
-	@DatabaseSetup("/META-INF/dbtest/familias.xml")
 	public void deveEditarFamilia() {
 		// give
-		int id = 1;
-		Familia familia = parentesco.getFamilia(id);
+		Familia familia = parentesco.getFamilia(FAMILIA_ID);
 
 		// when
 		String novoNome = "novo nome";
@@ -109,7 +152,7 @@ public class ParentescoTest extends BaseModelTest {
 		parentesco.salva(familia);
 
 		// then
-		assertEquals(novoNome, parentesco.getFamilia(id).getNome());
+		assertEquals(novoNome, parentesco.getFamilia(FAMILIA_ID).getNome());
 	}
 
 }
