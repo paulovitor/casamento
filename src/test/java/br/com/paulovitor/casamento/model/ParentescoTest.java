@@ -41,12 +41,29 @@ public class ParentescoTest extends SpringIntegrationTestCase {
 	}
 
 	@Test
+	public void naoDeveEncontrarNenhumaPessoaNaBuscaPorFamilia() {
+		// when
+		List<Pessoa> pessoas = parentesco.buscaPessoas(3);
+
+		// then
+		assertEquals(0, pessoas.size());
+	}
+
+	@Test
 	public void deveBuscarPessoasPorNome() {
 		// when
 		List<Pessoa> pessoas = parentesco.buscaPessoas("Fred");
 
 		// then
 		assertEquals(1, pessoas.size());
+	}
+
+	public void naoDeveEncontrarNenhumaPessoaNaBuscaPorNome() {
+		// when
+		List<Pessoa> pessoas = parentesco.buscaPessoas("Tom");
+
+		// then
+		assertEquals(0, pessoas.size());
 	}
 
 	@Test
@@ -57,6 +74,21 @@ public class ParentescoTest extends SpringIntegrationTestCase {
 
 		// then
 		assertEquals(new Long(1), quantidadeDePessoasConfirmadas);
+	}
+
+	@Test
+	public void naoDeveRecuperarNenhumaPessoaConfirmada() {
+		// give
+		Pessoa pessoa = parentesco.getPessoa(PESSOA_ID);
+		pessoa.setConfirmado(false);
+		parentesco.salva(pessoa);
+
+		// when
+		Long quantidadeDePessoasConfirmadas = parentesco
+				.getQuantidadeDePessoasConfirmadas();
+
+		// then
+		assertEquals(new Long(0), quantidadeDePessoasConfirmadas);
 	}
 
 	@Test
@@ -78,6 +110,15 @@ public class ParentescoTest extends SpringIntegrationTestCase {
 
 		// then
 		assertEquals(1, familias.size());
+	}
+
+	@Test
+	public void naoDeveEncontrarNenhumRegistroNaBuscaDeFamiliasPorNome() {
+		// when
+		List<Familia> familias = parentesco.buscaFamilias("Santos");
+
+		// then
+		assertEquals(0, familias.size());
 	}
 
 	@Test

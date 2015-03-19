@@ -25,7 +25,7 @@ public class PresenteDAOImpl extends BaseDAOImpl<Presente> implements
 
 	@Override
 	public List<Presente> todosPorTipo(TipoPresente tipoPresente) {
-		return (List<Presente>) this.manager
+		return this.manager
 				.createQuery(
 						"select p from Presente p where tipo = :tipo order by nome",
 						Presente.class).setParameter("tipo", tipoPresente)

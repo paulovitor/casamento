@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<presente id="1" nome="Cama" quantidade="1" ok="false" tipo="1" />
+	<presente id="2" nome="Panela" quantidade="1" ok="false" tipo="0" />
+</dataset>
