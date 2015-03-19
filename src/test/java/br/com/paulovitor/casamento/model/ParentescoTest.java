@@ -25,8 +25,8 @@ public class ParentescoTest extends SpringIntegrationTestCase {
 	@Before
 	public void setUp() throws DataSetException, DatabaseUnitException,
 			SQLException {
-		clean("/META-INF/dbtest/familias.xml", "/META-INF/dbtest/pessoas.xml");
-		insert("/META-INF/dbtest/familias.xml", "/META-INF/dbtest/pessoas.xml");
+		cleanAndInsert("/META-INF/dbtest/familias.xml",
+				"/META-INF/dbtest/pessoas.xml");
 	}
 
 	// Pessoas
