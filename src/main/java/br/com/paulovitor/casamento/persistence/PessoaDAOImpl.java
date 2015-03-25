@@ -25,7 +25,7 @@ public class PessoaDAOImpl extends BaseDAOImpl<Pessoa> implements PessoaDAO {
 	}
 
 	@Override
-	public List<Pessoa> buscarPorNome(String nome) {
+	public List<Pessoa> buscaPorNome(String nome) {
 		return this.manager
 				.createQuery("select p from Pessoa p where p.nome like :nome",
 						Pessoa.class).setParameter("nome", "%" + nome + "%")

@@ -20,6 +20,8 @@ public interface Parentesco {
 
 	public void excluiFamilia(Integer id);
 
+	public void excluiPessoa(Integer id);
+
 	public List<Familia> listaTodasFamilias();
 
 	public List<Pessoa> listaTodasPessoas();

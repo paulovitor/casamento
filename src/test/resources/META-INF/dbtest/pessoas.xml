@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-	<pessoa id="10" familia_id="10" nome="Phillip" email="phillip@gmail.com"
+	<pessoa id="10" familia_id="10" nome="General" email="general@gmail.com"
+		confirmado="false" />
+	<pessoa id="20" nome="Pepeta" email="pepeta@gmail.com"
 		confirmado="true" />
-	<pessoa id="20" familia_id="10" nome="Fred" email="fred@gmail.com"
+	<pessoa id="30" nome="Xota" email="xota@gmail.com" confirmado="false" />
+	<pessoa id="40" nome="Mortadela" email="mortadela@gmail.com"
 		confirmado="false" />
 </dataset>

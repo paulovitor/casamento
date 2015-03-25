@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import javax.validation.ConstraintViolationException;
 
 import br.com.paulovitor.casamento.persistence.FamiliaDAO;
 import br.com.paulovitor.casamento.persistence.PessoaDAO;
@@ -42,7 +43,7 @@ public class ListaDeParentes implements Parentesco {
 
 	@Override
 	public List<Pessoa> buscaPessoas(String nome) {
-		return this.pessoaDAO.buscarPorNome(nome);
+		return this.pessoaDAO.buscaPorNome(nome);
 	}
 
 	@Override
@@ -64,8 +65,25 @@ public class ListaDeParentes implements Parentesco {
 	@Transactional
 	public void excluiFamilia(Integer id) {
 		Familia familia = this.familiaDAO.get(id);
-		if (familia != null)
+		if (familia != null) {
+			if (familia.getPessoas() != null && familia.getPessoas().size() > 0
+					|| familia.getPresentes() != null
+					&& familia.getPresentes().size() > 0)
+				throw new ConstraintViolationException(null);
 			this.familiaDAO.exclui(familia);
+		}
+	}
+
+	@Override
+	@Transactional
+	public void excluiPessoa(Integer id) {
+		Pessoa pessoa = this.pessoaDAO.get(id);
+		if (pessoa != null) {
+			if (pessoa.getFamilia() != null || pessoa.getPresentes() != null
+					&& pessoa.getPresentes().size() > 0)
+				throw new ConstraintViolationException(null);
+			this.pessoaDAO.exclui(pessoa);
+		}
 	}
 
 	@Override

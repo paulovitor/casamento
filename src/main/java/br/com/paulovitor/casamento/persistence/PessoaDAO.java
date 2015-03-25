@@ -9,7 +9,7 @@ public interface PessoaDAO extends BaseDAO<Pessoa> {
 
 	public List<Pessoa> buscaPorFamilia(Familia familia);
 
-	public List<Pessoa> buscarPorNome(String nome);
+	public List<Pessoa> buscaPorNome(String nome);
 
 	public Long getQuantidadeDePessoasConfirmadas();
 

@@ -14,10 +14,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class ParentescoTest extends SpringIntegrationTestCase {
+public class FamiliaTest extends SpringIntegrationTestCase {
 
-	private static final Integer PESSOA_ID = 10;
-	private static final Integer FAMILIA_ID = 10;
+	private static final Integer ID_FAMILIA_COM_PESSOAS = 10;
+	private static final Integer ID_FAMILIA_QUE_ESCOLHEU_PRESENTES = 20;
+	private static final Integer ID_FAMILIA_SEM_DEPENDENCIAS = 30;
+	private static final Integer ID_FAMILIA_INEXISTENTE = 50;
 
 	@Autowired
 	private Parentesco parentesco;
@@ -26,82 +28,9 @@ public class ParentescoTest extends SpringIntegrationTestCase {
 	public void setUp() throws DataSetException, DatabaseUnitException,
 			SQLException {
 		cleanAndInsert("/META-INF/dbtest/familias.xml",
-				"/META-INF/dbtest/pessoas.xml");
+				"/META-INF/dbtest/pessoas.xml",
+				"/META-INF/dbtest/presentes.xml");
 	}
-
-	// Pessoas
-
-	@Test
-	public void deveBuscarPessoasPorFamilia() {
-		// when
-		List<Pessoa> pessoas = parentesco.buscaPessoas(PESSOA_ID);
-
-		// then
-		assertEquals(2, pessoas.size());
-	}
-
-	@Test
-	public void naoDeveEncontrarNenhumaPessoaNaBuscaPorFamilia() {
-		// when
-		List<Pessoa> pessoas = parentesco.buscaPessoas(3);
-
-		// then
-		assertEquals(0, pessoas.size());
-	}
-
-	@Test
-	public void deveBuscarPessoasPorNome() {
-		// when
-		List<Pessoa> pessoas = parentesco.buscaPessoas("Fred");
-
-		// then
-		assertEquals(1, pessoas.size());
-	}
-
-	public void naoDeveEncontrarNenhumaPessoaNaBuscaPorNome() {
-		// when
-		List<Pessoa> pessoas = parentesco.buscaPessoas("Tom");
-
-		// then
-		assertEquals(0, pessoas.size());
-	}
-
-	@Test
-	public void deveRecuperarQuantidadeDePessoasConfirmadas() {
-		// when
-		Long quantidadeDePessoasConfirmadas = parentesco
-				.getQuantidadeDePessoasConfirmadas();
-
-		// then
-		assertEquals(new Long(1), quantidadeDePessoasConfirmadas);
-	}
-
-	@Test
-	public void naoDeveRecuperarNenhumaPessoaConfirmada() {
-		// give
-		Pessoa pessoa = parentesco.getPessoa(PESSOA_ID);
-		pessoa.setConfirmado(false);
-		parentesco.salva(pessoa);
-
-		// when
-		Long quantidadeDePessoasConfirmadas = parentesco
-				.getQuantidadeDePessoasConfirmadas();
-
-		// then
-		assertEquals(new Long(0), quantidadeDePessoasConfirmadas);
-	}
-
-	@Test
-	public void deveEditarPessoaComEmailNull() {
-		// give
-		Pessoa pessoa = parentesco.getPessoa(PESSOA_ID);
-		pessoa.setEmail(null);
-
-		// when
-		parentesco.salva(pessoa);
-	}
-
-	// Famílias
 
 	@Test
 	public void deveBuscarFamiliasPorNome() {
@@ -115,7 +44,7 @@ public class ParentescoTest extends SpringIntegrationTestCase {
 	@Test
 	public void naoDeveEncontrarNenhumRegistroNaBuscaDeFamiliasPorNome() {
 		// when
-		List<Familia> familias = parentesco.buscaFamilias("Santos");
+		List<Familia> familias = parentesco.buscaFamilias("Silva");
 
 		// then
 		assertEquals(0, familias.size());
@@ -133,7 +62,7 @@ public class ParentescoTest extends SpringIntegrationTestCase {
 	@Test
 	public void deveBuscarFamiliaPorId() {
 		// when
-		Familia familia = parentesco.getFamilia(FAMILIA_ID);
+		Familia familia = parentesco.getFamilia(ID_FAMILIA_COM_PESSOAS);
 
 		// then
 		assertNotNull(familia);
@@ -145,7 +74,7 @@ public class ParentescoTest extends SpringIntegrationTestCase {
 		List<Familia> familias = parentesco.listaTodasFamilias();
 
 		// then
-		assertEquals(2, familias.size());
+		assertEquals(4, familias.size());
 	}
 
 	@Test(expected = ConstraintViolationException.class)
@@ -179,13 +108,13 @@ public class ParentescoTest extends SpringIntegrationTestCase {
 		parentesco.salva(familia);
 
 		// then
-		assertEquals(3, parentesco.listaTodasFamilias().size());
+		assertEquals(5, parentesco.listaTodasFamilias().size());
 	}
 
 	@Test
 	public void deveEditarFamilia() {
 		// give
-		Familia familia = parentesco.getFamilia(FAMILIA_ID);
+		Familia familia = parentesco.getFamilia(ID_FAMILIA_COM_PESSOAS);
 
 		// when
 		String novoNome = "novo nome";
@@ -193,16 +122,38 @@ public class ParentescoTest extends SpringIntegrationTestCase {
 		parentesco.salva(familia);
 
 		// then
-		assertEquals(novoNome, parentesco.getFamilia(FAMILIA_ID).getNome());
+		assertEquals(novoNome, parentesco.getFamilia(ID_FAMILIA_COM_PESSOAS)
+				.getNome());
 	}
 
-//	@Test
-	public void deveExcluirFamilia() {
+	@Test(expected = ConstraintViolationException.class)
+	public void naoDeveExcluirFamiliaComPessoas() {
 		// when
-		parentesco.excluiFamilia(FAMILIA_ID);
+		parentesco.excluiFamilia(ID_FAMILIA_COM_PESSOAS);
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void naoDeveExcluirFamiliaQueEscolheuPresentes() {
+		// when
+		parentesco.excluiFamilia(ID_FAMILIA_QUE_ESCOLHEU_PRESENTES);
+	}
+
+	@Test
+	public void naoDeveExcluirFamiliaInexistente() {
+		// when
+		parentesco.excluiFamilia(ID_FAMILIA_INEXISTENTE);
 
 		// then
-		assertEquals(1, parentesco.listaTodasFamilias().size());
+		assertEquals(4, parentesco.listaTodasFamilias().size());
+	}
+
+	@Test
+	public void deveExcluirFamilia() {
+		// when
+		parentesco.excluiFamilia(ID_FAMILIA_SEM_DEPENDENCIAS);
+
+		// then
+		assertEquals(3, parentesco.listaTodasFamilias().size());
 	}
 
 }
