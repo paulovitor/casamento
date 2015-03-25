@@ -17,8 +17,23 @@ public abstract class BaseDAOImpl<T> implements BaseDAO<T> {
 	}
 
 	@Override
+	public void atualiza(T entity) {
+		this.manager.merge(entity);
+	}
+
+	@Override
 	public T get(Integer id) {
 		return (T) this.manager.find(this.persistentClass, id);
+	}
+
+	@Override
+	public void exclui(T entity) {
+		this.manager.remove(entity);
+	}
+
+	@Override
+	public void salva(T entity) {
+		this.manager.persist(entity);
 	}
 
 	@Override

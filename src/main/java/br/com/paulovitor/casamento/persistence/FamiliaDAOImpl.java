@@ -35,12 +35,4 @@ public class FamiliaDAOImpl extends BaseDAOImpl<Familia> implements FamiliaDAO {
 				.getResultList();
 	}
 
-	@Override
-	public void salva(Familia familia) {
-		if (familia.getId() == null)
-			this.manager.persist(familia);
-		else
-			this.manager.merge(familia);
-	}
-
 }

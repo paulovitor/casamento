@@ -16,14 +16,6 @@ public class PresenteDAOImpl extends BaseDAOImpl<Presente> implements
 	}
 
 	@Override
-	public void salva(Presente presente) {
-		if (presente.getId() == null)
-			this.manager.persist(presente);
-		else
-			this.manager.merge(presente);
-	}
-
-	@Override
 	public List<Presente> todosPorTipo(TipoPresente tipoPresente) {
 		return this.manager
 				.createQuery(

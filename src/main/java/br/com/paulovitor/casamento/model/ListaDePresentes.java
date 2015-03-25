@@ -3,6 +3,7 @@ package br.com.paulovitor.casamento.model;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 import br.com.paulovitor.casamento.persistence.PresenteDAO;
 
@@ -21,6 +22,7 @@ public class ListaDePresentes implements Checklist {
 	}
 
 	@Override
+	@Transactional
 	public void adiciona(List<Presente> presentes) {
 		for (Presente presente : presentes) {
 			this.dao.salva(presente);
@@ -43,8 +45,12 @@ public class ListaDePresentes implements Checklist {
 	}
 
 	@Override
+	@Transactional
 	public void salva(Presente presente) {
-		dao.salva(presente);
+		if (presente.getId() == null)
+			dao.salva(presente);
+		else
+			dao.atualiza(presente);
 	}
 
 }

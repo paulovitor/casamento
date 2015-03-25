@@ -8,8 +8,8 @@ public interface Parentesco {
 
 	public List<Familia> buscaFamilias(String nome);
 
-	public List<Pessoa> buscaPessoas(Integer idFamilia);
-	
+	public List<Pessoa> buscaPessoas(Integer id);
+
 	public List<Pessoa> buscaPessoas(String nome);
 
 	public Familia getFamilia(Integer id);
@@ -17,6 +17,8 @@ public interface Parentesco {
 	public Pessoa getPessoa(Integer id);
 
 	public Long getQuantidadeDePessoasConfirmadas();
+
+	public void excluiFamilia(Integer id);
 
 	public List<Familia> listaTodasFamilias();
 

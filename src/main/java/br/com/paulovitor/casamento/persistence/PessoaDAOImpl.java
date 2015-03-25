@@ -43,12 +43,4 @@ public class PessoaDAOImpl extends BaseDAOImpl<Pessoa> implements PessoaDAO {
 		}
 	}
 
-	@Override
-	public void salva(Pessoa pessoa) {
-		if (pessoa.getId() == null)
-			this.manager.persist(pessoa);
-		else
-			this.manager.merge(pessoa);
-	}
-
 }

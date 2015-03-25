@@ -196,4 +196,13 @@ public class ParentescoTest extends SpringIntegrationTestCase {
 		assertEquals(novoNome, parentesco.getFamilia(FAMILIA_ID).getNome());
 	}
 
+//	@Test
+	public void deveExcluirFamilia() {
+		// when
+		parentesco.excluiFamilia(FAMILIA_ID);
+
+		// then
+		assertEquals(1, parentesco.listaTodasFamilias().size());
+	}
+
 }

@@ -3,6 +3,7 @@ package br.com.paulovitor.casamento.model;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 import br.com.paulovitor.casamento.persistence.FamiliaDAO;
 import br.com.paulovitor.casamento.persistence.PessoaDAO;
@@ -34,8 +35,8 @@ public class ListaDeParentes implements Parentesco {
 	}
 
 	@Override
-	public List<Pessoa> buscaPessoas(Integer idFamilia) {
-		Familia familia = getFamilia(idFamilia);
+	public List<Pessoa> buscaPessoas(Integer id) {
+		Familia familia = getFamilia(id);
 		return this.pessoaDAO.buscaPorFamilia(familia);
 	}
 
@@ -60,6 +61,14 @@ public class ListaDeParentes implements Parentesco {
 	}
 
 	@Override
+	@Transactional
+	public void excluiFamilia(Integer id) {
+		Familia familia = this.familiaDAO.get(id);
+		if (familia != null)
+			this.familiaDAO.exclui(familia);
+	}
+
+	@Override
 	public List<Familia> listaTodasFamilias() {
 		return this.familiaDAO.todos();
 	}
@@ -70,13 +79,21 @@ public class ListaDeParentes implements Parentesco {
 	}
 
 	@Override
+	@Transactional
 	public void salva(Familia familia) {
-		familiaDAO.salva(familia);
+		if (familia.getId() == null)
+			this.familiaDAO.salva(familia);
+		else
+			this.familiaDAO.atualiza(familia);
 	}
 
 	@Override
+	@Transactional
 	public void salva(Pessoa pessoa) {
-		pessoaDAO.salva(pessoa);
+		if (pessoa.getId() == null)
+			this.pessoaDAO.salva(pessoa);
+		else
+			this.pessoaDAO.atualiza(pessoa);
 	}
 
 }
