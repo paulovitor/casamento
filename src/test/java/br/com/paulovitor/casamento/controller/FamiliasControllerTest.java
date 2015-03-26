@@ -9,6 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 
 import br.com.paulovitor.casamento.model.Familia;
 import br.com.paulovitor.casamento.model.Parentesco;
@@ -45,6 +46,13 @@ public class FamiliasControllerTest extends BaseControllerTest {
 		controller.buscaPorNome(familia.getNome());
 
 		assertNotNull(result.serializedResult());
+	}
+	
+	@Test
+	public void deveExcluirFamilia() {
+		Mockito.doNothing().when(parentesco).excluiFamilia(familia.getId());
+		
+		controller.exclui(familia.getId());
 	}
 
 }

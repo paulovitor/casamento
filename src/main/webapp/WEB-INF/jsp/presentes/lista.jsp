@@ -44,8 +44,10 @@
 								<span id="span-${presente.id}"
 									class="cursor glyphicon glyphicon-pencil"></span>
 							</a>
-							<span id="span-${presente.id}"
-								class="cursor glyphicon glyphicon-trash"></span>
+							<a href="${linkTo[PresentesController].exclui}${presente.id}#main">
+								<span id="span-${presente.id}"
+									class="cursor glyphicon glyphicon-trash"></span>
+							</a>
 						</c:if>
 					</td>
 				</tr>

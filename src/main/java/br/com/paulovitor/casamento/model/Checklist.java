@@ -6,6 +6,8 @@ public interface Checklist {
 
 	public void adiciona(List<Presente> presentes);
 
+	public void exclui(Integer id);
+
 	public Presente get(Integer id);
 
 	public List<Presente> lista(TipoPresente tipoPresente);

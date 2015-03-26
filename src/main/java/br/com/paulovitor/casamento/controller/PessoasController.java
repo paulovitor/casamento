@@ -56,6 +56,19 @@ public class PessoasController extends BaseController<Pessoa> {
 
 	@Restrito
 	@Get
+	@Path(value = "/pessoas/exclui/{id}", priority = Path.HIGH)
+	public void exclui(Integer id) {
+		parentesco.excluiPessoa(id);
+		
+		includeParametrosDeSucesso(bundle
+				.getString("pessoas.mensagem.excluido.sucesso"));
+		includeParametros(null);
+
+		result.of(this).formulario();
+	}
+
+	@Restrito
+	@Get
 	@Path(value = "/pessoas/formulario", priority = Path.HIGH)
 	@Override
 	public void formulario() {

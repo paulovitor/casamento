@@ -4,6 +4,5 @@
 		familia_id="20" />
 	<presente id="20" nome="Panela" quantidade="1" ok="false"
 		tipo="0" pessoa_id="30" />
-	<presente id="30" nome="Jogo de Toalha" quantidade="3" ok="false"
-		tipo="0" />
+	<presente id="30" nome="TV" quantidade="3" ok="false" tipo="0" />
 </dataset>

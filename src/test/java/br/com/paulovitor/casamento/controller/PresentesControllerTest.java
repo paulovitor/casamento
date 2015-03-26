@@ -92,5 +92,12 @@ public class PresentesControllerTest extends BaseControllerTest {
 
 		controller.adicionaFamilia(presente.getId(), familia);
 	}
+	
+	@Test
+	public void deveExcluirPresente() {
+		Mockito.doNothing().when(checklist).exclui(presente.getId());
+
+		controller.exclui(presente.getId());
+	}
 
 }

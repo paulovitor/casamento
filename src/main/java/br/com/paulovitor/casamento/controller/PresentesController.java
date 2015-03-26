@@ -102,6 +102,19 @@ public class PresentesController extends BaseController<Presente> {
 		editaEntity(id);
 	}
 
+	@Restrito
+	@Get
+	@Path(value = "/presentes/exclui/{id}", priority = Path.HIGH)
+	public void exclui(Integer id) {
+		checklist.exclui(id);
+
+		includeParametrosDeSucesso(bundle
+				.getString("presentes.mensagem.excluido.sucesso"));
+		includeParametros(null);
+
+		result.of(this).formulario();
+	}
+
 	private void listaComMensagem() {
 		includeParametrosDeSucesso(bundle
 				.getString("presentes.mensagem.escolhido.sucesso"));

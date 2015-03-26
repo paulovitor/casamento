@@ -74,8 +74,11 @@
 									href="${linkTo[FamiliasController].edita}${familia.id}#main">
 										<span id="span-${familia.id}"
 										class="cursor glyphicon glyphicon-pencil"></span>
-								</a> <span id="span-${familia.id}"
-									class="cursor glyphicon glyphicon-trash"></span></td>
+								</a> <a
+									href="${linkTo[FamiliasController].exclui}${familia.id}#main">
+										<span id="span-${familia.id}"
+										class="cursor glyphicon glyphicon-trash"></span>
+								</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

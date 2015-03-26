@@ -48,6 +48,19 @@ public class FamiliasController extends BaseController<Familia> {
 
 	@Restrito
 	@Get
+	@Path(value = "/familias/exclui/{id}", priority = Path.HIGH)
+	public void exclui(Integer id) {
+		parentesco.excluiFamilia(id);
+		
+		includeParametrosDeSucesso(bundle
+				.getString("familias.mensagem.excluido.sucesso"));
+		includeParametros(null);
+
+		result.of(this).formulario();
+	}
+
+	@Restrito
+	@Get
 	@Path(value = "/familias/formulario", priority = Path.HIGH)
 	@Override
 	public void formulario() {

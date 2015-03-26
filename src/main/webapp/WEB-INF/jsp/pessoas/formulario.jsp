@@ -89,8 +89,8 @@
 								href="${linkTo[PessoasController].edita}${pessoa.id}#main">
 									<span id="span-${pessoa.id}"
 									class="cursor glyphicon glyphicon-pencil"></span>
-							</a> <span id="span-${pessoa.id}"
-								class="cursor glyphicon glyphicon-trash"></span></td>
+							</a><a href="${linkTo[PessoasController].exclui}${pessoa.id}#main"><span
+									id="span-${pessoa.id}" class="cursor glyphicon glyphicon-trash"></span></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -99,8 +99,10 @@
 		</div>
 		<div class="col-lg-12">
 			<div class="col-md-8"></div>
-			<div class="col-md-4 text-right"><fmt:message
-						key="pessoas.confirmadas" />: ${quantidadeDePessoasConfirmadas}</div>
+			<div class="col-md-4 text-right">
+				<fmt:message key="pessoas.confirmadas" />
+				: ${quantidadeDePessoasConfirmadas}
+			</div>
 		</div>
 	</div>
 </div>
