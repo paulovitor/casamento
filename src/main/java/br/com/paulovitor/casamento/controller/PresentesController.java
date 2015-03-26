@@ -106,20 +106,13 @@ public class PresentesController extends BaseController<Presente> {
 	@Get
 	@Path(value = "/presentes/exclui/{id}", priority = Path.HIGH)
 	public void exclui(Integer id) {
-		checklist.exclui(id);
-
-		includeParametrosDeSucesso(bundle
-				.getString("presentes.mensagem.excluido.sucesso"));
-		includeParametros(null);
-
-		result.of(this).formulario();
+		excluiEntity(id, "presentes.mensagem.excluido.sucesso",
+				"presentes.mensagem.excluido.erro");
 	}
 
-	private void listaComMensagem() {
-		includeParametrosDeSucesso(bundle
-				.getString("presentes.mensagem.escolhido.sucesso"));
-		result.include("presenteList", checklist.lista(TipoPresente.CASAMENTO));
-		result.of(this).casamento();
+	@Override
+	protected void excluiEntity(Integer id) {
+		checklist.exclui(id);
 	}
 
 	@Restrito
@@ -172,6 +165,13 @@ public class PresentesController extends BaseController<Presente> {
 		result.include("pessoasList", parentesco.listaTodasPessoas());
 		result.include("presenteList", checklist.listaTodos());
 		result.include("presente", presente);
+	}
+
+	private void listaComMensagem() {
+		includeParametrosDeSucesso(bundle
+				.getString("presentes.mensagem.escolhido.sucesso"));
+		result.include("presenteList", checklist.lista(TipoPresente.CASAMENTO));
+		result.of(this).casamento();
 	}
 
 	private void valida(Object entidade) {

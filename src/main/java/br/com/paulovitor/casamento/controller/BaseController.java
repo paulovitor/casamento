@@ -2,12 +2,15 @@ package br.com.paulovitor.casamento.controller;
 
 import java.util.ResourceBundle;
 
+import javax.validation.ConstraintViolationException;
+
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
 
 public abstract class BaseController<T> {
 
-	protected static String TIPO_MESSAGEM_SUCESSO = "success";
+	private static final String TIPO_MESSAGEM_ERRO = "danger";
+	private static final String TIPO_MESSAGEM_SUCESSO = "success";
 
 	protected Result result;
 	protected ResourceBundle bundle;
@@ -33,6 +36,24 @@ public abstract class BaseController<T> {
 			result.of(this).formulario();
 		}
 	}
+	
+	protected void excluiEntity(Integer id, String mensagemDeSucesso, String mensagemDeErro) {
+		try {
+			excluiEntity(id);
+
+			includeParametrosDeSucesso(bundle
+					.getString(mensagemDeSucesso));
+		} catch (ConstraintViolationException exception) {
+			includeParametrosDeErro(bundle
+					.getString(mensagemDeErro));
+		}
+
+		includeParametros(null);
+
+		result.of(this).formulario();
+	}
+
+	protected abstract void excluiEntity(Integer id);
 
 	protected abstract T recuperaEntity(Integer id);
 
@@ -55,7 +76,12 @@ public abstract class BaseController<T> {
 	protected abstract void grava(T entity, String mensagem);
 
 	public abstract void formulario();
-	
+
+	protected void includeParametrosDeErro(String mensagem) {
+		result.include("mensagem", mensagem);
+		result.include("tipo", TIPO_MESSAGEM_ERRO);
+	}
+
 	protected void includeParametrosDeSucesso(String mensagem) {
 		result.include("mensagem", mensagem);
 		result.include("tipo", TIPO_MESSAGEM_SUCESSO);

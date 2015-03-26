@@ -50,13 +50,13 @@ public class FamiliasController extends BaseController<Familia> {
 	@Get
 	@Path(value = "/familias/exclui/{id}", priority = Path.HIGH)
 	public void exclui(Integer id) {
-		parentesco.excluiFamilia(id);
-		
-		includeParametrosDeSucesso(bundle
-				.getString("familias.mensagem.excluido.sucesso"));
-		includeParametros(null);
+		excluiEntity(id, "familias.mensagem.excluido.sucesso",
+				"familias.mensagem.excluido.erro");
+	}
 
-		result.of(this).formulario();
+	@Override
+	protected void excluiEntity(Integer id) {
+		parentesco.excluiFamilia(id);
 	}
 
 	@Restrito
