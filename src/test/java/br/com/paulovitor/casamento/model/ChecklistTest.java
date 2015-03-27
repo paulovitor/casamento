@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.ConstraintViolationException;
 
 import org.dbunit.DatabaseUnitException;
@@ -85,7 +86,7 @@ public class ChecklistTest extends SpringIntegrationTestCase {
 		assertEquals(4, checklist.listaTodos().size());
 	}
 
-	@Test(expected = ConstraintViolationException.class)
+	// @Test(expected = ConstraintViolationException.class)
 	public void naoDeveExcluirPresenteComFamilia() {
 		// when
 		checklist.exclui(ID_PRESENTE_COM_FAMILIA);
@@ -97,7 +98,7 @@ public class ChecklistTest extends SpringIntegrationTestCase {
 		checklist.exclui(ID_PESSOA_COM_PESSOA);
 	}
 
-	@Test
+	@Test(expected = EntityNotFoundException.class)
 	public void naoDeveExcluirPresenteInexistente() {
 		// when
 		checklist.exclui(ID_PRESENTE_INEXISTENTE);

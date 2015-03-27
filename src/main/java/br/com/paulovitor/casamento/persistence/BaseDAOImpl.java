@@ -4,9 +4,13 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
+import br.com.paulovitor.casamento.model.Entidade;
+
+@Transactional
 @SuppressWarnings("unchecked")
-public abstract class BaseDAOImpl<T> implements BaseDAO<T> {
+public abstract class BaseDAOImpl<T extends Entidade> implements BaseDAO<T> {
 
 	@PersistenceContext
 	public EntityManager manager;
@@ -27,13 +31,22 @@ public abstract class BaseDAOImpl<T> implements BaseDAO<T> {
 	}
 
 	@Override
-	public void exclui(T entity) {
-		this.manager.remove(entity);
+	public void exclui(Integer id) {
+		this.manager
+				.remove(this.manager.getReference(this.persistentClass, id));
 	}
 
 	@Override
 	public void salva(T entity) {
 		this.manager.persist(entity);
+	}
+
+	@Override
+	public void salvaOuAtualiza(T entity) {
+		if (entity.getId() == null)
+			salva(entity);
+		else
+			atualiza(entity);
 	}
 
 	@Override

@@ -8,9 +8,12 @@ public interface BaseDAO<T> {
 
 	public T get(Integer id);
 
-	public void exclui(T entity);
+	public void exclui(Integer id);
 
 	public void salva(T entity);
 
+	public void salvaOuAtualiza(T entity);
+
 	public List<T> todos();
+
 }

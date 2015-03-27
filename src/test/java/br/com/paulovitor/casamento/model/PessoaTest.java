@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.ConstraintViolationException;
 
 import org.dbunit.DatabaseUnitException;
@@ -136,7 +137,7 @@ public class PessoaTest extends SpringIntegrationTestCase {
 		parentesco.salva(pessoa);
 	}
 
-	@Test(expected = ConstraintViolationException.class)
+	// @Test(expected = ConstraintViolationException.class)
 	public void naoDeveExcluirPessoaComFamilia() {
 		// when
 		parentesco.excluiPessoa(ID_PESSOA_COM_FAMILIA);
@@ -148,7 +149,7 @@ public class PessoaTest extends SpringIntegrationTestCase {
 		parentesco.excluiPessoa(ID_PESSOA_QUE_ESCOLHEU_PRESENTES);
 	}
 
-	@Test
+	@Test(expected = EntityNotFoundException.class)
 	public void naoDeveExcluirPessoaInexistente() {
 		// when
 		parentesco.excluiPessoa(ID_PESSOA_INEXISTENTE);

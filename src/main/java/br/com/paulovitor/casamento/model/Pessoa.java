@@ -4,9 +4,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -18,11 +15,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "pessoa")
-public class Pessoa {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+public class Pessoa extends Entidade {
 
 	@ManyToOne(cascade = { CascadeType.DETACH })
 	@JoinColumn(name = "familia_id", nullable = true)
@@ -39,14 +32,6 @@ public class Pessoa {
 
 	@OneToMany(mappedBy = "pessoa")
 	private List<Presente> presentes;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public Familia getFamilia() {
 		return familia;

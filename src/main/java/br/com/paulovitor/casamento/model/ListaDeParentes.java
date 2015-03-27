@@ -3,8 +3,6 @@ package br.com.paulovitor.casamento.model;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
-import javax.validation.ConstraintViolationException;
 
 import br.com.paulovitor.casamento.persistence.FamiliaDAO;
 import br.com.paulovitor.casamento.persistence.PessoaDAO;
@@ -62,28 +60,13 @@ public class ListaDeParentes implements Parentesco {
 	}
 
 	@Override
-	@Transactional
 	public void excluiFamilia(Integer id) {
-		Familia familia = this.familiaDAO.get(id);
-		if (familia != null) {
-			if (familia.getPessoas() != null && familia.getPessoas().size() > 0
-					|| familia.getPresentes() != null
-					&& familia.getPresentes().size() > 0)
-				throw new ConstraintViolationException(null);
-			this.familiaDAO.exclui(familia);
-		}
+		this.familiaDAO.exclui(id);
 	}
 
 	@Override
-	@Transactional
 	public void excluiPessoa(Integer id) {
-		Pessoa pessoa = this.pessoaDAO.get(id);
-		if (pessoa != null) {
-			if (pessoa.getFamilia() != null || pessoa.getPresentes() != null
-					&& pessoa.getPresentes().size() > 0)
-				throw new ConstraintViolationException(null);
-			this.pessoaDAO.exclui(pessoa);
-		}
+		this.pessoaDAO.exclui(id);
 	}
 
 	@Override
@@ -97,21 +80,13 @@ public class ListaDeParentes implements Parentesco {
 	}
 
 	@Override
-	@Transactional
 	public void salva(Familia familia) {
-		if (familia.getId() == null)
-			this.familiaDAO.salva(familia);
-		else
-			this.familiaDAO.atualiza(familia);
+		this.familiaDAO.salvaOuAtualiza(familia);
 	}
 
 	@Override
-	@Transactional
 	public void salva(Pessoa pessoa) {
-		if (pessoa.getId() == null)
-			this.pessoaDAO.salva(pessoa);
-		else
-			this.pessoaDAO.atualiza(pessoa);
+		this.pessoaDAO.salvaOuAtualiza(pessoa);
 	}
 
 }
