@@ -62,7 +62,7 @@
 							key="presentes.campo.familia" /></label> <select id="familia"
 						name="presente.familia.id" class="form-control">
 						<option value><fmt:message
-								key="presentes.sugestao.familia" /></option>
+								key="sugestao.familia" /></option>
 						<c:forEach items="${familiasList}" var="familia">
 							<option value="${familia.id}"
 								${presente.familia != null && familia.id == presente.familia.id  ? 'selected' : ''}>${familia.nome}</option>

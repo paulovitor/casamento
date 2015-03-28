@@ -109,6 +109,7 @@ public class PessoaTest extends SpringIntegrationTestCase {
 		String nome = "José";
 		Pessoa pessoa = new Pessoa();
 		pessoa.setNome(nome);
+		pessoa.setFamilia(parentesco.getFamilia(30));
 
 		// when
 		parentesco.salva(pessoa);
@@ -135,12 +136,6 @@ public class PessoaTest extends SpringIntegrationTestCase {
 
 		// when
 		parentesco.salva(pessoa);
-	}
-
-	// @Test(expected = ConstraintViolationException.class)
-	public void naoDeveExcluirPessoaComFamilia() {
-		// when
-		parentesco.excluiPessoa(ID_PESSOA_COM_FAMILIA);
 	}
 
 	// @Test(expected = ConstraintViolationException.class)

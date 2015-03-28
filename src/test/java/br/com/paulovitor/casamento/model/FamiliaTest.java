@@ -2,6 +2,7 @@ package br.com.paulovitor.casamento.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -14,6 +15,7 @@ import org.dbunit.dataset.DataSetException;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 
 public class FamiliaTest extends SpringIntegrationTestCase {
 
@@ -67,6 +69,15 @@ public class FamiliaTest extends SpringIntegrationTestCase {
 
 		// then
 		assertNotNull(familia);
+	}
+
+	@Test
+	public void naoDeveBuscarFamiliaPorIdNulo() {
+		// when
+		Familia familia = parentesco.getFamilia(null);
+
+		// then
+		assertNull(familia);
 	}
 
 	@Test
@@ -127,13 +138,13 @@ public class FamiliaTest extends SpringIntegrationTestCase {
 				.getNome());
 	}
 
-	// @Test(expected = ConstraintViolationException.class)
+	@Test(expected = DataIntegrityViolationException.class)
 	public void naoDeveExcluirFamiliaComPessoas() {
 		// when
 		parentesco.excluiFamilia(ID_FAMILIA_COM_PESSOAS);
 	}
 
-	// @Test(expected = ConstraintViolationException.class)
+	@Test(expected = DataIntegrityViolationException.class)
 	public void naoDeveExcluirFamiliaQueEscolheuPresentes() {
 		// when
 		parentesco.excluiFamilia(ID_FAMILIA_QUE_ESCOLHEU_PRESENTES);

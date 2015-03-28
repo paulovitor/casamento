@@ -46,12 +46,12 @@ public class ListaDeParentes implements Parentesco {
 
 	@Override
 	public Familia getFamilia(Integer id) {
-		return this.familiaDAO.get(id);
+		return id == null ? null : this.familiaDAO.get(id);
 	}
 
 	@Override
 	public Pessoa getPessoa(Integer id) {
-		return this.pessoaDAO.get(id);
+		return id == null ? null : this.pessoaDAO.get(id);
 	}
 
 	@Override

@@ -87,6 +87,12 @@ public class PessoasController extends BaseController<Pessoa> {
 	}
 
 	@Override
+	protected void validaAntesDeGravar(Pessoa pessoa) {
+		pessoa.setFamilia(parentesco.getFamilia(pessoa.getFamilia().getId()));
+		super.validaAntesDeGravar(pessoa);
+	}
+
+	@Override
 	protected Pessoa recuperaEntity(Integer id) {
 		return parentesco.getPessoa(id);
 	}

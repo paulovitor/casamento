@@ -136,16 +136,9 @@ public class PresentesController extends BaseController<Presente> {
 
 	@Override
 	protected void validaAntesDeGravar(Presente presente) {
-		if (presente.getFamilia().getId() == null) {
-			presente.setFamilia(null);
-			presente.setPessoa(parentesco.getPessoa(presente.getPessoa()
-					.getId()));
-		} else if (presente.getPessoa().getId() == null) {
-			presente.setPessoa(null);
-			presente.setFamilia(parentesco.getFamilia(presente.getFamilia()
-					.getId()));
-		}
-
+		presente.setFamilia(parentesco
+				.getFamilia(presente.getFamilia().getId()));
+		presente.setPessoa(parentesco.getPessoa(presente.getPessoa().getId()));
 		super.validaAntesDeGravar(presente);
 	}
 

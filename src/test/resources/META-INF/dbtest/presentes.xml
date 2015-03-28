@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE project>
 <dataset>
 	<presente id="10" nome="Cama" quantidade="1" ok="false" tipo="1"
 		familia_id="20" />

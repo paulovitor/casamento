@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
@@ -17,8 +19,10 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name = "pessoa")
 public class Pessoa extends Entidade {
 
+	@Valid
+	@NotNull
 	@ManyToOne(cascade = { CascadeType.DETACH })
-	@JoinColumn(name = "familia_id", nullable = true)
+	@JoinColumn(name = "familia_id", referencedColumnName = "id", nullable = true)
 	private Familia familia;
 
 	@NotEmpty(message = "{erro.campo.obrigatorio}")

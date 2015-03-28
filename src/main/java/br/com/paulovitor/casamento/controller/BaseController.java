@@ -2,12 +2,11 @@ package br.com.paulovitor.casamento.controller;
 
 import java.util.ResourceBundle;
 
-import javax.validation.ConstraintViolationException;
-
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
+import br.com.paulovitor.casamento.model.Entidade;
 
-public abstract class BaseController<T> {
+public abstract class BaseController<T extends Entidade> {
 
 	private static final String TIPO_MESSAGEM_ERRO = "danger";
 	private static final String TIPO_MESSAGEM_SUCESSO = "success";
@@ -36,16 +35,15 @@ public abstract class BaseController<T> {
 			result.of(this).formulario();
 		}
 	}
-	
-	protected void excluiEntity(Integer id, String mensagemDeSucesso, String mensagemDeErro) {
+
+	protected void excluiEntity(Integer id, String mensagemDeSucesso,
+			String mensagemDeErro) {
 		try {
 			excluiEntity(id);
 
-			includeParametrosDeSucesso(bundle
-					.getString(mensagemDeSucesso));
-		} catch (ConstraintViolationException exception) {
-			includeParametrosDeErro(bundle
-					.getString(mensagemDeErro));
+			includeParametrosDeSucesso(bundle.getString(mensagemDeSucesso));
+		} catch (Exception exception) {
+			includeParametrosDeErro(bundle.getString(mensagemDeErro));
 		}
 
 		includeParametros(null);
