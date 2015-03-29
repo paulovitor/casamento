@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ChecklistTest extends SpringIntegrationTestCase {
 
 	private static final Integer ID_PRESENTE_COM_FAMILIA = 10;
-	private static final Integer ID_PESSOA_COM_PESSOA = 20;
 	private static final Integer ID_PRESENTE_SEM_DEPENDENCIAS = 30;
 	private static final Integer ID_PRESENTE_INEXISTENTE = 50;
 
@@ -56,6 +55,31 @@ public class ChecklistTest extends SpringIntegrationTestCase {
 		assertEquals(1, presentes.size());
 	}
 
+	@Test
+	public void deveBuscarQuantidadeDePresentesEscolhidos() {
+		// then
+		Long quantidadeDePresentesEscolhidos = checklist
+				.getQuantidadeDePresentesEscolhidos();
+
+		// when
+		assertEquals(new Long(1), quantidadeDePresentesEscolhidos);
+	}
+
+	@Test
+	public void naoDeveBuscarNenhumPresenteEscolhido() {
+		// give
+		Presente presente = checklist.get(ID_PRESENTE_COM_FAMILIA);
+		presente.setOk(false);
+		checklist.salva(presente);
+
+		// then
+		Long quantidadeDePresentesEscolhidos = checklist
+				.getQuantidadeDePresentesEscolhidos();
+
+		// when
+		assertEquals(new Long(0), quantidadeDePresentesEscolhidos);
+	}
+
 	@Test(expected = ConstraintViolationException.class)
 	public void naoDeveSalvarUmPresenteSemTipo() {
 		// when
@@ -68,7 +92,7 @@ public class ChecklistTest extends SpringIntegrationTestCase {
 		checklist.salva(criaPresente(null, 1, TipoPresente.CASAMENTO));
 	}
 
-	// @Test(expected = ConstraintViolationException.class)
+	@Test(expected = ConstraintViolationException.class)
 	public void naoDeveSalvarUmPresenteComQuantidadeMenorQueValorMinimo() {
 		// when
 		checklist.salva(criaPresente("TV", 0, TipoPresente.CASAMENTO));
@@ -84,18 +108,6 @@ public class ChecklistTest extends SpringIntegrationTestCase {
 
 		// then
 		assertEquals(4, checklist.listaTodos().size());
-	}
-
-	// @Test(expected = ConstraintViolationException.class)
-	public void naoDeveExcluirPresenteComFamilia() {
-		// when
-		checklist.exclui(ID_PRESENTE_COM_FAMILIA);
-	}
-
-	// @Test(expected = ConstraintViolationException.class)
-	public void naoDeveExcluirPresenteComPessoa() {
-		// when
-		checklist.exclui(ID_PESSOA_COM_PESSOA);
 	}
 
 	@Test(expected = EntityNotFoundException.class)

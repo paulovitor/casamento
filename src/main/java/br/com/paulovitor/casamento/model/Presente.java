@@ -1,6 +1,5 @@
 package br.com.paulovitor.casamento.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -26,11 +25,11 @@ public class Presente extends Entidade {
 	@Min(1)
 	private int quantidade;
 
-	@ManyToOne(cascade = { CascadeType.ALL })
+	@ManyToOne
 	@JoinColumn(name = "familia_id", nullable = true)
 	private Familia familia;
 
-	@ManyToOne(cascade = { CascadeType.ALL })
+	@ManyToOne
 	@JoinColumn(name = "pessoa_id", nullable = true)
 	private Pessoa pessoa;
 
