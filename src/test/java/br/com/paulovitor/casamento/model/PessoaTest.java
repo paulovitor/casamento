@@ -60,6 +60,7 @@ public class PessoaTest extends SpringIntegrationTestCase {
 		assertEquals(1, pessoas.size());
 	}
 
+	@Test
 	public void naoDeveEncontrarNenhumaPessoaNaBuscaPorNome() {
 		// when
 		List<Pessoa> pessoas = parentesco.buscaPessoas("Tom");

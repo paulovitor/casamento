@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-	<presente id="10" nome="Cama" quantidade="1" ok="false" tipo="1"
+	<presente id="10" nome="Cama" quantidade="1" ok="true" tipo="1"
 		familia_id="20" />
 	<presente id="20" nome="Panela" quantidade="1" ok="false"
 		tipo="0" pessoa_id="30" />
-	<presente id="30" nome="TV" quantidade="3" ok="true" tipo="0" />
+	<presente id="30" nome="TV" quantidade="3" ok="false" tipo="0" />
 </dataset>
