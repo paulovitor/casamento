@@ -57,17 +57,11 @@
 					<span class="badge">1</span> Clique no icone <span
 						class="glyphicon glyphicon-plus"></span><br /> <span
 						class="badge">2</span> Preencha os campos
-					<kbd>
-						<fmt:message key="familias.campo.nome" />
-					</kbd>
+					<kbd><fmt:message key="campo.nome" /></kbd>
 					e
-					<kbd>
-						<fmt:message key="familias.campo.email" />
-					</kbd>
+					<kbd><fmt:message key="campo.email" /></kbd>
 					no formulário<br /> <span class="badge">3</span> Clique no botão
-					<kbd>
-						<fmt:message key="botao.confirmar" />
-					</kbd>
+					<kbd><fmt:message key="botao.confirmar" /></kbd>
 					<br /> <span class="badge">4</span> Pronto, seu presente foi
 					escolhido! Muito obrigado e que Deus abençoe!
 				</div>

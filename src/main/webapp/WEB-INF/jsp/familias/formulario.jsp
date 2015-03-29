@@ -34,7 +34,7 @@
 						class="form-control" value="${familia.nome}">
 				</div>
 				<div class="form-group">
-					<label for="email"><fmt:message key="familias.campo.email" /></label>
+					<label for="email"><fmt:message key="campo.email" /></label>
 					<input type="text" id="email" name="familia.email"
 						class="form-control" value="${familia.email}">
 				</div>

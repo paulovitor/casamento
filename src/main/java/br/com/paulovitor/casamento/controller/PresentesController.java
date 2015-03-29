@@ -13,6 +13,7 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
 import br.com.paulovitor.casamento.model.Checklist;
+import br.com.paulovitor.casamento.model.Entidade;
 import br.com.paulovitor.casamento.model.Familia;
 import br.com.paulovitor.casamento.model.Parentesco;
 import br.com.paulovitor.casamento.model.Pessoa;
@@ -43,10 +44,12 @@ public class PresentesController extends BaseController<Presente> {
 	@Post
 	@Path(value = "/presentes/adicionaFamilia", priority = Path.HIGH)
 	public void adicionaFamilia(@NotNull Integer idPresente, Familia familia) {
-		valida(familia);
+		Familia familiaAtualizada = atualiza(familia);
+
+		valida(familiaAtualizada);
 
 		Presente presente = checklist.get(idPresente);
-		adiciona(familia, presente);
+		presente.setFamilia(familiaAtualizada);
 		presente.setOk(true);
 		checklist.salva(presente);
 
@@ -56,10 +59,12 @@ public class PresentesController extends BaseController<Presente> {
 	@Post
 	@Path(value = "/presentes/adicionaPessoa", priority = Path.HIGH)
 	public void adicionaPessoa(@NotNull Integer idPresente, Pessoa pessoa) {
-		valida(pessoa);
+		Pessoa pessoaAtualizada = atualiza(pessoa);
+
+		valida(pessoaAtualizada);
 
 		Presente presente = checklist.get(idPresente);
-		adiciona(pessoa, presente);
+		presente.setPessoa(pessoaAtualizada);
 		presente.setOk(true);
 		checklist.salva(presente);
 
@@ -167,21 +172,29 @@ public class PresentesController extends BaseController<Presente> {
 		result.of(this).casamento();
 	}
 
-	private void valida(Object entidade) {
+	private Pessoa atualiza(Pessoa pessoa) {
+		if (pessoa.getId() != null) {
+			Pessoa pessoaDoBanco = parentesco.getPessoa(pessoa.getId());
+			pessoaDoBanco.setNome(pessoa.getNome());
+			pessoaDoBanco.setEmail(pessoa.getEmail());
+			return pessoaDoBanco;
+		}
+		return pessoa;
+	}
+
+	private Familia atualiza(Familia familia) {
+		if (familia.getId() != null) {
+			Familia familiaDoBanco = parentesco.getFamilia(familia.getId());
+			familiaDoBanco.setNome(familia.getNome());
+			familiaDoBanco.setEmail(familia.getEmail());
+			return familiaDoBanco;
+		}
+		return familia;
+	}
+
+	private void valida(Entidade entidade) {
 		validator.validate(entidade);
 		result.include("presenteList", checklist.lista(TipoPresente.CASAMENTO));
 		validator.onErrorUsePageOf(this).casamento();
 	}
-
-	private void adiciona(Familia familia, Presente presente) {
-		Familia familiaExistente = parentesco.buscaFamilia(familia.getEmail());
-		presente.setFamilia(familiaExistente == null ? familia
-				: familiaExistente);
-	}
-
-	private void adiciona(Pessoa pessoa, Presente presente) {
-		Pessoa pessoaExistente = parentesco.getPessoa(pessoa.getId());
-		presente.setPessoa(pessoaExistente == null ? pessoa : pessoaExistente);
-	}
-
 }

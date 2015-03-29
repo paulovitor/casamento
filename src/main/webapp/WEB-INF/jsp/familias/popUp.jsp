@@ -97,7 +97,7 @@
 				placeholder="<fmt:message key="sugestao.nome" />">
 		</div>
 		<div class="form-group">
-			<label for="email-familia"><fmt:message key="familias.campo.email" /></label>
+			<label for="email-familia"><fmt:message key="campo.email" /></label>
 			<input type="email" id="email-familia" name="familia.email"
 				class="form-control"
 				placeholder="<fmt:message key="sugestao.email" />">
@@ -111,7 +111,7 @@
 				placeholder="<fmt:message key="sugestao.nome" />">
 		</div>
 		<div class="form-group">
-			<label for="email-pessoa"><fmt:message key="pessoas.campo.email" /></label>
+			<label for="email-pessoa"><fmt:message key="campo.email" /></label>
 			<input type="email" id="email-pessoa" name="pessoa.email"
 				class="form-control"
 				placeholder="<fmt:message key="sugestao.email" />">

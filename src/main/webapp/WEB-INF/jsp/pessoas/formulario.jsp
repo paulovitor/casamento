@@ -34,7 +34,7 @@
 						class="form-control" value="${pessoa.nome}">
 				</div>
 				<div class="form-group">
-					<label for="email"><fmt:message key="pessoas.campo.email" /></label>
+					<label for="email"><fmt:message key="campo.email" /></label>
 					<input type="text" id="email" name="pessoa.email"
 						class="form-control" value="${pessoa.email}">
 				</div>
