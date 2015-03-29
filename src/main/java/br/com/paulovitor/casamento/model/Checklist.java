@@ -10,6 +10,8 @@ public interface Checklist {
 
 	public Presente get(Integer id);
 
+	public Long getQuantidadeDePresentesEscolhidos();
+
 	public List<Presente> lista(TipoPresente tipoPresente);
 
 	public List<Presente> listaTodos();

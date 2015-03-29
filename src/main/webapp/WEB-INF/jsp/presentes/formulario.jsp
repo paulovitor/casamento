@@ -102,5 +102,12 @@
 			</jsp:include>
 
 		</div>
+		<div class="col-lg-12">
+			<div class="col-md-8"></div>
+			<div class="col-md-4 text-right">
+				<fmt:message key="presentes.escolhidos" />
+				: ${quantidadeDePresentesEscolhidos}
+			</div>
+		</div>
 	</div>
 </div>

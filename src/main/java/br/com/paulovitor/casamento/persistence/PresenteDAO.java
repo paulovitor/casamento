@@ -9,4 +9,6 @@ public interface PresenteDAO extends BaseDAO<Presente> {
 
 	public List<Presente> todosPorTipo(TipoPresente chaDePanela);
 
+	public Long getQuantidadeDePresentesEscolhidos();
+
 }

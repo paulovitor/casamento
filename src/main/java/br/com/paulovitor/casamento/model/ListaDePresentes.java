@@ -38,6 +38,11 @@ public class ListaDePresentes implements Checklist {
 	}
 
 	@Override
+	public Long getQuantidadeDePresentesEscolhidos() {
+		return dao.getQuantidadeDePresentesEscolhidos();
+	}
+
+	@Override
 	public List<Presente> lista(TipoPresente tipoPresente) {
 		return this.dao.todosPorTipo(tipoPresente);
 	}

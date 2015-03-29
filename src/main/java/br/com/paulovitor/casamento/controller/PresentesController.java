@@ -163,6 +163,8 @@ public class PresentesController extends BaseController<Presente> {
 		result.include("pessoasList", parentesco.listaTodasPessoas());
 		result.include("presenteList", checklist.listaTodos());
 		result.include("presente", presente);
+		result.include("quantidadeDePresentesEscolhidos",
+				checklist.getQuantidadeDePresentesEscolhidos());
 	}
 
 	private void listaComMensagem() {
