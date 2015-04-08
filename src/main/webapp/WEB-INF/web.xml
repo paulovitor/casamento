@@ -12,6 +12,11 @@
 		<param-value>messages</param-value>
 	</context-param>
 
+	<context-param>
+		<param-name>br.com.caelum.vraptor.environment</param-name>
+		<param-value>production</param-value>
+	</context-param>
+
 	<listener>
 		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
 	</listener>
@@ -28,6 +33,7 @@
 		<servlet-name>TilesDispatchServlet</servlet-name>
 		<servlet-class>org.apache.tiles.web.util.TilesDispatchServlet</servlet-class>
 	</servlet>
+
 	<servlet-mapping>
 		<servlet-name>TilesDispatchServlet</servlet-name>
 		<url-pattern>*.tiles</url-pattern>

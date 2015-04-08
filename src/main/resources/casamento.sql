@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: 127.7.228.130:3306
--- Data de Criação: 29-Mar-2015 às 15:20
+-- Data de Criação: 04-Abr-2015 às 16:41
 -- Versão do servidor: 5.5.41
 -- versão do PHP: 5.3.3
 
@@ -82,7 +82,7 @@ INSERT INTO `familia` (`id`, `email`, `nome`) VALUES
 (238, 'renatinhojonathan@gmail.com', 'Renato e Família'),
 (240, 'email@email.com', 'Ilário e Lurdes'),
 (241, 'email@email.com', 'Vô Batista'),
-(242, 'email@email.com', 'Davi e Karine'),
+(242, 'email@email.com', 'Davi e Kaline'),
 (243, 'luismonteiro15@hotmail.com', 'Luis Cesar'),
 (244, 'email@email.com', 'Kenji e Andreia'),
 (245, 'email@email.com', 'Lucas Thadeu'),
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `hibernate_sequence` (
 --
 
 INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(374);
+(375);
 
 -- --------------------------------------------------------
 
@@ -160,9 +160,9 @@ INSERT INTO `pessoa` (`id`, `confirmado`, `nome`, `familia_id`, `email`) VALUES
 (124, b'1', 'Raquel', 83, NULL),
 (125, b'1', 'Caio', 66, NULL),
 (126, b'1', 'Renata', 66, NULL),
-(127, b'0', 'Celio', 110, NULL),
-(128, b'0', 'Simone', 110, NULL),
-(129, b'0', 'Victor William', 110, 'victorwilliam47@gmail.com'),
+(127, b'1', 'Celio', 110, NULL),
+(128, b'1', 'Simone', 110, NULL),
+(129, b'1', 'Victor William', 110, 'victorwilliam47@gmail.com'),
 (130, b'1', 'Daltair', 100, NULL),
 (131, b'1', 'Sheila', 100, NULL),
 (132, b'1', 'Daltair Felippe', 100, NULL),
@@ -191,12 +191,12 @@ INSERT INTO `pessoa` (`id`, `confirmado`, `nome`, `familia_id`, `email`) VALUES
 (155, b'1', 'Flávia', 98, NULL),
 (156, b'1', 'Francisco', 67, NULL),
 (157, b'1', 'Cassia', 67, NULL),
-(158, b'0', 'Gilberto', 78, NULL),
-(159, b'0', 'Tania', 78, NULL),
-(160, b'0', 'Bruno', 78, NULL),
-(161, b'0', 'Hugo', 78, NULL),
-(162, b'0', 'Namorada do Hugo', 78, NULL),
-(163, b'0', 'Kelly', 78, NULL),
+(158, b'1', 'Gilberto', 78, NULL),
+(159, b'1', 'Tania', 78, NULL),
+(160, b'1', 'Bruno', 78, NULL),
+(161, b'1', 'Hugo', 78, NULL),
+(162, b'1', 'Namorada do Hugo', 78, NULL),
+(163, b'1', 'Kelly', 78, NULL),
 (164, b'0', 'Grazi', 86, NULL),
 (165, b'0', 'Luis', 86, NULL),
 (166, b'0', 'Ruan', 86, NULL),
@@ -205,11 +205,11 @@ INSERT INTO `pessoa` (`id`, `confirmado`, `nome`, `familia_id`, `email`) VALUES
 (169, b'0', 'Geovana', 104, NULL),
 (170, b'0', 'Namorado da Geovana', 104, NULL),
 (171, b'1', 'Irmã Beatriz', 75, NULL),
-(172, b'0', 'Izabel', 89, NULL),
-(173, b'0', 'Helton', 89, NULL),
-(174, b'0', 'Hendril', 89, NULL),
-(175, b'0', 'Namorada Hendril', 89, NULL),
-(176, b'0', 'Isabeli', 89, NULL),
+(172, b'1', 'Izabel', 89, NULL),
+(173, b'1', 'Helton', 89, NULL),
+(174, b'1', 'Hendril', 89, NULL),
+(175, b'1', 'Namorada Hendril', 89, NULL),
+(176, b'1', 'Isabeli', 89, NULL),
 (177, b'1', 'Joelino', 70, NULL),
 (178, b'1', 'Jocelia', 70, NULL),
 (179, b'1', 'Dani Ferreira', 70, 'dani8freitas@gmail.com'),
@@ -218,10 +218,10 @@ INSERT INTO `pessoa` (`id`, `confirmado`, `nome`, `familia_id`, `email`) VALUES
 (182, b'1', 'Josina', 84, NULL),
 (183, b'0', 'Juelice', 82, NULL),
 (184, b'0', 'Otacilia', 82, NULL),
-(185, b'0', 'Jussara', 72, NULL),
-(186, b'0', 'Jocelma', 72, 'jocelmafsouza@hotmail.com'),
-(187, b'0', 'Luis Henrique', 72, NULL),
-(188, b'0', 'Namorada do Luis Henrique', 72, NULL),
+(185, b'1', 'Jussara', 72, NULL),
+(186, b'1', 'Jocelma', 72, 'jocelmafsouza@hotmail.com'),
+(187, b'1', 'Luis Henrique', 72, NULL),
+(188, b'1', 'Namorada do Luis Henrique', 72, NULL),
 (189, b'0', 'Wemerson', 93, NULL),
 (190, b'0', 'Lorena', 93, NULL),
 (191, b'1', 'Gentil', 80, NULL),
@@ -263,8 +263,8 @@ INSERT INTO `pessoa` (`id`, `confirmado`, `nome`, `familia_id`, `email`) VALUES
 (227, b'1', 'Catia', 91, NULL),
 (228, b'1', 'Edgar', 91, NULL),
 (229, b'1', 'Moriane', 91, NULL),
-(256, b'0', 'Maria Dalva', 99, NULL),
-(257, b'0', 'Tiago', 99, NULL),
+(256, b'1', 'Maria Dalva', 99, NULL),
+(257, b'1', 'Tiago', 99, NULL),
 (258, b'0', 'Vó Terezinha', 230, NULL),
 (259, b'0', 'Simone', 230, NULL),
 (260, b'0', 'Fátima', 235, NULL),
@@ -276,13 +276,13 @@ INSERT INTO `pessoa` (`id`, `confirmado`, `nome`, `familia_id`, `email`) VALUES
 (266, b'1', 'Amanda', 238, NULL),
 (267, b'0', 'Ilário', 240, NULL),
 (268, b'0', 'Lurdes', 240, NULL),
-(269, b'0', 'Vô Batista', 241, NULL),
-(270, b'0', 'Davi', 242, NULL),
-(271, b'0', 'Karine', 242, NULL),
+(269, b'1', 'Vô Batista', 241, NULL),
+(270, b'1', 'Davi', 242, NULL),
+(271, b'1', 'Kaline', 242, NULL),
 (272, b'0', 'Luís Cesar', 243, NULL),
 (273, b'1', 'Kenji', 244, NULL),
 (274, b'1', 'Andreia', 244, NULL),
-(279, b'0', 'Victor', 249, NULL),
+(279, b'1', 'Victor', 249, NULL),
 (280, b'0', 'Joyce', 249, NULL),
 (281, b'0', 'Rosa', 249, NULL),
 (282, b'0', 'Maria Eduarda', 249, NULL),
@@ -297,16 +297,16 @@ INSERT INTO `pessoa` (`id`, `confirmado`, `nome`, `familia_id`, `email`) VALUES
 (291, b'1', 'Gilberto', 361, NULL),
 (292, b'1', 'Flávia', 361, NULL),
 (293, b'1', 'Catarina', 361, NULL),
-(294, b'0', 'Marcelo', 254, NULL),
-(295, b'0', 'Janaina', 254, NULL),
-(296, b'0', 'Milca', 254, NULL),
-(297, b'0', 'Namorado Milca', 254, NULL),
-(298, b'0', 'Alisson', 254, NULL),
+(294, b'1', 'Marcelo', 254, NULL),
+(295, b'1', 'Janaina', 254, NULL),
+(296, b'1', 'Milca', 254, NULL),
+(297, b'1', 'Namorado Milca', 254, NULL),
+(298, b'1', 'Alisson', 254, NULL),
 (299, b'0', 'Lucas', 255, NULL),
 (300, b'0', 'Geovana', 255, NULL),
 (301, b'0', 'Lucas Thadeu', 275, NULL),
 (302, b'0', 'Daniel', 276, NULL),
-(303, b'0', 'Marlon', 277, NULL),
+(303, b'1', 'Marlon', 277, NULL),
 (304, b'0', 'Junior', 278, NULL),
 (305, b'1', 'Anselmo', 362, NULL),
 (306, b'1', 'Gilma', 362, NULL),
@@ -324,7 +324,8 @@ INSERT INTO `pessoa` (`id`, `confirmado`, `nome`, `familia_id`, `email`) VALUES
 (359, b'0', 'Rúbia', 355, NULL),
 (368, b'0', 'Diogo', 236, NULL),
 (369, b'0', 'Jaqueline', 236, NULL),
-(373, b'0', 'Francisco Roberto', 365, NULL);
+(373, b'0', 'Francisco Roberto', 365, NULL),
+(374, b'1', 'Suzana', 110, NULL);
 
 -- --------------------------------------------------------
 

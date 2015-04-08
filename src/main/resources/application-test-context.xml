@@ -54,4 +54,15 @@
 		<constructor-arg name="pessoaDAO" ref="pessoaDAO" />
 	</bean>
 
+	<bean name="environment" class="br.com.caelum.vraptor.environment.DefaultEnvironment"></bean>
+
+	<bean name="mailer" class="br.com.caelum.vraptor.simplemail.DefaultMailer">
+		<constructor-arg name="env" ref="environment" />
+	</bean>
+
+	<bean name=" mensageiro "
+		class="br.com.paulovitor.casamento.model.EncaminhadorDeEmails">
+		<constructor-arg name="mailer" ref="mailer" />
+	</bean>
+
 </beans>
