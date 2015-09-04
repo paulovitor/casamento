@@ -22,7 +22,7 @@ public class Presente extends Entidade {
 	@Column(unique = true)
 	private String nome;
 
-	@Min(1)
+	@Min(value = 1, message = "{erro.campo.minimo}")
 	private int quantidade;
 
 	@ManyToOne
