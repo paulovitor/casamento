@@ -5,7 +5,7 @@ batch
 /subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql,driver-module-name=com.mysql.jdbc,driver-xa-datasource-class-name=com.mysql.jdbc.jdbc2.optional.MysqlXADataSource)
 
 # Add the datasource
-data-source add --name=MySQLDS --driver-name=mysql --jndi-name=java:jboss/datasources/MySQLDS --connection-url=jdbc:mysql://$MYSQL_URI/sample?useUnicode=true&amp;characterEncoding=UTF-8 --user-name=root --password=santos --use-ccm=false --max-pool-size=25 --blocking-timeout-wait-millis=5000 --enabled=true
+data-source add --name=MySQLDS --driver-name=mysql --jndi-name=java:jboss/datasources/MySQLDS --connection-url=jdbc:mysql://$MYSQL_URI/casamento?useUnicode=true&amp;characterEncoding=UTF-8 --user-name=mysql --password=mysql --use-ccm=false --max-pool-size=25 --blocking-timeout-wait-millis=5000 --enabled=true
 
 # Execute the batch
 run-batch
