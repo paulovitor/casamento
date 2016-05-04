@@ -1,7 +1,10 @@
 FROM jboss/wildfly:latest
 
-ADD customization /opt/jboss/wildfly/customization/
-ADD modules /opt/jboss/wildfly/modules/
+# COPY docker/jrebel.jar /jrebel.jar
+# ENV JAVA_OPTS="-javaagent:/jrebel.jar -Drebel.remoting_plugin=true"
+
+ADD docker/customization /opt/jboss/wildfly/customization/
+ADD docker/modules /opt/jboss/wildfly/modules/
 
 # ADD target/casamento.war /opt/jboss/wildfly/customization/casamento.war
 

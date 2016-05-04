@@ -5,3 +5,6 @@
 .tern-project
 deployments
 .openshift
+src/main/resources/rebel.xml
+src/main/resources/rebel-remote.xml
+docker/jrebel.jar
