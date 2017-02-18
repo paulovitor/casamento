@@ -1,10 +1,37 @@
-/target/
-.settings
+# Eclipse Files #
+.tern-project
 .classpath
 .project
-.tern-project
-deployments
-.openshift
-src/main/resources/rebel.xml
-src/main/resources/rebel-remote.xml
+bin/
+.settings/
+build/
+
+# Maven #
+target/
+
+# Intellij #
+.idea/
+*.iml
+
+# Jrebel #
+rebel.xml
+rebel-remote.xml
+jrebel.jar
 docker/jrebel.jar
+
+# Openshift #
+deployments/
+.openshift
+
+# Jenkins #
+!jenkins/
+
+jenkins/*
+!jenkins/docker-compose.yml
+!jenkins/jobs/
+
+jenkins/jobs/*
+!jenkins/jobs/casamento/
+
+jenkins/jobs/casamento/*
+!jenkins/jobs/casamento/config.xml

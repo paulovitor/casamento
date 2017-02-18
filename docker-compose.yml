@@ -1,14 +1,19 @@
-db:
-  container_name: "db"
-  image: mysql:latest
-  environment:
-    MYSQL_DATABASE: casamento
-    MYSQL_USER: mysql
-    MYSQL_PASSWORD: mysql
-    MYSQL_ROOT_PASSWORD: santos
-web:
-  build: .
-  environment:
-    - MYSQL_URI=db:3306
-  ports:
-    - 8080:8080
+version: '2'
+services:
+  db:
+    image: mysql:latest
+    container_name: mysql
+    environment:
+      MYSQL_DATABASE: casamento
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+      MYSQL_ROOT_PASSWORD: santos
+  web:
+    build: .
+    container_name: casamento
+    environment:
+      - MYSQL_URI=db:3306
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
